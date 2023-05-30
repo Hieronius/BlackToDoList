@@ -16,6 +16,7 @@
 		DDDB65FF2A25D98600FE519B /* UIViewController+Extension .swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB65FE2A25D98600FE519B /* UIViewController+Extension .swift */; };
 		DDDB66012A25DAA700FE519B /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB66002A25DAA700FE519B /* UIView+Extension.swift */; };
 		DDDB66032A25DB5900FE519B /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB66022A25DB5900FE519B /* UIViewController+Extension.swift */; };
+		DDDB66052A25DC0C00FE519B /* Set NavigationViewController for UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB66042A25DC0C00FE519B /* Set NavigationViewController for UIWindow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		DDDB65FE2A25D98600FE519B /* UIViewController+Extension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension .swift"; sourceTree = "<group>"; };
 		DDDB66002A25DAA700FE519B /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		DDDB66022A25DB5900FE519B /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		DDDB66042A25DC0C00FE519B /* Set NavigationViewController for UIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set NavigationViewController for UIWindow.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 		DDDB65F42A25D75A00FE519B /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				DDDB66042A25DC0C00FE519B /* Set NavigationViewController for UIWindow.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				DDDB66032A25DB5900FE519B /* UIViewController+Extension.swift in Sources */,
 				DDDB65E52A25D2EE00FE519B /* ViewController.swift in Sources */,
 				DDDB65E12A25D2EE00FE519B /* AppDelegate.swift in Sources */,
+				DDDB66052A25DC0C00FE519B /* Set NavigationViewController for UIWindow.swift in Sources */,
 				DDDB65FF2A25D98600FE519B /* UIViewController+Extension .swift in Sources */,
 				DDDB66012A25DAA700FE519B /* UIView+Extension.swift in Sources */,
 				DDDB65E32A25D2EE00FE519B /* SceneDelegate.swift in Sources */,
