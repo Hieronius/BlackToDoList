@@ -17,6 +17,16 @@
 		DDDB66012A25DAA700FE519B /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB66002A25DAA700FE519B /* UIView+Extension.swift */; };
 		DDDB66032A25DB5900FE519B /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB66022A25DB5900FE519B /* UIViewController+Extension.swift */; };
 		DDDB66052A25DC0C00FE519B /* Set NavigationViewController for UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB66042A25DC0C00FE519B /* Set NavigationViewController for UIWindow.swift */; };
+		DDDB660C2A25DDA900FE519B /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB660B2A25DDA900FE519B /* RegistrationViewController.swift */; };
+		DDDB660E2A25DDBF00FE519B /* ResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB660D2A25DDBF00FE519B /* ResetViewController.swift */; };
+		DDDB66102A25DDEA00FE519B /* LockScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB660F2A25DDEA00FE519B /* LockScreenViewController.swift */; };
+		DDDB66122A25DDFC00FE519B /* LockScreenViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDDB66112A25DDFC00FE519B /* LockScreenViewController.storyboard */; };
+		DDDB66142A25DE1500FE519B /* PresentationScreenViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDDB66132A25DE1500FE519B /* PresentationScreenViewController.storyboard */; };
+		DDDB66162A25DE2900FE519B /* PresentationScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB66152A25DE2900FE519B /* PresentationScreenViewController.swift */; };
+		DDDB66182A25DE3400FE519B /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB66172A25DE3400FE519B /* MainScreenViewController.swift */; };
+		DDDB661A2A25DE3F00FE519B /* MainScreenViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDDB66192A25DE3F00FE519B /* MainScreenViewController.storyboard */; };
+		DDDB661C2A25DE6C00FE519B /* OptionsScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB661B2A25DE6C00FE519B /* OptionsScreenViewController.swift */; };
+		DDDB661E2A25DE8100FE519B /* OptionsScreenViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDDB661D2A25DE8100FE519B /* OptionsScreenViewController.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +42,16 @@
 		DDDB66002A25DAA700FE519B /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		DDDB66022A25DB5900FE519B /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		DDDB66042A25DC0C00FE519B /* Set NavigationViewController for UIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set NavigationViewController for UIWindow.swift"; sourceTree = "<group>"; };
+		DDDB660B2A25DDA900FE519B /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		DDDB660D2A25DDBF00FE519B /* ResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetViewController.swift; sourceTree = "<group>"; };
+		DDDB660F2A25DDEA00FE519B /* LockScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenViewController.swift; sourceTree = "<group>"; };
+		DDDB66112A25DDFC00FE519B /* LockScreenViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LockScreenViewController.storyboard; sourceTree = "<group>"; };
+		DDDB66132A25DE1500FE519B /* PresentationScreenViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PresentationScreenViewController.storyboard; sourceTree = "<group>"; };
+		DDDB66152A25DE2900FE519B /* PresentationScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationScreenViewController.swift; sourceTree = "<group>"; };
+		DDDB66172A25DE3400FE519B /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
+		DDDB66192A25DE3F00FE519B /* MainScreenViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainScreenViewController.storyboard; sourceTree = "<group>"; };
+		DDDB661B2A25DE6C00FE519B /* OptionsScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsScreenViewController.swift; sourceTree = "<group>"; };
+		DDDB661D2A25DE8100FE519B /* OptionsScreenViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OptionsScreenViewController.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +126,10 @@
 		DDDB65F72A25D78900FE519B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				DDDB660A2A25DD7C00FE519B /* OptionsScreen */,
+				DDDB66092A25DD6B00FE519B /* MainScreen */,
+				DDDB66082A25DD4800FE519B /* PresentationScreen */,
+				DDDB66072A25DD3C00FE519B /* LockScreen */,
 				DDDB66062A25DCDA00FE519B /* LogInScreen */,
 			);
 			path = Controllers;
@@ -163,8 +187,46 @@
 			children = (
 				DDDB65E62A25D2EE00FE519B /* LogInViewController.storyboard */,
 				DDDB65E42A25D2EE00FE519B /* LogInViewController.swift */,
+				DDDB660B2A25DDA900FE519B /* RegistrationViewController.swift */,
+				DDDB660D2A25DDBF00FE519B /* ResetViewController.swift */,
 			);
 			path = LogInScreen;
+			sourceTree = "<group>";
+		};
+		DDDB66072A25DD3C00FE519B /* LockScreen */ = {
+			isa = PBXGroup;
+			children = (
+				DDDB660F2A25DDEA00FE519B /* LockScreenViewController.swift */,
+				DDDB66112A25DDFC00FE519B /* LockScreenViewController.storyboard */,
+			);
+			path = LockScreen;
+			sourceTree = "<group>";
+		};
+		DDDB66082A25DD4800FE519B /* PresentationScreen */ = {
+			isa = PBXGroup;
+			children = (
+				DDDB66132A25DE1500FE519B /* PresentationScreenViewController.storyboard */,
+				DDDB66152A25DE2900FE519B /* PresentationScreenViewController.swift */,
+			);
+			path = PresentationScreen;
+			sourceTree = "<group>";
+		};
+		DDDB66092A25DD6B00FE519B /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				DDDB66172A25DE3400FE519B /* MainScreenViewController.swift */,
+				DDDB66192A25DE3F00FE519B /* MainScreenViewController.storyboard */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		DDDB660A2A25DD7C00FE519B /* OptionsScreen */ = {
+			isa = PBXGroup;
+			children = (
+				DDDB661B2A25DE6C00FE519B /* OptionsScreenViewController.swift */,
+				DDDB661D2A25DE8100FE519B /* OptionsScreenViewController.storyboard */,
+			);
+			path = OptionsScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,8 +288,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDDB65ED2A25D2F100FE519B /* LaunchScreen.storyboard in Resources */,
+				DDDB66142A25DE1500FE519B /* PresentationScreenViewController.storyboard in Resources */,
 				DDDB65EA2A25D2F100FE519B /* Assets.xcassets in Resources */,
+				DDDB66122A25DDFC00FE519B /* LockScreenViewController.storyboard in Resources */,
+				DDDB661A2A25DE3F00FE519B /* MainScreenViewController.storyboard in Resources */,
 				DDDB65E82A25D2EE00FE519B /* LogInViewController.storyboard in Resources */,
+				DDDB661E2A25DE8100FE519B /* OptionsScreenViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,12 +305,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDDB66032A25DB5900FE519B /* UIViewController+Extension.swift in Sources */,
+				DDDB66102A25DDEA00FE519B /* LockScreenViewController.swift in Sources */,
+				DDDB660E2A25DDBF00FE519B /* ResetViewController.swift in Sources */,
 				DDDB65E52A25D2EE00FE519B /* LogInViewController.swift in Sources */,
+				DDDB660C2A25DDA900FE519B /* RegistrationViewController.swift in Sources */,
+				DDDB66182A25DE3400FE519B /* MainScreenViewController.swift in Sources */,
 				DDDB65E12A25D2EE00FE519B /* AppDelegate.swift in Sources */,
 				DDDB66052A25DC0C00FE519B /* Set NavigationViewController for UIWindow.swift in Sources */,
+				DDDB66162A25DE2900FE519B /* PresentationScreenViewController.swift in Sources */,
 				DDDB65FF2A25D98600FE519B /* UIViewController+Extension .swift in Sources */,
 				DDDB66012A25DAA700FE519B /* UIView+Extension.swift in Sources */,
 				DDDB65E32A25D2EE00FE519B /* SceneDelegate.swift in Sources */,
+				DDDB661C2A25DE6C00FE519B /* OptionsScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
