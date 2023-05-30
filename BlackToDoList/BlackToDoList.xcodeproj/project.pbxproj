@@ -56,15 +56,95 @@
 		DDDB65DF2A25D2EE00FE519B /* BlackToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				DDDB65F72A25D78900FE519B /* Controllers */,
+				DDDB65F62A25D78000FE519B /* Models */,
+				DDDB65FD2A25D85100FE519B /* Managers */,
+				DDDB65FC2A25D83600FE519B /* Network */,
+				DDDB65FB2A25D82F00FE519B /* Services */,
+				DDDB65F52A25D76200FE519B /* Extensions */,
+				DDDB65FA2A25D80000FE519B /* Protocols */,
+				DDDB65F42A25D75A00FE519B /* Custom */,
+				DDDB65F92A25D7BF00FE519B /* Helpers */,
+				DDDB65F82A25D7A800FE519B /* Resources */,
+			);
+			path = BlackToDoList;
+			sourceTree = "<group>";
+		};
+		DDDB65F42A25D75A00FE519B /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		DDDB65F52A25D76200FE519B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DDDB65F62A25D78000FE519B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DDDB65F72A25D78900FE519B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DDDB65E62A25D2EE00FE519B /* LogInViewController.storyboard */,
+				DDDB65E42A25D2EE00FE519B /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		DDDB65F82A25D7A800FE519B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DDDB65E92A25D2F100FE519B /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DDDB65F92A25D7BF00FE519B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
 				DDDB65E02A25D2EE00FE519B /* AppDelegate.swift */,
 				DDDB65E22A25D2EE00FE519B /* SceneDelegate.swift */,
-				DDDB65E42A25D2EE00FE519B /* ViewController.swift */,
-				DDDB65E62A25D2EE00FE519B /* LogInViewController.storyboard */,
-				DDDB65E92A25D2F100FE519B /* Assets.xcassets */,
 				DDDB65EB2A25D2F100FE519B /* LaunchScreen.storyboard */,
 				DDDB65EE2A25D2F100FE519B /* Info.plist */,
 			);
-			path = BlackToDoList;
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		DDDB65FA2A25D80000FE519B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		DDDB65FB2A25D82F00FE519B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		DDDB65FC2A25D83600FE519B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		DDDB65FD2A25D85100FE519B /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
