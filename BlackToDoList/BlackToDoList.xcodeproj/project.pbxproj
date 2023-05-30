@@ -14,6 +14,7 @@
 		DDDB65EA2A25D2F100FE519B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDDB65E92A25D2F100FE519B /* Assets.xcassets */; };
 		DDDB65ED2A25D2F100FE519B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDDB65EB2A25D2F100FE519B /* LaunchScreen.storyboard */; };
 		DDDB65FF2A25D98600FE519B /* UIViewController+Extension .swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB65FE2A25D98600FE519B /* UIViewController+Extension .swift */; };
+		DDDB66012A25DAA700FE519B /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB66002A25DAA700FE519B /* UIView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		DDDB65EC2A25D2F100FE519B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DDDB65EE2A25D2F100FE519B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDDB65FE2A25D98600FE519B /* UIViewController+Extension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension .swift"; sourceTree = "<group>"; };
+		DDDB66002A25DAA700FE519B /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				DDDB65FE2A25D98600FE519B /* UIViewController+Extension .swift */,
+				DDDB66002A25DAA700FE519B /* UIView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 				DDDB65E52A25D2EE00FE519B /* ViewController.swift in Sources */,
 				DDDB65E12A25D2EE00FE519B /* AppDelegate.swift in Sources */,
 				DDDB65FF2A25D98600FE519B /* UIViewController+Extension .swift in Sources */,
+				DDDB66012A25DAA700FE519B /* UIView+Extension.swift in Sources */,
 				DDDB65E32A25D2EE00FE519B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
