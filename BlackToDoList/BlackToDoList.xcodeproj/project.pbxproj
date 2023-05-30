@@ -15,6 +15,7 @@
 		DDDB65ED2A25D2F100FE519B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDDB65EB2A25D2F100FE519B /* LaunchScreen.storyboard */; };
 		DDDB65FF2A25D98600FE519B /* UIViewController+Extension .swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB65FE2A25D98600FE519B /* UIViewController+Extension .swift */; };
 		DDDB66012A25DAA700FE519B /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB66002A25DAA700FE519B /* UIView+Extension.swift */; };
+		DDDB66032A25DB5900FE519B /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB66022A25DB5900FE519B /* UIViewController+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		DDDB65EE2A25D2F100FE519B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDDB65FE2A25D98600FE519B /* UIViewController+Extension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension .swift"; sourceTree = "<group>"; };
 		DDDB66002A25DAA700FE519B /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		DDDB66022A25DB5900FE519B /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 			children = (
 				DDDB65FE2A25D98600FE519B /* UIViewController+Extension .swift */,
 				DDDB66002A25DAA700FE519B /* UIView+Extension.swift */,
+				DDDB66022A25DB5900FE519B /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDDB66032A25DB5900FE519B /* UIViewController+Extension.swift in Sources */,
 				DDDB65E52A25D2EE00FE519B /* ViewController.swift in Sources */,
 				DDDB65E12A25D2EE00FE519B /* AppDelegate.swift in Sources */,
 				DDDB65FF2A25D98600FE519B /* UIViewController+Extension .swift in Sources */,
