@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="gFU-va-4IN" userLabel="LogInTextFieldsStack">
-                                <rect key="frame" x="35" y="141" width="305" height="83"/>
+                                <rect key="frame" x="35" y="216" width="305" height="83"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" Email/Login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="09p-bJ-RLe" userLabel="LoginTextField">
                                         <rect key="frame" x="0.0" y="0.0" width="305" height="34"/>
@@ -37,7 +36,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="IqO-1m-you" userLabel="LogIn/SignUpButtonStack">
-                                <rect key="frame" x="35" y="249" width="305" height="30.5"/>
+                                <rect key="frame" x="35" y="324" width="305" height="30.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wj5-fK-BRv" userLabel="LogInButton">
                                         <rect key="frame" x="0.0" y="0.0" width="142.5" height="30.5"/>
@@ -69,41 +68,42 @@
                                                 </fragment>
                                             </attributedString>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <segue destination="DBT-o9-TCO" kind="show" id="Cq9-WS-eRy"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U81-IA-NWe" userLabel="ResetButton">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79D-Xd-dqg" userLabel="ResetButton">
                                 <rect key="frame" x="35" y="591.5" width="305" height="30.5"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Reset login/password">
-                                            <attributes>
-                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                <font key="NSFont" size="14" name="Helvetica-Bold"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
+                                <buttonConfiguration key="configuration" style="plain" title="Reset login/password">
+                                    <fontDescription key="titleFontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <segue destination="rTS-cy-qyN" kind="show" id="EqW-fT-b5F"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.25882352941176467" green="0.25882352941176467" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="gFU-va-4IN" secondAttribute="trailing" constant="35" id="0OQ-aG-TyZ"/>
-                            <constraint firstItem="U81-IA-NWe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="35" id="7ED-Zp-gWr"/>
+                            <constraint firstItem="79D-Xd-dqg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="35" id="IWR-ih-DF4"/>
                             <constraint firstItem="IqO-1m-you" firstAttribute="top" secondItem="gFU-va-4IN" secondAttribute="bottom" constant="25" id="JC0-Zt-UgT"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="79D-Xd-dqg" secondAttribute="trailing" constant="35" id="QoE-zu-hPY"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IqO-1m-you" secondAttribute="trailing" constant="35" id="TaL-L5-g59"/>
                             <constraint firstItem="gFU-va-4IN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="35" id="W9V-ty-AOO"/>
-                            <constraint firstItem="gFU-va-4IN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="45" id="YCq-gD-pDJ"/>
+                            <constraint firstItem="gFU-va-4IN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="120" id="YCq-gD-pDJ"/>
                             <constraint firstItem="IqO-1m-you" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="35" id="jqi-i3-oHT"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="U81-IA-NWe" secondAttribute="bottom" constant="45" id="nka-LA-K4l"/>
-                            <constraint firstAttribute="trailing" secondItem="U81-IA-NWe" secondAttribute="trailing" constant="35" id="wF3-xZ-cNB"/>
+                            <constraint firstAttribute="bottom" secondItem="79D-Xd-dqg" secondAttribute="bottom" constant="45" id="ytH-Z4-xut"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Login" id="RRL-nH-Vmw"/>
+                    <navigationItem key="navigationItem" title="Welcome to the app!" id="RRL-nH-Vmw">
+                        <barButtonItem key="backBarButtonItem" title=" " id="fwd-9i-aTo"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -126,7 +126,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eGT-YZ-Osk"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="p4d-VZ-RHi"/>
                 </viewController>
@@ -151,9 +151,11 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ugn-fL-KDg"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="p8Q-2M-zNe"/>
+                    <navigationItem key="navigationItem" id="p8Q-2M-zNe">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Tqt-zg-Jqn"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z6q-XH-DAk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -181,9 +183,4 @@
             <point key="canvasLocation" x="1076" y="3.1484257871064472"/>
         </scene>
     </scenes>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>
