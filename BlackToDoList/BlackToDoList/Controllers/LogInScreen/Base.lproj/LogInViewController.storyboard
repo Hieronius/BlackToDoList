@@ -79,8 +79,14 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Reset password">
-                                    <fontDescription key="titleFontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Reset password">
+                                            <attributes>
+                                                <font key="NSFont" size="14" name="Helvetica-Bold"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
                                 </buttonConfiguration>
                                 <connections>
                                     <segue destination="rTS-cy-qyN" kind="show" id="EqW-fT-b5F"/>
@@ -118,14 +124,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="koF-kN-Ba2" userLabel="LoginTextField">
-                                <rect key="frame" x="35" y="150" width="305" height="34"/>
+                                <rect key="frame" x="35" y="250" width="305" height="34"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBK-Zh-MVf" userLabel="LogInButton">
-                                <rect key="frame" x="75" y="209" width="225" height="30.5"/>
+                                <rect key="frame" x="75" y="309" width="225" height="30.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
@@ -146,7 +152,7 @@
                         <constraints>
                             <constraint firstItem="JBK-Zh-MVf" firstAttribute="top" secondItem="koF-kN-Ba2" secondAttribute="bottom" constant="25" id="0El-zv-Qa1"/>
                             <constraint firstItem="eGT-YZ-Osk" firstAttribute="trailing" secondItem="JBK-Zh-MVf" secondAttribute="trailing" constant="75" id="1oA-T4-pWa"/>
-                            <constraint firstItem="koF-kN-Ba2" firstAttribute="top" secondItem="kw5-1U-Grv" secondAttribute="top" constant="150" id="FNh-eH-x8j"/>
+                            <constraint firstItem="koF-kN-Ba2" firstAttribute="top" secondItem="kw5-1U-Grv" secondAttribute="top" constant="250" id="FNh-eH-x8j"/>
                             <constraint firstItem="koF-kN-Ba2" firstAttribute="leading" secondItem="kw5-1U-Grv" secondAttribute="leading" constant="35" id="GaO-iQ-PCN"/>
                             <constraint firstAttribute="trailing" secondItem="koF-kN-Ba2" secondAttribute="trailing" constant="35" id="vcU-PO-YC5"/>
                             <constraint firstItem="JBK-Zh-MVf" firstAttribute="leading" secondItem="eGT-YZ-Osk" secondAttribute="leading" constant="75" id="w8a-Y7-htQ"/>
@@ -167,7 +173,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="JTP-wt-BxS" userLabel="RegistrationLogInTextFieldsStack">
-                                <rect key="frame" x="35" y="120" width="305" height="132"/>
+                                <rect key="frame" x="35" y="220" width="305" height="132"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MRf-KM-caw" userLabel="RegistrationLoginTextField">
                                         <rect key="frame" x="0.0" y="0.0" width="305" height="34"/>
@@ -193,12 +199,18 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4dX-TO-FmF" userLabel="ResetButton">
-                                <rect key="frame" x="35" y="277" width="305" height="30.5"/>
+                                <rect key="frame" x="35" y="377" width="305" height="30.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Sign Up">
-                                    <fontDescription key="titleFontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Sign Up">
+                                            <attributes>
+                                                <font key="NSFont" size="14" name="Helvetica-Bold"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
                                 </buttonConfiguration>
                             </button>
                         </subviews>
@@ -207,7 +219,7 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="JTP-wt-BxS" secondAttribute="trailing" constant="35" id="16F-1P-ByK"/>
                             <constraint firstItem="4dX-TO-FmF" firstAttribute="top" secondItem="JTP-wt-BxS" secondAttribute="bottom" constant="25" id="QFr-1Y-eye"/>
-                            <constraint firstItem="JTP-wt-BxS" firstAttribute="top" secondItem="Xck-o0-i08" secondAttribute="top" constant="120" id="Thf-aT-OwZ"/>
+                            <constraint firstItem="JTP-wt-BxS" firstAttribute="top" secondItem="Xck-o0-i08" secondAttribute="top" constant="220" id="Thf-aT-OwZ"/>
                             <constraint firstItem="4dX-TO-FmF" firstAttribute="leading" secondItem="ugn-fL-KDg" secondAttribute="leading" constant="35" id="WxG-ov-pIB"/>
                             <constraint firstItem="ugn-fL-KDg" firstAttribute="trailing" secondItem="4dX-TO-FmF" secondAttribute="trailing" constant="35" id="hr9-pL-KkX"/>
                             <constraint firstItem="JTP-wt-BxS" firstAttribute="leading" secondItem="Xck-o0-i08" secondAttribute="leading" constant="35" id="lZR-YX-3bu"/>
