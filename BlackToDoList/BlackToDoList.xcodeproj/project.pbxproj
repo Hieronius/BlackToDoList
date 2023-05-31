@@ -126,11 +126,11 @@
 		DDDB65F72A25D78900FE519B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				DDDB660A2A25DD7C00FE519B /* OptionsScreen */,
-				DDDB66092A25DD6B00FE519B /* MainScreen */,
-				DDDB66082A25DD4800FE519B /* PresentationScreen */,
-				DDDB66072A25DD3C00FE519B /* LockScreen */,
 				DDDB66062A25DCDA00FE519B /* LogInScreen */,
+				DDDB66072A25DD3C00FE519B /* LockScreen */,
+				DDDB66082A25DD4800FE519B /* PresentationScreen */,
+				DDDB66092A25DD6B00FE519B /* MainScreen */,
+				DDDB660A2A25DD7C00FE519B /* OptionsScreen */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
