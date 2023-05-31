@@ -19,7 +19,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="gFU-va-4IN" userLabel="LogInTextFieldsStack">
                                 <rect key="frame" x="35" y="216" width="305" height="83"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" Email/Login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="09p-bJ-RLe" userLabel="LoginTextField">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="09p-bJ-RLe" userLabel="LoginTextField">
                                         <rect key="frame" x="0.0" y="0.0" width="305" height="34"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -79,7 +79,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Reset login/password">
+                                <buttonConfiguration key="configuration" style="plain" title="Reset password">
                                     <fontDescription key="titleFontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -109,24 +109,48 @@
             </objects>
             <point key="canvasLocation" x="2015.2" y="3.1484257871064472"/>
         </scene>
-        <!--View Controller-->
+        <!--Reset View Controller-->
         <scene sceneID="RHn-25-o7X">
             <objects>
-                <viewController id="rTS-cy-qyN" sceneMemberID="viewController">
+                <viewController id="rTS-cy-qyN" customClass="ResetViewController" customModule="BlackToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kw5-1U-Grv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Registration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEX-Tq-Ydl">
-                                <rect key="frame" x="166" y="323" width="92" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="koF-kN-Ba2" userLabel="LoginTextField">
+                                <rect key="frame" x="35" y="150" width="305" height="34"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBK-Zh-MVf" userLabel="LogInButton">
+                                <rect key="frame" x="75" y="209" width="225" height="30.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Reset password">
+                                            <attributes>
+                                                <font key="NSFont" size="14" name="Helvetica-Bold"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </buttonConfiguration>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eGT-YZ-Osk"/>
                         <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="JBK-Zh-MVf" firstAttribute="top" secondItem="koF-kN-Ba2" secondAttribute="bottom" constant="25" id="0El-zv-Qa1"/>
+                            <constraint firstItem="eGT-YZ-Osk" firstAttribute="trailing" secondItem="JBK-Zh-MVf" secondAttribute="trailing" constant="75" id="1oA-T4-pWa"/>
+                            <constraint firstItem="koF-kN-Ba2" firstAttribute="top" secondItem="kw5-1U-Grv" secondAttribute="top" constant="150" id="FNh-eH-x8j"/>
+                            <constraint firstItem="koF-kN-Ba2" firstAttribute="leading" secondItem="kw5-1U-Grv" secondAttribute="leading" constant="35" id="GaO-iQ-PCN"/>
+                            <constraint firstAttribute="trailing" secondItem="koF-kN-Ba2" secondAttribute="trailing" constant="35" id="vcU-PO-YC5"/>
+                            <constraint firstItem="JBK-Zh-MVf" firstAttribute="leading" secondItem="eGT-YZ-Osk" secondAttribute="leading" constant="75" id="w8a-Y7-htQ"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="p4d-VZ-RHi"/>
                 </viewController>
@@ -134,24 +158,60 @@
             </objects>
             <point key="canvasLocation" x="2956" y="406"/>
         </scene>
-        <!--View Controller-->
+        <!--Registration View Controller-->
         <scene sceneID="cnh-5y-8Oi">
             <objects>
-                <viewController id="DBT-o9-TCO" sceneMemberID="viewController">
+                <viewController id="DBT-o9-TCO" customClass="RegistrationViewController" customModule="BlackToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xck-o0-i08">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reset" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFm-wa-d0r">
-                                <rect key="frame" x="166" y="323" width="44" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="JTP-wt-BxS" userLabel="RegistrationLogInTextFieldsStack">
+                                <rect key="frame" x="35" y="120" width="305" height="132"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MRf-KM-caw" userLabel="RegistrationLoginTextField">
+                                        <rect key="frame" x="0.0" y="0.0" width="305" height="34"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KbM-My-OXo" userLabel="RegistrationNameTextField">
+                                        <rect key="frame" x="0.0" y="49" width="305" height="34"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2uk-JU-lNA" userLabel="RegistrationPasswordTextField">
+                                        <rect key="frame" x="0.0" y="98" width="305" height="34"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4dX-TO-FmF" userLabel="ResetButton">
+                                <rect key="frame" x="35" y="277" width="305" height="30.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Sign Up">
+                                    <fontDescription key="titleFontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
+                                </buttonConfiguration>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ugn-fL-KDg"/>
                         <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="JTP-wt-BxS" secondAttribute="trailing" constant="35" id="16F-1P-ByK"/>
+                            <constraint firstItem="4dX-TO-FmF" firstAttribute="top" secondItem="JTP-wt-BxS" secondAttribute="bottom" constant="25" id="QFr-1Y-eye"/>
+                            <constraint firstItem="JTP-wt-BxS" firstAttribute="top" secondItem="Xck-o0-i08" secondAttribute="top" constant="120" id="Thf-aT-OwZ"/>
+                            <constraint firstItem="4dX-TO-FmF" firstAttribute="leading" secondItem="ugn-fL-KDg" secondAttribute="leading" constant="35" id="WxG-ov-pIB"/>
+                            <constraint firstItem="ugn-fL-KDg" firstAttribute="trailing" secondItem="4dX-TO-FmF" secondAttribute="trailing" constant="35" id="hr9-pL-KkX"/>
+                            <constraint firstItem="JTP-wt-BxS" firstAttribute="leading" secondItem="Xck-o0-i08" secondAttribute="leading" constant="35" id="lZR-YX-3bu"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="p8Q-2M-zNe">
                         <barButtonItem key="backBarButtonItem" title=" " id="Tqt-zg-Jqn"/>
@@ -183,4 +243,5 @@
             <point key="canvasLocation" x="1076" y="3.1484257871064472"/>
         </scene>
     </scenes>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
