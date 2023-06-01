@@ -24,6 +24,9 @@ class LogInViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func LogInButtonAction(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "MainScreenViewController", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "MainScreenViewController") as! MainScreenViewController
+        self.navigationController?.setViewControllers([viewController], animated: true)
     }
     
 
