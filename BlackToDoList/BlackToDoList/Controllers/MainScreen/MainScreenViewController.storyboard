@@ -20,10 +20,29 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="1i1-pc-9g5"/>
+                    <connections>
+                        <segue destination="ZLJ-di-OnH" kind="show" id="iVp-wH-O0i"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="986.39999999999998" y="-2.2488755622188905"/>
+        </scene>
+        <!--New Task View Controller-->
+        <scene sceneID="dVr-xh-UPA">
+            <objects>
+                <viewController id="ZLJ-di-OnH" customClass="NewTaskViewController" customModule="BlackToDoList" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eVG-Q4-HYH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Sxa-c7-vhb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="fIS-bx-LcF"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="md4-Pk-MRZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1802" y="-2"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="b05-p8-GW2">
