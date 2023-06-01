@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Enter-->
+        <!--LogInViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="LogInViewController" title="Enter" id="BYZ-38-t0r" customClass="LogInViewController" customModule="BlackToDoList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LogInViewController" title="Enter" id="BYZ-38-t0r" userLabel="LogInViewController" customClass="LogInViewController" customModule="BlackToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -53,6 +53,9 @@
                                                 </fragment>
                                             </attributedString>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="LogInButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rkp-10-nCx"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OYX-qG-V7V" userLabel="LogInButton">
                                         <rect key="frame" x="162.5" y="0.0" width="142.5" height="30.5"/>
@@ -110,6 +113,10 @@
                     <navigationItem key="navigationItem" title="Welcome to the app!" id="RRL-nH-Vmw">
                         <barButtonItem key="backBarButtonItem" title=" " id="fwd-9i-aTo"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="LogInEmailTextField" destination="09p-bJ-RLe" id="Hkc-Ac-nyi"/>
+                        <outlet property="LogInPasswordTextField" destination="NW1-FU-lJq" id="ltE-Wo-o0C"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
