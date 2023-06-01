@@ -29,6 +29,7 @@
 		DDDB661C2A25DE6C00FE519B /* OptionsScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB661B2A25DE6C00FE519B /* OptionsScreenViewController.swift */; };
 		DDDB661E2A25DE8100FE519B /* OptionsScreenViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDDB661D2A25DE8100FE519B /* OptionsScreenViewController.storyboard */; };
 		DDEA32BE2A28657500684F92 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = DDEA32BD2A28657500684F92 /* FirebaseAuth */; };
+		DDEA32C02A286B4900684F92 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DDEA32BF2A286B4900684F92 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		DDDB66192A25DE3F00FE519B /* MainScreenViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainScreenViewController.storyboard; sourceTree = "<group>"; };
 		DDDB661B2A25DE6C00FE519B /* OptionsScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsScreenViewController.swift; sourceTree = "<group>"; };
 		DDDB661D2A25DE8100FE519B /* OptionsScreenViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OptionsScreenViewController.storyboard; sourceTree = "<group>"; };
+		DDEA32BF2A286B4900684F92 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 		DDDB65DF2A25D2EE00FE519B /* BlackToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				DDEA32BF2A286B4900684F92 /* GoogleService-Info.plist */,
 				DDDB65F72A25D78900FE519B /* Controllers */,
 				DDDB65F62A25D78000FE519B /* Models */,
 				DDDB65FD2A25D85100FE519B /* Managers */,
@@ -299,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDDB65ED2A25D2F100FE519B /* LaunchScreen.storyboard in Resources */,
+				DDEA32C02A286B4900684F92 /* GoogleService-Info.plist in Resources */,
 				DDDB66142A25DE1500FE519B /* PresentationScreenViewController.storyboard in Resources */,
 				DDDB65EA2A25D2F100FE519B /* Assets.xcassets in Resources */,
 				DDDB66122A25DDFC00FE519B /* LockScreenViewController.storyboard in Resources */,
