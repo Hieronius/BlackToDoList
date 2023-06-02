@@ -7,18 +7,25 @@
 
 import UIKit
 
-class RegistrationViewController: UIViewController {
+final class RegistrationViewController: UIViewController {
     
     // MARK: - IBOutlets
     
-    @IBOutlet weak var registrationEmailTextField: UITextField!
-    @IBOutlet weak var registrationNameTextField: UITextField!
-    @IBOutlet weak var registrationPasswordTextField: UITextField!
-    @IBOutlet weak var registrationSignUpButtonView: UIButton!
+    @IBOutlet private weak var registrationEmailTextField: UITextField!
+    @IBOutlet private weak var registrationNameTextField: UITextField!
+    @IBOutlet private weak var registrationPasswordTextField: UITextField!
+    @IBOutlet private weak var registrationSignUpButtonView: UIButton!
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // some code here
+    }
+    
+    // MARK: - IBActions
+    
+    @IBAction private func registrationSignUpButtonAction(_ sender: UIButton) {
     }
 }

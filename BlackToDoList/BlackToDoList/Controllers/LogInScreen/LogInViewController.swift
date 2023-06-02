@@ -15,8 +15,8 @@ final class LogInViewController: UIViewController {
     @IBOutlet private weak var LogInPasswordTextField: UITextField!
     
     @IBOutlet private weak var logInButtonView: UIButton!
-    @IBOutlet private weak var signUpButtonView: UIButton!
-    @IBOutlet private weak var resetPasswordButtonView: UIButton!
+    @IBOutlet private weak var toSignUpScreenButtonView: UIButton!
+    @IBOutlet private weak var toResetPasswordScreenButtonView: UIButton!
     
     // MARK: - Lifecycle
     
@@ -27,7 +27,7 @@ final class LogInViewController: UIViewController {
     
     // MARK: - IBActions
     
-    @IBAction func LogInButtonAction(_ sender: UIButton) {
+    @IBAction private func LogInButtonAction(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "MainScreenViewController", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "MainScreenViewController") as! MainScreenViewController
         self.navigationController?.setViewControllers([viewController], animated: true)

@@ -117,8 +117,8 @@
                         <outlet property="LogInEmailTextField" destination="09p-bJ-RLe" id="Hkc-Ac-nyi"/>
                         <outlet property="LogInPasswordTextField" destination="NW1-FU-lJq" id="ltE-Wo-o0C"/>
                         <outlet property="logInButtonView" destination="wj5-fK-BRv" id="MZW-pf-B7I"/>
-                        <outlet property="resetPasswordButtonView" destination="79D-Xd-dqg" id="e4A-6S-EdW"/>
-                        <outlet property="signUpButtonView" destination="OYX-qG-V7V" id="4JT-dz-PQF"/>
+                        <outlet property="toResetPasswordScreenButtonView" destination="79D-Xd-dqg" id="e4A-6S-EdW"/>
+                        <outlet property="toSignUpScreenButtonView" destination="OYX-qG-V7V" id="4JT-dz-PQF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -155,6 +155,9 @@
                                         </fragment>
                                     </attributedString>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="resetPasswordButtonAction:" destination="rTS-cy-qyN" eventType="touchUpInside" id="k0b-6f-Xft"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eGT-YZ-Osk"/>
@@ -169,6 +172,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="p4d-VZ-RHi"/>
+                    <connections>
+                        <outlet property="resetButtonView" destination="JBK-Zh-MVf" id="YGT-TL-11R"/>
+                        <outlet property="resetEmailTextField" destination="koF-kN-Ba2" id="hNV-Op-0lt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tcf-Qm-YKK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -222,6 +229,9 @@
                                         </fragment>
                                     </attributedString>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="registrationSignUpButtonAction:" destination="DBT-o9-TCO" eventType="touchUpInside" id="5m5-rL-9vQ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ugn-fL-KDg"/>
