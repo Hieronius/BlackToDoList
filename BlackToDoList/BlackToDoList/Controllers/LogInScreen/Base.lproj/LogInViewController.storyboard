@@ -238,6 +238,12 @@
                     <navigationItem key="navigationItem" id="p8Q-2M-zNe">
                         <barButtonItem key="backBarButtonItem" title=" " id="Tqt-zg-Jqn"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="registrationEmailTextField" destination="MRf-KM-caw" id="5n5-Nr-CnW"/>
+                        <outlet property="registrationNameTextField" destination="KbM-My-OXo" id="9dn-gU-ahf"/>
+                        <outlet property="registrationPasswordTextField" destination="2uk-JU-lNA" id="RId-fl-wrE"/>
+                        <outlet property="registrationSignUpButtonView" destination="4dX-TO-FmF" id="Q8i-tb-Bp2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z6q-XH-DAk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
