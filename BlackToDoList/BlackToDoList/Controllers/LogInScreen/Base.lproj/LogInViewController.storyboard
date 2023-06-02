@@ -116,6 +116,9 @@
                     <connections>
                         <outlet property="LogInEmailTextField" destination="09p-bJ-RLe" id="Hkc-Ac-nyi"/>
                         <outlet property="LogInPasswordTextField" destination="NW1-FU-lJq" id="ltE-Wo-o0C"/>
+                        <outlet property="logInButtonView" destination="wj5-fK-BRv" id="MZW-pf-B7I"/>
+                        <outlet property="resetPasswordButtonView" destination="79D-Xd-dqg" id="e4A-6S-EdW"/>
+                        <outlet property="signUpButtonView" destination="OYX-qG-V7V" id="4JT-dz-PQF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
