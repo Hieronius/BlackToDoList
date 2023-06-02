@@ -13,7 +13,6 @@ final class LogInViewController: UIViewController {
     
     @IBOutlet private weak var LogInEmailTextField: UITextField!
     @IBOutlet private weak var LogInPasswordTextField: UITextField!
-    
     @IBOutlet private weak var logInButtonView: UIButton!
     @IBOutlet private weak var toSignUpScreenButtonView: UIButton!
     @IBOutlet private weak var toResetPasswordScreenButtonView: UIButton!

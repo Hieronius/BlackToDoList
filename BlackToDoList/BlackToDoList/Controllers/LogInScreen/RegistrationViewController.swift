@@ -26,6 +26,20 @@ final class RegistrationViewController: UIViewController {
     
     // MARK: - IBActions
     
+    /// method to pass and use data from ios Academy. I should refactor it with my own extensions after FireBase start to work correctly.
     @IBAction private func registrationSignUpButtonAction(_ sender: UIButton) {
+        guard let email = registrationEmailTextField.text, !email.isEmpty,
+              let password = registrationPasswordTextField.text, !password.isEmpty else {
+            print("missing data")
+            return
+        }
+        
+        // Get auth instance
+        // attempt sign in
+        // if failure, present alert to create account
+        // if user continues, create account
+        
+        // check sign in on app Launch
+        // allow user to sign out with button
     }
 }
