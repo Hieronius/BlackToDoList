@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LogInViewController: UIViewController {
+final class LogInViewController: UIViewController {
     
     // MARK: - IBOutlets
     
@@ -17,6 +17,7 @@ class LogInViewController: UIViewController {
     @IBOutlet private weak var logInButtonView: UIButton!
     @IBOutlet private weak var signUpButtonView: UIButton!
     @IBOutlet private weak var resetPasswordButtonView: UIButton!
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
