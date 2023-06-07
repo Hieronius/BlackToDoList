@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 final class ResetViewController: UIViewController {
     
@@ -24,6 +25,19 @@ final class ResetViewController: UIViewController {
     
     // MARK: - IBActions
     
+    
+    // MARK: SEND LINK TO PASSWORD RESET TO THE EMAIL AND REDIRECT TO THE LOGIN SCREEN
     @IBAction private func resetPasswordButtonAction(_ sender: UIButton) {
+        // Do the job asynchonously with help of the "Task"
+        // Because we ask Task to run it's work inside the UIButtonAction it will work in the MainThread but Asynchonously
+        Task {
+            // Check is our email text field empty
+            let email = resetEmailTextField.text ?? ""
+            
+            FirebaseAuth.Auth.auth().sendPasswordReset(withEmail: email)
+            print("Email with a link to change your password has been send")
+            // MARK: ALERT CONTROLLER - "LINK HAS BEEN SENT"
+            // There should be redirection to the LogInScreen
+        }
     }
 }
