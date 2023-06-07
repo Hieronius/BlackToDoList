@@ -80,6 +80,7 @@ final class RegistrationViewController: UIViewController {
                     
                     // MARK: FORCE LOGOUT OF THE CURRENT NEW USER AFTER HIS REGISTRATION
                     // 5. Place for a little function to "forceLogoutOfNewUser"
+                    // May be i can use this chunk of code in the beginning of our method, because i need an instance of FirebaseAuth here and in newAccountCreation method
                     let firebaseAuth = FirebaseAuth.Auth.auth()
                     
                     // Check is there a real user in the syster with do-try-catch code
