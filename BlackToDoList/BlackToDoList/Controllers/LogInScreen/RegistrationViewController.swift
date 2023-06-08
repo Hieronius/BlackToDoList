@@ -20,15 +20,23 @@ final class RegistrationViewController: UIViewController {
     
     // MARK: - Private Properties
     
+    private var cleaningButton = CleaningButton()
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
     }
     
     // MARK: - IBActions
+
     
     // I should cut this method into a few little functions to:
     // 1. Check textfields.
@@ -112,18 +120,43 @@ final class RegistrationViewController: UIViewController {
         }
     }
     
+    @objc private func cleanRegistrationEmailTextField() {
+        registrationEmailTextField.text = ""
+        registrationEmailTextField.resignFirstResponder()
+        print("text has been deleted")
+    }
+    
     // MARK: - Private Methods
     
     private func setupUI() {
         setupRegistrationEmailTextField()
+        setupCleaningButton()
+        setupRegistrationPasswordTextField()
+        setupRegistrationRepeatPasswordTextField()
     }
     
     private func setupRegistrationEmailTextField() {
-        registrationEmailTextField.becomeFirstResponder()
+         registrationEmailTextField.becomeFirstResponder()
+         registrationEmailTextField.textContentType = .oneTimeCode
+         registrationEmailTextField.rightView = cleaningButton
+         registrationEmailTextField.rightViewMode = .whileEditing
+         
     }
     
     private func setupRegistrationPasswordTextField() {
-        
+         registrationPasswordTextField.textContentType = .oneTimeCode
+    }
+    
+    private func setupRegistrationRepeatPasswordTextField() {
+         registrationRepeatPasswordTextField.textContentType = .oneTimeCode
+    }
+    
+    private func setupCleaningButton() {
+        addActionToCleaningButton()
+    }
+    
+    private func addActionToCleaningButton() {
+        cleaningButton.addTarget(self, action: #selector(cleanRegistrationEmailTextField), for: .touchUpInside)
     }
     
 }
