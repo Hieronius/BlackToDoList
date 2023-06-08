@@ -25,7 +25,6 @@ final class RegistrationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUI()
     }
     
@@ -121,6 +120,10 @@ final class RegistrationViewController: UIViewController {
     
     private func setupRegistrationEmailTextField() {
         registrationEmailTextField.becomeFirstResponder()
+    }
+    
+    private func setupRegistrationPasswordTextField() {
+        
     }
     
 }

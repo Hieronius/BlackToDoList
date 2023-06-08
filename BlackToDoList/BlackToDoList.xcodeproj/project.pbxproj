@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DD01E3272A31B03D00C99DCC /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DD01E3262A31B03D00C99DCC /* IQKeyboardManagerSwift */; };
+		DD01E32B2A31C12F00C99DCC /* CleaningButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD01E32A2A31C12F00C99DCC /* CleaningButton.swift */; };
 		DD958C4C2A28425100B0986B /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD958C4B2A28425100B0986B /* NewTaskViewController.swift */; };
 		DDDB65E12A25D2EE00FE519B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB65E02A25D2EE00FE519B /* AppDelegate.swift */; };
 		DDDB65E32A25D2EE00FE519B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB65E22A25D2EE00FE519B /* SceneDelegate.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DD01E32A2A31C12F00C99DCC /* CleaningButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleaningButton.swift; sourceTree = "<group>"; };
 		DD958C4B2A28425100B0986B /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		DDDB65DD2A25D2EE00FE519B /* BlackToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlackToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDDB65E02A25D2EE00FE519B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				DDDB66042A25DC0C00FE519B /* Set NavigationViewController for UIWindow.swift */,
+				DD01E32A2A31C12F00C99DCC /* CleaningButton.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				DDDB66182A25DE3400FE519B /* MainScreenViewController.swift in Sources */,
 				DDDB65E12A25D2EE00FE519B /* AppDelegate.swift in Sources */,
 				DDDB66052A25DC0C00FE519B /* Set NavigationViewController for UIWindow.swift in Sources */,
+				DD01E32B2A31C12F00C99DCC /* CleaningButton.swift in Sources */,
 				DD958C4C2A28425100B0986B /* NewTaskViewController.swift in Sources */,
 				DDDB66162A25DE2900FE519B /* PresentationScreenViewController.swift in Sources */,
 				DDDB65FF2A25D98600FE519B /* UIViewController+Extension .swift in Sources */,
