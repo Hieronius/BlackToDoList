@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD01E3272A31B03D00C99DCC /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DD01E3262A31B03D00C99DCC /* IQKeyboardManagerSwift */; };
 		DD958C4C2A28425100B0986B /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD958C4B2A28425100B0986B /* NewTaskViewController.swift */; };
 		DDDB65E12A25D2EE00FE519B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB65E02A25D2EE00FE519B /* AppDelegate.swift */; };
 		DDDB65E32A25D2EE00FE519B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB65E22A25D2EE00FE519B /* SceneDelegate.swift */; };
@@ -65,6 +66,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDEA32BE2A28657500684F92 /* FirebaseAuth in Frameworks */,
+				DD01E3272A31B03D00C99DCC /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +257,7 @@
 			name = BlackToDoList;
 			packageProductDependencies = (
 				DDEA32BD2A28657500684F92 /* FirebaseAuth */,
+				DD01E3262A31B03D00C99DCC /* IQKeyboardManagerSwift */,
 			);
 			productName = BlackToDoList;
 			productReference = DDDB65DD2A25D2EE00FE519B /* BlackToDoList.app */;
@@ -286,6 +289,7 @@
 			mainGroup = DDDB65D42A25D2ED00FE519B;
 			packageReferences = (
 				DDEA32BC2A28657500684F92 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				DD01E3252A31B03D00C99DCC /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = DDDB65DE2A25D2EE00FE519B /* Products */;
 			projectDirPath = "";
@@ -560,6 +564,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		DD01E3252A31B03D00C99DCC /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		DDEA32BC2A28657500684F92 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -571,6 +583,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DD01E3262A31B03D00C99DCC /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD01E3252A31B03D00C99DCC /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
 		DDEA32BD2A28657500684F92 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DDEA32BC2A28657500684F92 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

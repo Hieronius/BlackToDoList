@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseCore
+import IQKeyboardManagerSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        // Activate Firebase
+        // Activate IQKeyboardManager.
+        IQKeyboardManager.shared.enable = true
+        
+        // Activate Firebase.
         FirebaseApp.configure()
         return true
     }
