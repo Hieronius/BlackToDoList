@@ -90,7 +90,11 @@ final class RegistrationViewController: UIViewController {
                     
                     // MARK: PLACE FOR "PLEASY VERIFY YOUR EMAIL" ALERT CONTROLLER
                     print("A new account was created successfuly")
-                    
+                    self?.showAlert(title: "Account has been created",
+                                   message: "Link to the account verification has been sent to your email address") {
+                        // Back to the LogIn screen if our registration was successful.
+                        self?.navigationController?.popViewController(animated: true)
+                    }
                     // MARK: FORCE LOGOUT OF THE CURRENT NEW USER AFTER HIS REGISTRATION
                     // 5. Place for a little function to "forceLogoutOfNewUser".
                     // May be i can use this chunk of code in the beginning of our method, because i need an instance of FirebaseAuth here and in newAccountCreation method.
