@@ -88,7 +88,7 @@ final class RegistrationViewController: UIViewController {
                         return
                     }
                     
-                    // MARK: PLACE FOR "PLEASY VERIFY YOUR EMAIL" ALERT CONTROLLER
+                    // MARK: PLACE FOR "PLEASE VERIFY YOUR EMAIL" ALERT CONTROLLER
                     print("A new account was created successfuly")
                     self?.showAlert(title: "Account has been created",
                                    message: "Link to the account verification has been sent to your email address") {

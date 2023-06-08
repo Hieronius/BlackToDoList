@@ -38,6 +38,10 @@ final class ResetViewController: UIViewController {
             print("Email with a link to change your password has been send")
             // MARK: ALERT CONTROLLER - "LINK HAS BEEN SENT"
             // There should be redirection to the LogInScreen
+            showAlert(title: "Done",
+                      message: "Please check your email address to create a new password)") {
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
 }
