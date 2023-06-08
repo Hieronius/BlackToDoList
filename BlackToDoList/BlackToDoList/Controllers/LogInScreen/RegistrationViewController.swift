@@ -26,7 +26,7 @@ final class RegistrationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // some code here
+        setupUI()
     }
     
     // MARK: - IBActions
@@ -91,7 +91,7 @@ final class RegistrationViewController: UIViewController {
                     // MARK: PLACE FOR "PLEASE VERIFY YOUR EMAIL" ALERT CONTROLLER
                     print("A new account was created successfuly")
                     self?.showAlert(title: "Account has been created",
-                                   message: "Link to the account verification has been sent to your email address") {
+                                    message: "Link to the account verification has been sent to your email address") {
                         // Back to the LogIn screen if our registration was successful.
                         self?.navigationController?.popViewController(animated: true)
                     }
@@ -109,8 +109,18 @@ final class RegistrationViewController: UIViewController {
                         print("Error signing out: %@", signOutError)
                     }
                 }
-                
             }
         }
     }
+    
+    // MARK: - Private Methods
+    
+    private func setupUI() {
+        setupRegistrationEmailTextField()
     }
+    
+    private func setupRegistrationEmailTextField() {
+        registrationEmailTextField.becomeFirstResponder()
+    }
+    
+}
