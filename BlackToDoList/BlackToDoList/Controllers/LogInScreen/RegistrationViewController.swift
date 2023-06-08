@@ -63,13 +63,13 @@ final class RegistrationViewController: UIViewController {
                 // If all conditions has been checked successfully let's proceed to the user registration.
             } else {
                 // MARK: Creation of new account with FirebaseAuth()
-                // Use [weak self] as a referance to the current ViewController which we use for user data resouce
-                // It's mean if we would delete this viewController or change it our creation function won't "hold" link to view controller
-                // Also we wan't check the result of this method to throw a new account or an error to work with
-                // 3. There can be the whole method to create a new account - "CreateNewAccount"
+                // Use [weak self] as a referance to the current ViewController which we use for user data resouce.
+                // It's mean if we would delete this viewController or change it our creation function won't "hold" link to view controller.
+                // Also we wan't check the result of this method to throw a new account or an error to work with.
+                // 3. There can be the whole method to create a new account - "CreateNewAccount".
                 FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { [weak self] userAccount, error in
                     
-                    // Check is our account has been created
+                    // Check is our account has been created.
                     guard let userAccount = self else { return}
                     
                     // MARK: PLACE FOR SUCCESS ACCOUNT CREATION WITH SEGUE TO THE LOGIN SCREEN

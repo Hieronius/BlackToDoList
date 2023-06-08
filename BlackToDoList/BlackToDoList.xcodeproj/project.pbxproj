@@ -19,7 +19,7 @@
 		DDDB66032A25DB5900FE519B /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB66022A25DB5900FE519B /* UIViewController+Extension.swift */; };
 		DDDB66052A25DC0C00FE519B /* Set NavigationViewController for UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB66042A25DC0C00FE519B /* Set NavigationViewController for UIWindow.swift */; };
 		DDDB660C2A25DDA900FE519B /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB660B2A25DDA900FE519B /* RegistrationViewController.swift */; };
-		DDDB660E2A25DDBF00FE519B /* ResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB660D2A25DDBF00FE519B /* ResetViewController.swift */; };
+		DDDB660E2A25DDBF00FE519B /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB660D2A25DDBF00FE519B /* ResetPasswordViewController.swift */; };
 		DDDB66102A25DDEA00FE519B /* LockScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB660F2A25DDEA00FE519B /* LockScreenViewController.swift */; };
 		DDDB66122A25DDFC00FE519B /* LockScreenViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDDB66112A25DDFC00FE519B /* LockScreenViewController.storyboard */; };
 		DDDB66142A25DE1500FE519B /* PresentationScreenViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDDB66132A25DE1500FE519B /* PresentationScreenViewController.storyboard */; };
@@ -47,7 +47,7 @@
 		DDDB66022A25DB5900FE519B /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		DDDB66042A25DC0C00FE519B /* Set NavigationViewController for UIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set NavigationViewController for UIWindow.swift"; sourceTree = "<group>"; };
 		DDDB660B2A25DDA900FE519B /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
-		DDDB660D2A25DDBF00FE519B /* ResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetViewController.swift; sourceTree = "<group>"; };
+		DDDB660D2A25DDBF00FE519B /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		DDDB660F2A25DDEA00FE519B /* LockScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenViewController.swift; sourceTree = "<group>"; };
 		DDDB66112A25DDFC00FE519B /* LockScreenViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LockScreenViewController.storyboard; sourceTree = "<group>"; };
 		DDDB66132A25DE1500FE519B /* PresentationScreenViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PresentationScreenViewController.storyboard; sourceTree = "<group>"; };
@@ -195,7 +195,7 @@
 				DDDB65E62A25D2EE00FE519B /* LogInViewController.storyboard */,
 				DDDB65E42A25D2EE00FE519B /* LogInViewController.swift */,
 				DDDB660B2A25DDA900FE519B /* RegistrationViewController.swift */,
-				DDDB660D2A25DDBF00FE519B /* ResetViewController.swift */,
+				DDDB660D2A25DDBF00FE519B /* ResetPasswordViewController.swift */,
 			);
 			path = LogInScreen;
 			sourceTree = "<group>";
@@ -321,7 +321,7 @@
 			files = (
 				DDDB66032A25DB5900FE519B /* UIViewController+Extension.swift in Sources */,
 				DDDB66102A25DDEA00FE519B /* LockScreenViewController.swift in Sources */,
-				DDDB660E2A25DDBF00FE519B /* ResetViewController.swift in Sources */,
+				DDDB660E2A25DDBF00FE519B /* ResetPasswordViewController.swift in Sources */,
 				DDDB65E52A25D2EE00FE519B /* LogInViewController.swift in Sources */,
 				DDDB660C2A25DDA900FE519B /* RegistrationViewController.swift in Sources */,
 				DDDB66182A25DE3400FE519B /* MainScreenViewController.swift in Sources */,

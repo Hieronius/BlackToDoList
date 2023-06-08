@@ -8,12 +8,12 @@
 import UIKit
 import FirebaseAuth
 
-final class ResetViewController: UIViewController {
+final class ResetPasswordViewController: UIViewController {
     
     // MARK: - IBOutlets
     
-    @IBOutlet private weak var resetEmailTextField: UITextField!
-    @IBOutlet private weak var resetButtonView: UIButton!
+    @IBOutlet private weak var resetPasswordEmailTextField: UITextField!
+    @IBOutlet private weak var resetPasswordButtonView: UIButton!
     
     // MARK: - Lifecycle
     
@@ -32,7 +32,7 @@ final class ResetViewController: UIViewController {
         // Because we ask Task to run it's work inside the UIButtonAction it will work in the MainThread but Asynchonously.
         Task {
             // Check is our email text field empty.
-            let email = resetEmailTextField.text ?? ""
+            let email = resetPasswordEmailTextField.text ?? ""
             
             // If email text field is empty throw an alert.
             if email.isEmpty {
@@ -53,5 +53,9 @@ final class ResetViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    private func setupResetPassEmailTextField() {
+        
     }
 }

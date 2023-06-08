@@ -31,35 +31,37 @@ final class LogInViewController: UIViewController {
     
     // MARK: LOGIN AND CHECK IS USER EMAIL VEFIRFIED
     @IBAction private func LogInButtonAction(_ sender: UIButton) {
-        // Do the job asynchonously with help of the "Task"
-        // Because we ask Task to run it's work inside the UIButtonAction it will work in the MainThread but Asynchonously
+        // Do the job asynchonously with help of the "Task".
+        // Because we ask Task to run it's work inside the UIButtonAction it will run in the MainThread but Asynchonously (in background).
         Task {
             
-            // Check are all text fields not empty
+            // Check are all text fields not empty.
             let email = LogInEmailTextField.text ?? ""
             let password = LogInPasswordTextField.text ?? ""
             
-            // Authorisation with email and password
-            // Use [weak self] as a referance to the current ViewController which we use for user data resouce
-            // It's mean if we would delete this viewController or change it our creation function won't "hold" link to view controller
-            // Also we wan't check the result of this method to throw a new account or an error to work with
+            // Authorisation with email and password.
+            // Use [weak self] as a referance to the current ViewController which we use for user data resouce.
+            // It's mean if we would delete this viewController or change it our creation function won't "hold" link to view controller.
+            // Also we wan't check the result of this method to throw a new account or an error to work with.
             FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { [weak self] User, error in
-                // Check is our account has been registered in the system
+                // Check is our account has been registered in the system.
                 guard let User = self else { return }
                 
                 guard error == nil else {
+                    self?.showAlert(title: "Account hasn't been found",
+                              message: "Please check your email and password")
                     print("Wrong login or password")
                     return
                 }
                 
                 // MARK: CHECK IS USER EMAIL WAS VERIFIED
-                // 2. Can be cut to the little function "isEmailVerified()"
+                // 2. Can be cut to the little function "isEmailVerified()".
                 if Auth.auth().currentUser?.isEmailVerified == true {
                     print("Welcome to the app")
                     print("User is verified")
                     
                     // MARK: SEGUE TO THE SECOND SCREEN
-                    // 1. It can be a little function
+                    // 1. It can be a little function.
                     let storyboard = UIStoryboard(name: "LockScreenViewController", bundle: nil)
                     let viewController = storyboard.instantiateViewController(withIdentifier: "LockScreenViewController") as! LockScreenViewController
                     self?.navigationController?.setViewControllers([viewController], animated: true)
@@ -67,6 +69,8 @@ final class LogInViewController: UIViewController {
                 } else {
                     // MARK: ALERT CONTROLLER: "EMAIL MUST BE VERIFIED"
                     print("User still need to verify email")
+                    self?.showAlert(title: "Account is not verified",
+                                    message: "Please check your email address for verification")
                 }
             }
         }

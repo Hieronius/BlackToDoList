@@ -127,10 +127,10 @@
             </objects>
             <point key="canvasLocation" x="2015.2" y="3.1484257871064472"/>
         </scene>
-        <!--Reset View Controller-->
+        <!--Reset Password View Controller-->
         <scene sceneID="RHn-25-o7X">
             <objects>
-                <viewController id="rTS-cy-qyN" customClass="ResetViewController" customModule="BlackToDoList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="rTS-cy-qyN" customClass="ResetPasswordViewController" customModule="BlackToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kw5-1U-Grv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -176,8 +176,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="p4d-VZ-RHi"/>
                     <connections>
-                        <outlet property="resetButtonView" destination="JBK-Zh-MVf" id="YGT-TL-11R"/>
-                        <outlet property="resetEmailTextField" destination="koF-kN-Ba2" id="hNV-Op-0lt"/>
+                        <outlet property="resetPasswordButtonView" destination="JBK-Zh-MVf" id="YGT-TL-11R"/>
+                        <outlet property="resetPasswordEmailTextField" destination="koF-kN-Ba2" id="hNV-Op-0lt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tcf-Qm-YKK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
