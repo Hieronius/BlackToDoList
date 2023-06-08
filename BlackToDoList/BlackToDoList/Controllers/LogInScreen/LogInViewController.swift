@@ -60,8 +60,8 @@ final class LogInViewController: UIViewController {
                     
                     // MARK: SEGUE TO THE SECOND SCREEN
                     // 1. It can be a little function
-                    let storyboard = UIStoryboard(name: "MainScreenViewController", bundle: nil)
-                    let viewController = storyboard.instantiateViewController(withIdentifier: "MainScreenViewController") as! MainScreenViewController
+                    let storyboard = UIStoryboard(name: "LockScreenViewController", bundle: nil)
+                    let viewController = storyboard.instantiateViewController(withIdentifier: "LockScreenViewController") as! LockScreenViewController
                     self?.navigationController?.setViewControllers([viewController], animated: true)
                     
                 } else {

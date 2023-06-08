@@ -17,6 +17,10 @@ final class RegistrationViewController: UIViewController {
     @IBOutlet private weak var registrationRepeatPasswordTextField: UITextField!
     @IBOutlet private weak var registrationSignUpButtonView: UIButton!
     
+    
+    // MARK: - Private Properties
+    
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -34,21 +38,30 @@ final class RegistrationViewController: UIViewController {
     // 4. Force logout of new user.
     // MARK: CREATE A NEW ACCOUNT, VERIFY HIS EMAIL AND FORCE LOGOUT WITH REDIRECTION TO THE LOGIN SCREEN
     @IBAction private func registrationSignUpButtonAction(_ sender: UIButton) {
-        // Do the job asynchonously with help of the "Task"
-        // Because we ask Task to run it's work inside the UIButtonAction it will work in the MainThread but Asynchonously
+        // Do the job asynchonously with help of the "Task".
+        // Because we ask Task to run it's work inside the UIButtonAction it will work in the MainThread but Asynchonously.
         Task {
-            
-            // Check are all text fields not empty
-            // 1. Probably it's a code for function "CheckTextFields"
-            // MARK: PLACE FOR VERIFICATION ALERT CONTROLLER
+            // MARK: TEXT FIELDS VERIFICATION
+            // Check are all text fields not empty.
+            // 1. Probably it's a code for function "CheckTextFields".
             let email = registrationEmailTextField.text ?? ""
             let password = registrationPasswordTextField.text ?? ""
             let repeatPassword = registrationRepeatPasswordTextField.text ?? ""
             
-            // Check is user password equal to "repeat password" phorm
-            // 2. It can be another little function "IsPasswordCorrect"
-            if password == repeatPassword {
+            // If some of the text fields are empty throw an alert controller.
+            if email.isEmpty || password.isEmpty || repeatPassword.isEmpty {
+                showAlert(title: "Empty field", message: "One of a few feilds are empty")
                 
+                // If email is not valid throw an alert controller.
+            } else if !isValidEmail(email) {
+                showAlert(title: "Not valid email", message: "Please check and correct your email")
+                
+                // If password and repeat password are different throw an alert controller.
+            } else if password != repeatPassword {
+                showAlert(title: "Passwords are not the same", message: "Please check your password")
+                
+                // If all conditions has been checked successfully let's proceed to the user registration.
+            } else {
                 // MARK: Creation of new account with FirebaseAuth()
                 // Use [weak self] as a referance to the current ViewController which we use for user data resouce
                 // It's mean if we would delete this viewController or change it our creation function won't "hold" link to view controller
@@ -62,15 +75,15 @@ final class RegistrationViewController: UIViewController {
                     // MARK: PLACE FOR SUCCESS ACCOUNT CREATION WITH SEGUE TO THE LOGIN SCREEN
                     
                     // MARK: EMAIL VERIFICATION
-                    // 4. Place for a little function to "verifyUserEmail"
+                    // 4. Place for a little function to "verifyUserEmail".
                     Auth.auth().currentUser?.sendEmailVerification()
                     
-                    // If creation of new account has been failed deal with an Error
+                    // If creation of new account has been failed deal with an Error.
                     guard error == nil else {
                         print("Account created has been failed")
-                        // Error handling if the user tried to use already registered email
+                        // Error handling if the user tried to use already registered email.
                         if error?.localizedDescription == "The email address is already in use by another account." {
-                            print("Email already in use")
+                            self?.showAlert(title: "Wrong Email", message: "Email has been already used")
                         }
                         return
                     }
@@ -79,24 +92,21 @@ final class RegistrationViewController: UIViewController {
                     print("A new account was created successfuly")
                     
                     // MARK: FORCE LOGOUT OF THE CURRENT NEW USER AFTER HIS REGISTRATION
-                    // 5. Place for a little function to "forceLogoutOfNewUser"
-                    // May be i can use this chunk of code in the beginning of our method, because i need an instance of FirebaseAuth here and in newAccountCreation method
+                    // 5. Place for a little function to "forceLogoutOfNewUser".
+                    // May be i can use this chunk of code in the beginning of our method, because i need an instance of FirebaseAuth here and in newAccountCreation method.
                     let firebaseAuth = FirebaseAuth.Auth.auth()
                     
-                    // Check is there a real user in the syster with do-try-catch code
+                    // Check is there a real user in the syster with do-try-catch code.
                     do {
                         try firebaseAuth.signOut()
                         print("Logout was completed successfully")
-                        // Don't know why we use NSError instead of just an Error
+                        // Don't know why we use NSError instead of just an Error.
                     } catch let signOutError {
                         print("Error signing out: %@", signOutError)
                     }
                 }
                 
-            } else {
-                //MARK: ALERT CONTROLLER "PLEASE CHECK YOUR PASSWORD"
-                print("Wrong password")
             }
         }
     }
-}
+    }
