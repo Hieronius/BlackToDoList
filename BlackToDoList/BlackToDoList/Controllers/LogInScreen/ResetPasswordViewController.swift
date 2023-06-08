@@ -20,7 +20,7 @@ final class ResetPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // some code here
+        setupUI()
     }
     
     // MARK: - IBActions
@@ -55,7 +55,11 @@ final class ResetPasswordViewController: UIViewController {
         }
     }
     
+    private func setupUI() {
+        setupResetPassEmailTextField()
+    }
+    
     private func setupResetPassEmailTextField() {
-        
+        resetPasswordEmailTextField.becomeFirstResponder()
     }
 }
