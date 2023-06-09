@@ -56,7 +56,7 @@
                                             </attributedString>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="LogInButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rkp-10-nCx"/>
+                                            <action selector="logInButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wOF-bX-ptZ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OYX-qG-V7V" userLabel="LogInButton">
@@ -116,9 +116,9 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="fwd-9i-aTo"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="LogInEmailTextField" destination="09p-bJ-RLe" id="Hkc-Ac-nyi"/>
-                        <outlet property="LogInPasswordTextField" destination="NW1-FU-lJq" id="ltE-Wo-o0C"/>
                         <outlet property="logInButtonView" destination="wj5-fK-BRv" id="MZW-pf-B7I"/>
+                        <outlet property="logInEmailTextField" destination="09p-bJ-RLe" id="Hkc-Ac-nyi"/>
+                        <outlet property="logInPasswordTextField" destination="NW1-FU-lJq" id="ltE-Wo-o0C"/>
                         <outlet property="toResetPasswordScreenButtonView" destination="79D-Xd-dqg" id="e4A-6S-EdW"/>
                         <outlet property="toSignUpScreenButtonView" destination="OYX-qG-V7V" id="4JT-dz-PQF"/>
                     </connections>

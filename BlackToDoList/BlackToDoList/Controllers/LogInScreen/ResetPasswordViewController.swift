@@ -58,6 +58,8 @@ final class ResetPasswordViewController: UIViewController {
         }
     }
     
+    // MARK: - UI Configuration
+    
     private func setupUI() {
         setupResetPassEmailTextField()
     }

@@ -12,8 +12,8 @@ final class LogInViewController: UIViewController {
     
     // MARK: - IBOutlets
     
-    @IBOutlet private weak var LogInEmailTextField: UITextField!
-    @IBOutlet private weak var LogInPasswordTextField: UITextField!
+    @IBOutlet private weak var logInEmailTextField: UITextField!
+    @IBOutlet private weak var logInPasswordTextField: UITextField!
     @IBOutlet private weak var logInButtonView: UIButton!
     @IBOutlet private weak var toSignUpScreenButtonView: UIButton!
     @IBOutlet private weak var toResetPasswordScreenButtonView: UIButton!
@@ -22,7 +22,8 @@ final class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        setupUI()
     }
     
     // MARK: - IBActions
@@ -30,14 +31,14 @@ final class LogInViewController: UIViewController {
     
     
     // MARK: LOGIN AND CHECK IS USER EMAIL VEFIRFIED
-    @IBAction private func LogInButtonAction(_ sender: UIButton) {
+    @IBAction private func logInButtonAction(_ sender: UIButton) {
         // Do the job asynchonously with help of the "Task".
         // Because we ask Task to run it's work inside the UIButtonAction it will run in the MainThread but Asynchonously (in background).
         Task {
             
             // Check are all text fields not empty.
-            let email = LogInEmailTextField.text ?? ""
-            let password = LogInPasswordTextField.text ?? ""
+            let email = logInEmailTextField.text ?? ""
+            let password = logInPasswordTextField.text ?? ""
             
             // Authorisation with email and password.
             // Use [weak self] as a referance to the current ViewController which we use for user data resouce.
@@ -76,5 +77,34 @@ final class LogInViewController: UIViewController {
         }
     }
     
+    // MARK: - UI Configuration
+    
+    private func setupUI() {
+        setupLogInEmailTextField()
+        setupLogInPasswordTextField()
+        setuplogInButtonView()
+        setuptoSignUpScreenButtonView()
+        setuptoResetPasswordScreenButtonView()
+    }
+    
+    private func setupLogInEmailTextField() {
+        
+    }
+    
+    private func setupLogInPasswordTextField() {
+        
+    }
+    
+    private func setuplogInButtonView() {
+        
+    }
+    
+    private func setuptoSignUpScreenButtonView() {
+        
+    }
+    
+    private func setuptoResetPasswordScreenButtonView() {
+        
+    }
 
 }

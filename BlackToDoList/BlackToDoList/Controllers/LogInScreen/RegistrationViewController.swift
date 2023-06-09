@@ -114,9 +114,8 @@ final class RegistrationViewController: UIViewController {
         }
     }
     
-    // MARK: - Private Methods
-    
-    // 1.
+    // MARK: - UI Configuration
+
     private func setupUI() {
         setupRegistrationEmailTextField()
         setupRegistrationPasswordTextField()
