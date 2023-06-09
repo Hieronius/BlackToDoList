@@ -19,7 +19,7 @@ final class RegistrationViewController: UIViewController {
     
     // MARK: - Private Properties
     
-    private var cleaningButton = CleaningButton()
+    private let cleaningButton = CleaningButton()
     
     // MARK: - Lifecycle
     

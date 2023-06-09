@@ -32,7 +32,6 @@ final class CleaningButton: UIButton {
     @objc private func clearTextField(sender: UIButton) {
         if let textField = sender.superview as? UITextField {
             textField.text = ""
-            print("it's a generic function")
         }
     }
 

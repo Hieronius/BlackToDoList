@@ -15,6 +15,9 @@ final class ResetPasswordViewController: UIViewController {
     @IBOutlet private weak var resetPasswordEmailTextField: UITextField!
     @IBOutlet private weak var resetPasswordButtonView: UIButton!
     
+    // MARK: - Private Properties
+    
+    private let cleaningButton = CleaningButton()
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -61,5 +64,7 @@ final class ResetPasswordViewController: UIViewController {
     
     private func setupResetPassEmailTextField() {
         resetPasswordEmailTextField.becomeFirstResponder()
+        resetPasswordEmailTextField.rightView = cleaningButton
+        resetPasswordEmailTextField.rightViewMode = .whileEditing
     }
 }
