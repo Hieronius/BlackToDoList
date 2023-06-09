@@ -63,11 +63,18 @@ final class ResetPasswordViewController: UIViewController {
     
     private func setupUI() {
         setupResetPassEmailTextField()
+        setupResetPasswordButtonView()
     }
     
     private func setupResetPassEmailTextField() {
         resetPasswordEmailTextField.becomeFirstResponder()
         resetPasswordEmailTextField.rightView = cleaningButton
         resetPasswordEmailTextField.rightViewMode = .whileEditing
+        resetPasswordEmailTextField.layer.cornerRadius = 15
+        resetPasswordEmailTextField.layer.masksToBounds = true
+    }
+    
+    private func setupResetPasswordButtonView() {
+        resetPasswordButtonView.layer.cornerRadius = 15
     }
 }
