@@ -26,5 +26,15 @@ final class CleaningButton: UIButton {
         setImage(UIImage(systemName: "delete.left.fill"), for: .normal)
         tintColor = .black
         widthAnchor.constraint(equalToConstant: 30).isActive = true
+        addTarget(self, action: #selector(clearTextField(sender: )), for: .touchUpInside)
     }
+    
+    @objc private func clearTextField(sender: UIButton) {
+        if let textField = sender.superview as? UITextField {
+            textField.text = ""
+            print("it's a generic function")
+        }
+    }
+
+    
 }
