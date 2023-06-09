@@ -120,6 +120,7 @@ final class RegistrationViewController: UIViewController {
         setupRegistrationEmailTextField()
         setupRegistrationPasswordTextField()
         setupRegistrationRepeatPasswordTextField()
+        setupregistrationSignUpButtonView()
     }
     
     // 2.
@@ -128,18 +129,28 @@ final class RegistrationViewController: UIViewController {
         registrationEmailTextField.textContentType = .oneTimeCode
         registrationEmailTextField.rightView = cleaningButton
         registrationEmailTextField.rightViewMode = .whileEditing
+        registrationEmailTextField.layer.cornerRadius = 15
+        registrationEmailTextField.layer.masksToBounds = true
     }
     
     private func setupRegistrationPasswordTextField() {
         registrationPasswordTextField.textContentType = .oneTimeCode
         registrationPasswordTextField.rightView = cleaningButton
         registrationPasswordTextField.rightViewMode = .whileEditing
+        registrationPasswordTextField.layer.cornerRadius = 15
+        registrationPasswordTextField.layer.masksToBounds = true
     }
     
     private func setupRegistrationRepeatPasswordTextField() {
         registrationRepeatPasswordTextField.textContentType = .oneTimeCode
         registrationRepeatPasswordTextField.rightView = cleaningButton
         registrationRepeatPasswordTextField.rightViewMode = .whileEditing
+        registrationRepeatPasswordTextField.layer.cornerRadius = 15
+        registrationRepeatPasswordTextField.layer.masksToBounds = true
+    }
+    
+    private func setupregistrationSignUpButtonView() {
+        registrationSignUpButtonView.layer.cornerRadius = 15
     }
     
 }
