@@ -18,6 +18,11 @@ final class LogInViewController: UIViewController {
     @IBOutlet private weak var toSignUpScreenButtonView: UIButton!
     @IBOutlet private weak var toResetPasswordScreenButtonView: UIButton!
     
+    
+    // MARK: - Private Properties
+    
+    private let cleaningButton = CleaningButton()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -88,15 +93,17 @@ final class LogInViewController: UIViewController {
     }
     
     private func setupLogInEmailTextField() {
-        
+        logInEmailTextField.rightView = cleaningButton
+        logInEmailTextField.rightViewMode = .whileEditing
     }
     
     private func setupLogInPasswordTextField() {
-        
+        logInPasswordTextField.rightView = cleaningButton
+        logInPasswordTextField.rightViewMode = .whileEditing
     }
     
     private func setuplogInButtonView() {
-        
+
     }
     
     private func setuptoSignUpScreenButtonView() {
