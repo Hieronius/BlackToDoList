@@ -88,30 +88,35 @@ final class LogInViewController: UIViewController {
         setupLogInEmailTextField()
         setupLogInPasswordTextField()
         setuplogInButtonView()
-        setuptoSignUpScreenButtonView()
-        setuptoResetPasswordScreenButtonView()
+        setupToSignUpScreenButtonView()
+        setupToResetPasswordScreenButtonView()
     }
     
     private func setupLogInEmailTextField() {
         logInEmailTextField.rightView = cleaningButton
         logInEmailTextField.rightViewMode = .whileEditing
+        logInEmailTextField.layer.cornerRadius = 15
+        logInEmailTextField.layer.masksToBounds = true
     }
     
     private func setupLogInPasswordTextField() {
         logInPasswordTextField.rightView = cleaningButton
         logInPasswordTextField.rightViewMode = .whileEditing
+        logInPasswordTextField.layer.cornerRadius = 15
+        logInPasswordTextField.layer.masksToBounds = true
     }
+    
     
     private func setuplogInButtonView() {
-        
+        logInButtonView.layer.cornerRadius = 15
     }
     
-    private func setuptoSignUpScreenButtonView() {
-        
+    private func setupToSignUpScreenButtonView() {
+        toSignUpScreenButtonView.layer.cornerRadius = 15
     }
     
-    private func setuptoResetPasswordScreenButtonView() {
-        
+    private func setupToResetPasswordScreenButtonView() {
+        toResetPasswordScreenButtonView.layer.cornerRadius = 15
     }
     
 }
