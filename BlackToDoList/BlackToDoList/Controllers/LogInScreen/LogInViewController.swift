@@ -55,7 +55,7 @@ final class LogInViewController: UIViewController {
                 
                 guard error == nil else {
                     self?.showAlert(title: "Account hasn't been found",
-                              message: "Please check your email and password")
+                                    message: "Please check your email and password")
                     print("Wrong login or password")
                     return
                 }
@@ -103,7 +103,7 @@ final class LogInViewController: UIViewController {
     }
     
     private func setuplogInButtonView() {
-
+        
     }
     
     private func setuptoSignUpScreenButtonView() {
@@ -113,5 +113,5 @@ final class LogInViewController: UIViewController {
     private func setuptoResetPasswordScreenButtonView() {
         
     }
-
+    
 }

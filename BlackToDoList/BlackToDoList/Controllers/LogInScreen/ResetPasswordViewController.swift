@@ -18,6 +18,7 @@ final class ResetPasswordViewController: UIViewController {
     // MARK: - Private Properties
     
     private let cleaningButton = CleaningButton()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
