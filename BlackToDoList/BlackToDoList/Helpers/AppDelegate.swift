@@ -18,9 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Activate IQKeyboardManager.
         IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.toolbarTintColor = .white
         
         // Activate Firebase.
         FirebaseApp.configure()
+        
         return true
     }
 
