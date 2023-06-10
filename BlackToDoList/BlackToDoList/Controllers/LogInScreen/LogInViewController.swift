@@ -94,6 +94,7 @@ final class LogInViewController: UIViewController {
     private func setupLogInEmailTextField() {
         logInEmailTextField.rightView = cleaningButton
         logInEmailTextField.rightViewMode = .whileEditing
+        logInEmailTextField.textContentType = .oneTimeCode
         logInEmailTextField.layer.cornerRadius = 15
         logInEmailTextField.layer.masksToBounds = true
     }
@@ -101,6 +102,7 @@ final class LogInViewController: UIViewController {
     private func setupLogInPasswordTextField() {
         logInPasswordTextField.rightView = cleaningButton
         logInPasswordTextField.rightViewMode = .whileEditing
+        logInPasswordTextField.textContentType = .oneTimeCode
         logInPasswordTextField.layer.cornerRadius = 15
         logInPasswordTextField.layer.masksToBounds = true
     }
