@@ -18,7 +18,6 @@ final class LogInViewController: UIViewController {
     @IBOutlet private weak var toSignUpScreenButtonView: UIButton!
     @IBOutlet private weak var toResetPasswordScreenButtonView: UIButton!
     
-    
     // MARK: - Private Properties
     
     private let cleaningButton = CleaningButton()
@@ -105,7 +104,6 @@ final class LogInViewController: UIViewController {
         logInPasswordTextField.layer.cornerRadius = 15
         logInPasswordTextField.layer.masksToBounds = true
     }
-    
     
     private func setuplogInButtonView() {
         logInButtonView.layer.cornerRadius = 15

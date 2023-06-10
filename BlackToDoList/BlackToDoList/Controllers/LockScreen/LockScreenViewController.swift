@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LocalAuthentication
 
 final class LockScreenViewController: UIViewController {
     
@@ -14,4 +15,8 @@ final class LockScreenViewController: UIViewController {
         
         // some core here
     }
+    
+    @IBAction func authenticationButton(_ sender: Any) {
+    }
+    
 }

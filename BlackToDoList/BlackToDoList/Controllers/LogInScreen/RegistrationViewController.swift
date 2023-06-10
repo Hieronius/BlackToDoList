@@ -123,7 +123,6 @@ final class RegistrationViewController: UIViewController {
         setupregistrationSignUpButtonView()
     }
     
-    // 2.
     private func setupRegistrationEmailTextField() {
         registrationEmailTextField.becomeFirstResponder()
         registrationEmailTextField.textContentType = .oneTimeCode
