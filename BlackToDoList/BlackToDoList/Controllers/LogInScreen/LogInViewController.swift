@@ -27,10 +27,39 @@ final class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Test for our KeychainManager
+       getPassword()
+        
+        
+        
         setupUI()
     }
     
     // MARK: - IBActions
+    
+    func getPassword() {
+        guard let data = KeychainManager.get(
+            service: "facebook.com",
+            account: "afraz"
+        ) else {
+            print("Failed to read password")
+            return
+        }
+        let password = String(decoding: data, as: UTF8.self)
+        print("Read password: \(password)")
+    }
+    
+    func save() {
+        do {
+            try KeychainManager.save(
+                service: "facebook.com",
+                account: "afraz",
+                // encode password with .utf8 encrypt code
+                password: "something".data(using: .utf8)!)
+        } catch {
+            print(error)
+        }
+    }
     
     
     
