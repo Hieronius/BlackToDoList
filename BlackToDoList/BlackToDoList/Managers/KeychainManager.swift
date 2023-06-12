@@ -11,13 +11,20 @@ final class KeychainManager {
     
     // Enum for handling errors of the Keychain.
     enum KeychainError: Error {
+        // The data already exists.
         case duplicateEntry
+        // Can't identify data request.
         case unknown(OSStatus)
     }
     
     // Get data and encrypt it.
-    static func save() {
+    // Function can throw an error.
+    static func save() throws {
         // service, account, password, class, data.
+        let query: [String: AnyObject] = [
+            kSecClass as String: "",
+            kSecAttrService
+        ]
     }
     
     // Find data and give it.
