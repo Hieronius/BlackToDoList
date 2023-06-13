@@ -38,7 +38,7 @@ final class KeychainManager {
             // Out password.
             kSecValueData as String: password as AnyObject
         ]
-        // This chunk of code should add our Dictionary a check data for being "nil".
+        // This chunk of code should add to our Dictionary a checkout of data for being "nil".
         // Our current status.
         let status = SecItemAdd(query as CFDictionary, nil)
         // If item is already exists throw an error.
