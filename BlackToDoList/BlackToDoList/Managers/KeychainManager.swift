@@ -29,14 +29,15 @@ final class KeychainManager {
         // Service, account, password, class, data.
         // Seems like it's not a dictionary of data, but a one object as unmutable data.
         // Like one user, one password, one page and so one.
-        let query: [String: AnyObject] = [
-            kSecClass as String: kSecClassGenericPassword,
+        let query: [CFString: Any] = [
+            // Seems like exactly this object mean we wan't to save only password to keychain.
+            kSecClass: kSecClassGenericPassword,
             // Our service.
-            kSecAttrService as String: service as AnyObject,
+            kSecAttrService: service,
             // Our account.
-            kSecAttrAccount as String: account as AnyObject,
+            kSecAttrAccount: account,
             // Out password.
-            kSecValueData as String: password as AnyObject
+            kSecValueData: password
         ]
         // This chunk of code should add to our Dictionary a checkout of data for being "nil".
         // Our current status.
@@ -64,18 +65,18 @@ final class KeychainManager {
         // Service, account, password, class, data.
         // Seems like it's not a dictionary of data, but a one object as unmutable data.
         // Like one user, one password, one page and so one.
-        let query: [String: AnyObject] = [
-            kSecClass as String: kSecClassGenericPassword,
+        let query: [CFString: Any] = [
+            kSecClass:kSecClassGenericPassword,
             // Our service.
-            kSecAttrService as String: service as AnyObject,
+            kSecAttrService: service,
             // Our account.
-            kSecAttrAccount as String: account as AnyObject,
+            kSecAttrAccount: account,
             // Out password data type for exctaction.
             // Seems like mean is there a data for return action.
-            kSecReturnData as String: kCFBooleanTrue,
+            kSecReturnData: kCFBooleanTrue as Any,
             // How many items to match we wan't with requested data.
             // So, the answer is one single item.
-            kSecMatchLimit as String: kSecMatchLimitOne
+            kSecMatchLimit: kSecMatchLimitOne
         ]
         // What kind of result we expecting from exctraction.
         var result: AnyObject?

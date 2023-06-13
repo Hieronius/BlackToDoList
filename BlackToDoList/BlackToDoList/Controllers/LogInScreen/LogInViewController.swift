@@ -28,7 +28,8 @@ final class LogInViewController: UIViewController {
         super.viewDidLoad()
         
         // Test for our KeychainManager
-       getPassword()
+       // getPassword()
+        save()
         
         
         
@@ -55,7 +56,7 @@ final class LogInViewController: UIViewController {
                 service: "facebook.com",
                 account: "afraz",
                 // encode password with .utf8 encrypt code
-                password: "something".data(using: .utf8)!)
+                password: "something".data(using: .utf8) ?? Data())
         } catch {
             print(error)
         }
