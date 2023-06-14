@@ -182,11 +182,11 @@
                         <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="JBK-Zh-MVf" firstAttribute="top" secondItem="koF-kN-Ba2" secondAttribute="bottom" constant="25" id="0El-zv-Qa1"/>
-                            <constraint firstAttribute="trailing" secondItem="JBK-Zh-MVf" secondAttribute="trailing" constant="75" id="1oA-T4-pWa"/>
+                            <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="JBK-Zh-MVf" secondAttribute="trailing" constant="75" id="1oA-T4-pWa"/>
                             <constraint firstItem="koF-kN-Ba2" firstAttribute="top" secondItem="kw5-1U-Grv" secondAttribute="top" constant="250" id="FNh-eH-x8j"/>
-                            <constraint firstItem="koF-kN-Ba2" firstAttribute="leading" secondItem="kw5-1U-Grv" secondAttribute="leading" constant="35" id="GaO-iQ-PCN"/>
-                            <constraint firstAttribute="trailing" secondItem="koF-kN-Ba2" secondAttribute="trailing" constant="35" id="vcU-PO-YC5"/>
-                            <constraint firstItem="JBK-Zh-MVf" firstAttribute="leading" secondItem="kw5-1U-Grv" secondAttribute="leading" constant="75" id="w8a-Y7-htQ"/>
+                            <constraint firstItem="koF-kN-Ba2" firstAttribute="leading" relation="lessThanOrEqual" secondItem="kw5-1U-Grv" secondAttribute="leading" constant="35" id="GaO-iQ-PCN"/>
+                            <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="koF-kN-Ba2" secondAttribute="trailing" constant="35" id="vcU-PO-YC5"/>
+                            <constraint firstItem="JBK-Zh-MVf" firstAttribute="leading" relation="lessThanOrEqual" secondItem="kw5-1U-Grv" secondAttribute="leading" constant="75" id="w8a-Y7-htQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="p4d-VZ-RHi"/>
