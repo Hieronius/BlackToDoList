@@ -10,6 +10,8 @@
 		DD01E3272A31B03D00C99DCC /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DD01E3262A31B03D00C99DCC /* IQKeyboardManagerSwift */; };
 		DD01E32B2A31C12F00C99DCC /* CleaningButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD01E32A2A31C12F00C99DCC /* CleaningButton.swift */; };
 		DD8C21222A36EC9900DC4CFC /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8C21212A36EC9900DC4CFC /* KeychainManager.swift */; };
+		DD90805E2A38749A009EC99E /* PassCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD90805D2A38749A009EC99E /* PassCodeView.swift */; };
+		DD9080602A3874CB009EC99E /* PassCodeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD90805F2A3874CB009EC99E /* PassCodeButton.swift */; };
 		DD958C4C2A28425100B0986B /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD958C4B2A28425100B0986B /* NewTaskViewController.swift */; };
 		DDDB65E12A25D2EE00FE519B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB65E02A25D2EE00FE519B /* AppDelegate.swift */; };
 		DDDB65E32A25D2EE00FE519B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB65E22A25D2EE00FE519B /* SceneDelegate.swift */; };
@@ -38,6 +40,8 @@
 /* Begin PBXFileReference section */
 		DD01E32A2A31C12F00C99DCC /* CleaningButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleaningButton.swift; sourceTree = "<group>"; };
 		DD8C21212A36EC9900DC4CFC /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		DD90805D2A38749A009EC99E /* PassCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassCodeView.swift; sourceTree = "<group>"; };
+		DD90805F2A3874CB009EC99E /* PassCodeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassCodeButton.swift; sourceTree = "<group>"; };
 		DD958C4B2A28425100B0986B /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		DDDB65DD2A25D2EE00FE519B /* BlackToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlackToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDDB65E02A25D2EE00FE519B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +120,8 @@
 			children = (
 				DDDB66042A25DC0C00FE519B /* Set NavigationViewController for UIWindow.swift */,
 				DD01E32A2A31C12F00C99DCC /* CleaningButton.swift */,
+				DD90805D2A38749A009EC99E /* PassCodeView.swift */,
+				DD90805F2A3874CB009EC99E /* PassCodeButton.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -331,6 +337,7 @@
 			files = (
 				DDDB66032A25DB5900FE519B /* UIViewController+Extension.swift in Sources */,
 				DDDB66102A25DDEA00FE519B /* LockScreenViewController.swift in Sources */,
+				DD90805E2A38749A009EC99E /* PassCodeView.swift in Sources */,
 				DDDB660E2A25DDBF00FE519B /* ResetPasswordViewController.swift in Sources */,
 				DDDB65E52A25D2EE00FE519B /* LogInViewController.swift in Sources */,
 				DDDB660C2A25DDA900FE519B /* RegistrationViewController.swift in Sources */,
@@ -339,6 +346,7 @@
 				DD8C21222A36EC9900DC4CFC /* KeychainManager.swift in Sources */,
 				DDDB66052A25DC0C00FE519B /* Set NavigationViewController for UIWindow.swift in Sources */,
 				DD01E32B2A31C12F00C99DCC /* CleaningButton.swift in Sources */,
+				DD9080602A3874CB009EC99E /* PassCodeButton.swift in Sources */,
 				DD958C4C2A28425100B0986B /* NewTaskViewController.swift in Sources */,
 				DDDB66162A25DE2900FE519B /* PresentationScreenViewController.swift in Sources */,
 				DDDB65FF2A25D98600FE519B /* UIViewController+Extension .swift in Sources */,

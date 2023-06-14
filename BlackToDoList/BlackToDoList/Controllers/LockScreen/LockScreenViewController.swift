@@ -59,5 +59,9 @@ final class LockScreenViewController: UIViewController {
             }
         }
     }
+    
+    // MARK: - UI Configuration
+    
+    // makeRounded(borderColour: .darkText, borderWidth: 1.0) for buttons
      
 }
