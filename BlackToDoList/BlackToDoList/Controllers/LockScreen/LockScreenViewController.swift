@@ -12,12 +12,9 @@ final class LockScreenViewController: UIViewController {
     
     // MARK: - IBOutlets
     
-    
     @IBOutlet weak var createPasscodeLabel: UILabel!
     @IBOutlet weak var firstPasscodeTextFieldsStack: UIStackView!
-    
     @IBOutlet weak var repeatPasscodeLabel: UILabel!
-    
     @IBOutlet weak var secondPasscodeTextStack: UIStackView!
     
     // MARK: - Lifecycle
@@ -76,6 +73,12 @@ final class LockScreenViewController: UIViewController {
         repeatPasscodeLabel.isHidden.toggle()
         secondPasscodeTextStack.isHidden.toggle()
         
+    }
+    
+    @IBAction func passcodeNumberPressed(_ sender: UIButton) {
+    }
+    
+    @IBAction func deletePasscodeButtonAction(_ sender: UIButton) {
     }
     
     
