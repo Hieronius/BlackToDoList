@@ -10,6 +10,16 @@ import LocalAuthentication
 
 final class LockScreenViewController: UIViewController {
     
+    // MARK: - IBOutlets
+    
+    
+    @IBOutlet weak var createPasscodeLabel: UILabel!
+    @IBOutlet weak var firstPasscodeTextFieldsStack: UIStackView!
+    
+    @IBOutlet weak var repeatPasscodeLabel: UILabel!
+    
+    @IBOutlet weak var secondPasscodeTextStack: UIStackView!
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -23,7 +33,7 @@ final class LockScreenViewController: UIViewController {
     
     
     // MARK: ACTION TO ACTIVATE FACEID/TOUCHID OF THE USER
-    @IBAction private func authenticationButton(_ sender: Any) {
+    @IBAction private func authenticationButtonAction(_ sender: Any) {
         // Create an abstractive model of the Apple Authentication Manager.
         let context = LAContext()
         
@@ -59,6 +69,15 @@ final class LockScreenViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func logOutButtonAction(_ sender: Any) {
+        createPasscodeLabel.isHidden.toggle()
+        firstPasscodeTextFieldsStack.isHidden.toggle()
+        repeatPasscodeLabel.isHidden.toggle()
+        secondPasscodeTextStack.isHidden.toggle()
+        
+    }
+    
     
     // MARK: - UI Configuration
     
