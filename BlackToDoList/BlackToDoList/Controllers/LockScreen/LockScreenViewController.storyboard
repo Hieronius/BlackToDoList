@@ -39,7 +39,7 @@
                                 <buttonConfiguration key="configuration" style="plain" title="LogOut"/>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="zrI-FH-kXR" userLabel="firstPassCodeStack">
-                                <rect key="frame" x="125" y="85" width="125" height="20"/>
+                                <rect key="frame" x="125" y="84" width="125" height="20"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fsx-dI-sHi" userLabel="First Number" customClass="PassCodeView" customModule="BlackToDoList" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
@@ -75,7 +75,7 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create your passcode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wYj-wh-o7g">
-                                <rect key="frame" x="92" y="50" width="191.5" height="20"/>
+                                <rect key="frame" x="92" y="49" width="191.5" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="7pY-RH-apk"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="oHW-tJ-b0O"/>
@@ -109,11 +109,11 @@
                                                     </attributedString>
                                                 </buttonConfiguration>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zku-k9-M5s" customClass="PassCodeButton" customModule="BlackToDoList" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zxi-9f-uPt" customClass="PassCodeButton" customModule="BlackToDoList" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="93" width="80" height="80"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="80" id="4QK-9O-8Cj"/>
-                                                    <constraint firstAttribute="height" constant="80" id="YOM-Mx-axh"/>
+                                                    <constraint firstAttribute="width" constant="80" id="0Kc-Bv-DhB"/>
+                                                    <constraint firstAttribute="height" constant="80" id="hYb-qJ-rPu" userLabel="height = 80"/>
                                                 </constraints>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
@@ -121,7 +121,6 @@
                                                     <attributedString key="attributedTitle">
                                                         <fragment content="4">
                                                             <attributes>
-                                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                 <font key="NSFont" size="45" name="Helvetica"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
@@ -295,7 +294,7 @@
                                                 </constraints>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="delete.left.fill" catalog="system"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="delete.left.fill" catalog="system" title=" "/>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -310,7 +309,7 @@
                             <constraint firstItem="8AW-Kj-Ak4" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="Xp2-qa-WMz"/>
                             <constraint firstItem="8AW-Kj-Ak4" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="eiE-Uz-rNH"/>
                             <constraint firstItem="wYj-wh-o7g" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="gnR-aI-aIY"/>
-                            <constraint firstItem="wYj-wh-o7g" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="50" id="z7a-Y8-yzz"/>
+                            <constraint firstItem="8AW-Kj-Ak4" firstAttribute="top" secondItem="zrI-FH-kXR" secondAttribute="bottom" constant="50" id="qlX-oz-rli"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5UR-yT-T59"/>

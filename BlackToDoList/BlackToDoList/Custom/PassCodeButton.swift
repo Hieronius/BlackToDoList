@@ -11,6 +11,6 @@ class PassCodeButton: UIButton {
     // Change it's appearance when the user can see the screen.
     override func awakeFromNib() {
         super.awakeFromNib()
-        makeRounded(borderColour: .darkText, borderWidth: 1.0)
+        makeRounded(borderColour: .white, borderWidth: 1.0)
     }
 }
