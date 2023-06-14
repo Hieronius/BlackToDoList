@@ -17,6 +17,11 @@ final class LockScreenViewController: UIViewController {
     @IBOutlet weak var repeatPasscodeLabel: UILabel!
     @IBOutlet weak var secondPasscodeTextStack: UIStackView!
     
+    // MARK: - Private Properties
+    
+    private var firstPasscode = [Int]()
+    private var secondPasscode = [Int]()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -76,6 +81,7 @@ final class LockScreenViewController: UIViewController {
     }
     
     @IBAction func passcodeNumberPressed(_ sender: UIButton) {
+        
     }
     
     @IBAction func deletePasscodeButtonAction(_ sender: UIButton) {
