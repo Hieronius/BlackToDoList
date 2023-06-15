@@ -19,8 +19,53 @@ final class LockScreenViewController: UIViewController {
     
     // MARK: - Private Properties
     
-    private var firstPasscode = [Int]()
-    private var secondPasscode = [Int]()
+    private var firstPasscode = [Int]() {
+        // When first passcode will be finished let's change label and passcode field.
+        // MARK: I CAN PUT THIS CHUNK OF CODE INTO A SMALLER FUNCTION
+        didSet {
+            if firstPasscode.count == 4 {
+                createPasscodeLabel.isHidden.toggle()
+                firstPasscodeTextFieldsStack.isHidden.toggle()
+                repeatPasscodeLabel.isHidden.toggle()
+                secondPasscodeTextStack.isHidden.toggle()
+            }
+        }
+    }
+    private var secondPasscode = [Int]() {
+        // When both passcodes are done we should check it on equality.
+        // If the checkout has been failed let's clean both passcodes array and clean all animation.
+        didSet {
+            if secondPasscode.count == 4 && firstPasscode != secondPasscode {
+                createPasscodeLabel.isHidden.toggle()
+                firstPasscodeTextFieldsStack.isHidden.toggle()
+                repeatPasscodeLabel.isHidden.toggle()
+                secondPasscodeTextStack.isHidden.toggle()
+                
+                firstPasscode.removeAll()
+                secondPasscode.removeAll()
+                print(firstPasscode)
+                print(secondPasscode)
+                
+                //
+                let currentPasscodeView = firstPasscodeTextFieldsStack.subviews
+                
+                for view in currentPasscodeView {
+                    view.backgroundColor = UIColor.black
+                }
+                print("Not equal passwords")
+                
+            // If password was equal, let's ask for FaceID/TouchID identification and move to the Main screen.
+            } else {
+                print("Password has been created successfully")
+                let storyboard = UIStoryboard(name: "MainScreenViewController", bundle: nil)
+                let viewController = storyboard.instantiateViewController(withIdentifier: "MainScreenViewController") as! MainScreenViewController
+                self.navigationController?.setViewControllers([viewController], animated: true)
+                print(firstPasscode)
+                print(secondPasscode)
+                
+            }
+        }
+    }
     
     // MARK: - Lifecycle
     
@@ -85,7 +130,7 @@ final class LockScreenViewController: UIViewController {
         let number = Int(sender.titleLabel?.text ?? "0") ?? 0
         
         // If passcode numbers array have enough place for numbers add number to the passcode array and change color.
-        if firstPasscode.count < 5 {
+        if firstPasscode.count < 4 {
             firstPasscode.append(number)
             // Select current element of passcode text field and change it's color after pressing the button.
             let currentPasscodeView = firstPasscodeTextFieldsStack.subviews[firstPasscode.count - 1]
