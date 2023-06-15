@@ -153,6 +153,7 @@ final class LockScreenViewController: UIViewController {
         }
     }
     
+    // MARK: LOGOUT FROM THE APP
     @IBAction func logOutButtonAction(_ sender: Any) {
         createPasscodeLabel.isHidden.toggle()
         firstPasscodeTextFieldsStack.isHidden.toggle()
@@ -161,6 +162,7 @@ final class LockScreenViewController: UIViewController {
         
     }
     
+    // MARK: ENTER THE NUMBER FOR THE PASSWORD
     @IBAction func passcodeNumberPressed(_ sender: UIButton) {
         // Let's define a number which is equal to the button label.
         let number = Int(sender.titleLabel?.text ?? "0") ?? 0
@@ -189,6 +191,7 @@ final class LockScreenViewController: UIViewController {
         }
     }
     
+    // MARK: DELETE A NUMBER FROM THE PASSWORD
     @IBAction func deletePasscodeButtonAction(_ sender: UIButton) {
         // If first passcode numbers array is not empty and a second one are empty let's remove one last element from first passcode array one by one.
         if firstPasscode.count > 0 && secondPasscode.isEmpty {
