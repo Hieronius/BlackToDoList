@@ -24,45 +24,81 @@ final class LockScreenViewController: UIViewController {
         // MARK: I CAN PUT THIS CHUNK OF CODE INTO A SMALLER FUNCTION
         didSet {
             if firstPasscode.count == 4 {
-                createPasscodeLabel.isHidden.toggle()
-                firstPasscodeTextFieldsStack.isHidden.toggle()
-                repeatPasscodeLabel.isHidden.toggle()
-                secondPasscodeTextStack.isHidden.toggle()
+                // Implement async task (can be TASK) because Property observer trying to reload UI to fast.
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    // Reload UI.
+                    self.createPasscodeLabel.isHidden.toggle()
+                    self.firstPasscodeTextFieldsStack.isHidden.toggle()
+                    self.repeatPasscodeLabel.isHidden.toggle()
+                    self.secondPasscodeTextStack.isHidden.toggle()
+                    
+                    let currentPasscodeView = self.firstPasscodeTextFieldsStack.subviews
+                    
+                    for view in currentPasscodeView {
+                        view.backgroundColor = UIColor.black
+                        print("Passcode view has been cleaned")
+                    }
+                }
+            } else {
+                print("unexpected error with firstPasscode property observer")
             }
         }
     }
+
     private var secondPasscode = [Int]() {
         // When both passcodes are done we should check it on equality.
         // If the checkout has been failed let's clean both passcodes array and clean all animation.
         didSet {
-            if secondPasscode.count == 4 && firstPasscode != secondPasscode {
-                createPasscodeLabel.isHidden.toggle()
-                firstPasscodeTextFieldsStack.isHidden.toggle()
-                repeatPasscodeLabel.isHidden.toggle()
-                secondPasscodeTextStack.isHidden.toggle()
+            
+            // MARK: PROBABLY SHOULD USE SWITCH
+            // Checkout of passwords equality.
+            if secondPasscode.count == 4 && firstPasscode.count == 4 {
                 
-                firstPasscode.removeAll()
-                secondPasscode.removeAll()
-                print(firstPasscode)
-                print(secondPasscode)
-                
-                //
-                let currentPasscodeView = firstPasscodeTextFieldsStack.subviews
-                
-                for view in currentPasscodeView {
-                    view.backgroundColor = UIColor.black
+                if firstPasscode != secondPasscode {
+                    // Reload UI.
+                    createPasscodeLabel.isHidden.toggle()
+                    firstPasscodeTextFieldsStack.isHidden.toggle()
+                    repeatPasscodeLabel.isHidden.toggle()
+                    secondPasscodeTextStack.isHidden.toggle()
+                    
+                    print("First passcode is - \(firstPasscode)")
+                    print("Second passcode is - \(secondPasscode)")
+                    
+                    // Clean all passcode views to it's original color.
+                    print("Not equal passwords")
+                    
+                    // Made an async work after a little time because property observer removing passwords before it's checkout for equality.
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        self.firstPasscode.removeAll()
+                        self.secondPasscode.removeAll()
+                        
+                        // Reload UI.
+                        let currentPasscodeView = self.secondPasscodeTextStack.subviews
+                        
+                        for view in currentPasscodeView {
+                            view.backgroundColor = UIColor.black
+                            print("Passcode view has been cleaned")
+                        }
+                        
+                        print("First passcode is - \(self.firstPasscode)")
+                        print("Second passcode is - \(self.secondPasscode)")
+                    }
+                    
+                // If password was equal, let's ask for FaceID/TouchID identification and move to the Main screen.
+                // MARK: PLACE FOR ALLERT - YOUR PASSWORD HAS BEEN SUCCESSFUL
+                // Place for the question to ask Tough ID/FaceID implementation.
+                } else if firstPasscode == secondPasscode {
+                    print("Password has been created successfully")
+                    let storyboard = UIStoryboard(name: "MainScreenViewController", bundle: nil)
+                    let viewController = storyboard.instantiateViewController(withIdentifier: "MainScreenViewController") as! MainScreenViewController
+                    self.navigationController?.setViewControllers([viewController], animated: true)
+                    print("First passcode is - \(firstPasscode)")
+                    print("Second passcode is - \(secondPasscode)")
+                    
+                    // Unexpected behavior
+                } else {
+                    print("Unexpected error with secondPasscode property observer")
                 }
-                print("Not equal passwords")
-                
-            // If password was equal, let's ask for FaceID/TouchID identification and move to the Main screen.
-            } else {
-                print("Password has been created successfully")
-                let storyboard = UIStoryboard(name: "MainScreenViewController", bundle: nil)
-                let viewController = storyboard.instantiateViewController(withIdentifier: "MainScreenViewController") as! MainScreenViewController
-                self.navigationController?.setViewControllers([viewController], animated: true)
-                print(firstPasscode)
-                print(secondPasscode)
-                
             }
         }
     }
@@ -129,13 +165,23 @@ final class LockScreenViewController: UIViewController {
         // Let's define a number which is equal to the button label.
         let number = Int(sender.titleLabel?.text ?? "0") ?? 0
         
-        // If passcode numbers array have enough place for numbers add number to the passcode array and change color.
-        if firstPasscode.count < 4 {
+        // If first passcode numbers array have enough place for numbers add number to the first passcode array and change color.
+        if firstPasscode.count < 4 && secondPasscode.isEmpty {
             firstPasscode.append(number)
             // Select current element of passcode text field and change it's color after pressing the button.
             let currentPasscodeView = firstPasscodeTextFieldsStack.subviews[firstPasscode.count - 1]
             currentPasscodeView.backgroundColor = UIColor.white
-            print(firstPasscode)
+            print("First passcode is - \(firstPasscode)")
+            // There is a button label.
+            print(sender.titleLabel?.text)
+            
+        // If a first passcode already filled and second passcode is still has less than 4 elements let's fill a second passcode array
+        } else if firstPasscode.count == 4 && secondPasscode.count < 4 {
+            secondPasscode.append(number)
+            // Select current element of passcode text field and change it's color after pressing the button.
+            let currentPasscodeView = secondPasscodeTextStack.subviews[secondPasscode.count - 1]
+            currentPasscodeView.backgroundColor = UIColor.white
+            print("Second passcode is - \(secondPasscode)")
             // There is a button label.
             print(sender.titleLabel?.text)
         } else {
@@ -144,12 +190,20 @@ final class LockScreenViewController: UIViewController {
     }
     
     @IBAction func deletePasscodeButtonAction(_ sender: UIButton) {
-        // If passcode numbers array is not empty remove one last element by one tap.
-        if firstPasscode.count > 0 {
+        // If first passcode numbers array is not empty and a second one are empty let's remove one last element from first passcode array one by one.
+        if firstPasscode.count > 0 && secondPasscode.isEmpty {
             let currentPasscodeView = firstPasscodeTextFieldsStack.subviews[firstPasscode.count - 1]
             currentPasscodeView.backgroundColor = UIColor.black
             firstPasscode.removeLast()
-            print(firstPasscode)
+            print("First passcode is - \(firstPasscode)")
+            print("button has been pressed")
+            
+        // If first passcode array are full we wan't remove elements from the second passcode array.
+        } else if firstPasscode.count == 4 && secondPasscode.count < 4 {
+            let currentPasscodeView = secondPasscodeTextStack.subviews[secondPasscode.count - 1]
+            currentPasscodeView.backgroundColor = UIColor.black
+            secondPasscode.removeLast()
+            print("Second passcode is - \(secondPasscode)")
             print("button has been pressed")
         } else {
             print("no elements to remove")
