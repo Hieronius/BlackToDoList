@@ -81,19 +81,34 @@ final class LockScreenViewController: UIViewController {
     }
     
     @IBAction func passcodeNumberPressed(_ sender: UIButton) {
+        // Let's define a number which is equal to the button label.
         let number = Int(sender.titleLabel?.text ?? "0") ?? 0
-        firstPasscode.append(number)
-        firstPasscodeTextFieldsStack.subviews[firstPasscode.count - 1].backgroundColor = UIColor.white
-        print(firstPasscode)
-        // there is a button label.
-        print(sender.titleLabel?.text)
+        
+        // If passcode numbers array have enough place for numbers add number to the passcode array and change color.
+        if firstPasscode.count < 5 {
+            firstPasscode.append(number)
+            // Select current element of passcode text field and change it's color after pressing the button.
+            let currentPasscodeView = firstPasscodeTextFieldsStack.subviews[firstPasscode.count - 1]
+            currentPasscodeView.backgroundColor = UIColor.white
+            print(firstPasscode)
+            // There is a button label.
+            print(sender.titleLabel?.text)
+        } else {
+            print("Too much numbers")
+        }
     }
     
     @IBAction func deletePasscodeButtonAction(_ sender: UIButton) {
-        firstPasscodeTextFieldsStack.subviews[firstPasscode.count - 1].backgroundColor = UIColor.black
-        firstPasscode.removeLast()
-        print(firstPasscode)
-        print("button has been pressed")
+        // If passcode numbers array is not empty remove one last element by one tap.
+        if firstPasscode.count > 0 {
+            let currentPasscodeView = firstPasscodeTextFieldsStack.subviews[firstPasscode.count - 1]
+            currentPasscodeView.backgroundColor = UIColor.black
+            firstPasscode.removeLast()
+            print(firstPasscode)
+            print("button has been pressed")
+        } else {
+            print("no elements to remove")
+        }
     }
     
     
