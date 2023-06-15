@@ -83,14 +83,14 @@ final class LockScreenViewController: UIViewController {
     @IBAction func passcodeNumberPressed(_ sender: UIButton) {
         let number = Int(sender.titleLabel?.text ?? "0") ?? 0
         firstPasscode.append(number)
-        firstPasscodeTextFieldsStack.subviews[firstPasscode.count - 1].backgroundColor = UIColor.green
+        firstPasscodeTextFieldsStack.subviews[firstPasscode.count - 1].backgroundColor = UIColor.white
         print(firstPasscode)
         // there is a button label.
-         print(sender.titleLabel?.text)
+        print(sender.titleLabel?.text)
     }
     
     @IBAction func deletePasscodeButtonAction(_ sender: UIButton) {
-        firstPasscodeTextFieldsStack.subviews[firstPasscode.count - 1].backgroundColor = UIColor.blue
+        firstPasscodeTextFieldsStack.subviews[firstPasscode.count - 1].backgroundColor = UIColor.black
         firstPasscode.removeLast()
         print(firstPasscode)
         print("button has been pressed")
