@@ -17,30 +17,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDx-mR-zyz">
-                                <rect key="frame" x="262" y="612" width="60" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Auth"/>
-                                <connections>
-                                    <action selector="authenticationButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="qiG-Uq-63p"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5yT-Cm-Mfg">
-                                <rect key="frame" x="95" y="612" width="152" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Forget password"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QzT-8E-4SC">
-                                <rect key="frame" x="23" y="612" width="81" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="LogOut"/>
-                                <connections>
-                                    <action selector="logOutButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="J9G-Pq-kdA"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zc6-6b-lpb" userLabel="BottomButtonsStack">
+                                <rect key="frame" x="25" y="592.5" width="325" height="54.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QzT-8E-4SC">
+                                        <rect key="frame" x="0.0" y="0.0" width="108.5" height="54.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="LogOut"/>
+                                        <connections>
+                                            <action selector="logOutButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="J9G-Pq-kdA"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5yT-Cm-Mfg">
+                                        <rect key="frame" x="108.5" y="0.0" width="108" height="54.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Forget password?"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDx-mR-zyz">
+                                        <rect key="frame" x="216.5" y="0.0" width="108.5" height="54.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Auth"/>
+                                        <connections>
+                                            <action selector="authenticationButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="qiG-Uq-63p"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="zrI-FH-kXR" userLabel="FirstPassCodeStack">
                                 <rect key="frame" x="125" y="85" width="125" height="20"/>
                                 <subviews>
@@ -393,14 +395,18 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="wYj-wh-o7g" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="50" id="4jh-PW-3zj"/>
+                            <constraint firstItem="zc6-6b-lpb" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" constant="25" id="7lM-tW-7CG"/>
                             <constraint firstItem="VBL-SP-wGG" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="50" id="8Ux-av-Tah"/>
                             <constraint firstItem="zrI-FH-kXR" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="BKO-KN-Pim"/>
                             <constraint firstItem="VBL-SP-wGG" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="FqG-OG-8va"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="zc6-6b-lpb" secondAttribute="bottom" constant="20" id="MdN-B5-k5S"/>
+                            <constraint firstItem="zc6-6b-lpb" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="QSR-0g-g4S"/>
                             <constraint firstItem="Iv1-9b-ncG" firstAttribute="top" secondItem="VBL-SP-wGG" secondAttribute="bottom" constant="15" id="Rfa-QQ-kW7"/>
                             <constraint firstItem="Dgz-T4-K2N" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="Rhv-V3-ehF"/>
                             <constraint firstItem="8AW-Kj-Ak4" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="150" id="UOS-Wj-0wC"/>
                             <constraint firstItem="zrI-FH-kXR" firstAttribute="top" secondItem="wYj-wh-o7g" secondAttribute="bottom" constant="15" id="XQ5-Sl-FLv"/>
                             <constraint firstItem="8AW-Kj-Ak4" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="Xp2-qa-WMz"/>
+                            <constraint firstAttribute="trailing" secondItem="zc6-6b-lpb" secondAttribute="trailing" constant="25" id="bEx-bN-2bz"/>
                             <constraint firstItem="8AW-Kj-Ak4" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="eiE-Uz-rNH"/>
                             <constraint firstItem="wYj-wh-o7g" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="gnR-aI-aIY"/>
                             <constraint firstItem="Dgz-T4-K2N" firstAttribute="top" secondItem="8AW-Kj-Ak4" secondAttribute="bottom" constant="20" id="iaO-XD-LKC"/>

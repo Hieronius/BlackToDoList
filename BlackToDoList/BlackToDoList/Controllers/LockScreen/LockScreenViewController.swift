@@ -181,6 +181,7 @@ final class LockScreenViewController: UIViewController {
             let viewController = storyboard.instantiateViewController(withIdentifier: "LogInViewController") as! LogInViewController
             self.navigationController?.setViewControllers([viewController], animated: true)
             
+        // Catch the error here.
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
         }
