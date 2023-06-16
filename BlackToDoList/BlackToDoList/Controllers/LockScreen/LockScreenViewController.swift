@@ -124,6 +124,41 @@ final class LockScreenViewController: UIViewController {
     
     // MARK: - IBActions
     
+    // Load the password from Keychain.
+    // Convert String to the [Int] which is contain User passcode.
+    private func getPassword() {
+        guard let data = KeychainManager.get(
+            service: "BlackToDoList",
+            account: "User"
+        ) else {
+            print("Failed to read password")
+            return
+        }
+        // Here we should convert from String to [Int] to get our passcode.
+        let password = String(decoding: data, as: UTF8.self)
+        var passcode = [Int]()
+        
+        for char in password {
+            let number = String(char)
+            passcode.append(Int(number) ?? 0)
+        }
+        print("Read password: \(passcode)")
+    }
+    
+    // Take passcode as [Int] and encrypt it with Keychain.
+    private func save() {
+        do {
+            try KeychainManager.save(
+                service: "BlackToDoList",
+                account: "User",
+                // encode password with .utf8 encrypt code.
+                // We wan't get an array of Int as a passcode and encrypt it as a string.
+                password: "\(firstPasscode)".data(using: .utf8) ?? Data())
+        
+        } catch {
+            print(error)
+        }
+    }
     
     
     // MARK: ACTION TO ACTIVATE FACEID/TOUCHID OF THE USER
