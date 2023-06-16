@@ -100,8 +100,7 @@ final class LockScreenViewController: UIViewController {
                 // Place for the question to ask Tough ID/FaceID implementation.
                 } else if firstPasscode == secondPasscode {
                     
-                    // If passwords were equal let's save it to the keychain.
-                    save()
+                    
                     print("Password has been created successfully")
                     let storyboard = UIStoryboard(name: "MainScreenViewController", bundle: nil)
                     let viewController = storyboard.instantiateViewController(withIdentifier: "MainScreenViewController") as! MainScreenViewController
@@ -109,9 +108,13 @@ final class LockScreenViewController: UIViewController {
                     print("First passcode is - \(firstPasscode)")
                     print("Second passcode is - \(secondPasscode)")
                     
-                    // Get password from the Keychain.
-                    getPassword()
-                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                        // If passwords were equal let's save it to the keychain.
+                        self?.save()
+                        // Get password from the Keychain.
+                        self?.getPassword()
+                        print("Programm checkpoint 1")
+                    }
                     // Unexpected behavior
                 } else {
                     print("Unexpected error with secondPasscode property observer")
@@ -135,7 +138,7 @@ final class LockScreenViewController: UIViewController {
     private func getPassword() {
         guard let data = KeychainManager.get(
             service: "BlackToDoList",
-            account: "User1"
+            account: "User7"
         ) else {
             print("Failed to read password")
             return
@@ -143,10 +146,20 @@ final class LockScreenViewController: UIViewController {
         // Here we should convert from String to [Int] to get our passcode.
         let password = String(decoding: data, as: UTF8.self)
         var passcode = [Int]()
+        print("This string we have got from Keychain - \(password)")
         
+        // We wan't check each of a string elements of our password from Keychain.
+        // If there a wrong format let's just skip this symbol.
+        // MARK: Should be refactored.
         for char in password {
-            let number = String(char)
-            passcode.append(Int(number) ?? 0)
+            if char != "," && char != " " && char != "[" && char != "]" {
+                let number = String(char)
+                // it's makes commas from the String array into 0.
+                passcode.append(Int(number) ?? 0)
+                print(char)
+            } else {
+                print("Character is not a number")
+            }
         }
         print("Read password: \(passcode)")
     }
@@ -156,7 +169,7 @@ final class LockScreenViewController: UIViewController {
         do {
             try KeychainManager.save(
                 service: "BlackToDoList",
-                account: "User1",
+                account: "User7",
                 // encode password with .utf8 encrypt code.
                 // We wan't get an array of Int as a passcode and encrypt it as a string.
                 password: "\(firstPasscode)".data(using: .utf8) ?? Data())
