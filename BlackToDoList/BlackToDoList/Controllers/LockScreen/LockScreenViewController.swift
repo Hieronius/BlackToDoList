@@ -99,12 +99,18 @@ final class LockScreenViewController: UIViewController {
                 // MARK: PLACE FOR ALLERT - YOUR PASSWORD HAS BEEN SUCCESSFUL
                 // Place for the question to ask Tough ID/FaceID implementation.
                 } else if firstPasscode == secondPasscode {
+                    
+                    // If passwords were equal let's save it to the keychain.
+                    save()
                     print("Password has been created successfully")
                     let storyboard = UIStoryboard(name: "MainScreenViewController", bundle: nil)
                     let viewController = storyboard.instantiateViewController(withIdentifier: "MainScreenViewController") as! MainScreenViewController
                     self.navigationController?.setViewControllers([viewController], animated: true)
                     print("First passcode is - \(firstPasscode)")
                     print("Second passcode is - \(secondPasscode)")
+                    
+                    // Get password from the Keychain.
+                    getPassword()
                     
                     // Unexpected behavior
                 } else {
@@ -129,7 +135,7 @@ final class LockScreenViewController: UIViewController {
     private func getPassword() {
         guard let data = KeychainManager.get(
             service: "BlackToDoList",
-            account: "User"
+            account: "User1"
         ) else {
             print("Failed to read password")
             return
@@ -150,10 +156,11 @@ final class LockScreenViewController: UIViewController {
         do {
             try KeychainManager.save(
                 service: "BlackToDoList",
-                account: "User",
+                account: "User1",
                 // encode password with .utf8 encrypt code.
                 // We wan't get an array of Int as a passcode and encrypt it as a string.
                 password: "\(firstPasscode)".data(using: .utf8) ?? Data())
+                print("Password - \(firstPasscode) has been saved to Keychain")
         
         } catch {
             print(error)
