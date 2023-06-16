@@ -7,6 +7,7 @@
 
 import UIKit
 import LocalAuthentication
+import FirebaseAuth
 
 final class LockScreenViewController: UIViewController {
     
@@ -165,10 +166,24 @@ final class LockScreenViewController: UIViewController {
     
     // MARK: LOGOUT FROM THE APP
     @IBAction func logOutButtonAction(_ sender: Any) {
-        createPasscodeLabel.isHidden.toggle()
-        firstPasscodeTextFieldsStack.isHidden.toggle()
-        repeatPasscodeLabel.isHidden.toggle()
-        secondPasscodeTextStack.isHidden.toggle()
+        // Define an instance of FirebaseAuthorisation module
+        let firebaseAuth = FirebaseAuth.Auth.auth()
+        
+        //  implement error handling while you wan't log out. Seems like it's need because there can be nil instead of user.
+        do {
+            try firebaseAuth.signOut()
+            print("User has been logged out")
+            
+            // Place for a segue to the log in Screen.
+            // MARK: Alert controller with confirmation can be used here.
+            // 1. It can be a little function.
+            let storyboard = UIStoryboard(name: "LogInViewController", bundle: nil)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "LogInViewController") as! LogInViewController
+            self.navigationController?.setViewControllers([viewController], animated: true)
+            
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
         
     }
     
