@@ -16,6 +16,7 @@ final class LockScreenViewController: UIViewController {
     @IBOutlet weak var firstPasscodeTextFieldsStack: UIStackView!
     @IBOutlet weak var repeatPasscodeLabel: UILabel!
     @IBOutlet weak var secondPasscodeTextStack: UIStackView!
+    @IBOutlet weak var wrongPasswordLabel: UILabel!
     
     // MARK: - Private Properties
     
@@ -67,6 +68,10 @@ final class LockScreenViewController: UIViewController {
                     // Clean all passcode views to it's original color.
                     print("Not equal passwords")
                     
+                    // display a label "password is not correct"
+                    // it can be a little function "displayLabelAndHide"
+                    wrongPasswordLabel.isHidden.toggle()
+                    
                     // Made an async work after a little time because property observer removing passwords before it's checkout for equality.
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                         self.firstPasscode.removeAll()
@@ -82,6 +87,11 @@ final class LockScreenViewController: UIViewController {
                         
                         print("First passcode is - \(self.firstPasscode)")
                         print("Second passcode is - \(self.secondPasscode)")
+                    }
+                    
+                    // Hide label "wrong password"
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        self.wrongPasswordLabel.isHidden.toggle()
                     }
                     
                 // If password was equal, let's ask for FaceID/TouchID identification and move to the Main screen.

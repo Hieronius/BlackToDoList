@@ -382,6 +382,12 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Passcode is not correct" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dgz-T4-K2N">
+                                <rect key="frame" x="85" y="537" width="205" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -391,11 +397,13 @@
                             <constraint firstItem="zrI-FH-kXR" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="BKO-KN-Pim"/>
                             <constraint firstItem="VBL-SP-wGG" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="FqG-OG-8va"/>
                             <constraint firstItem="Iv1-9b-ncG" firstAttribute="top" secondItem="VBL-SP-wGG" secondAttribute="bottom" constant="15" id="Rfa-QQ-kW7"/>
+                            <constraint firstItem="Dgz-T4-K2N" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="Rhv-V3-ehF"/>
                             <constraint firstItem="8AW-Kj-Ak4" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="150" id="UOS-Wj-0wC"/>
                             <constraint firstItem="zrI-FH-kXR" firstAttribute="top" secondItem="wYj-wh-o7g" secondAttribute="bottom" constant="15" id="XQ5-Sl-FLv"/>
                             <constraint firstItem="8AW-Kj-Ak4" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="Xp2-qa-WMz"/>
                             <constraint firstItem="8AW-Kj-Ak4" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="eiE-Uz-rNH"/>
                             <constraint firstItem="wYj-wh-o7g" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="gnR-aI-aIY"/>
+                            <constraint firstItem="Dgz-T4-K2N" firstAttribute="top" secondItem="8AW-Kj-Ak4" secondAttribute="bottom" constant="20" id="iaO-XD-LKC"/>
                             <constraint firstItem="Iv1-9b-ncG" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="lIs-JR-QML"/>
                         </constraints>
                     </view>
@@ -405,6 +413,7 @@
                         <outlet property="firstPasscodeTextFieldsStack" destination="zrI-FH-kXR" id="bZm-bN-wrY"/>
                         <outlet property="repeatPasscodeLabel" destination="VBL-SP-wGG" id="Q2c-EO-Wbj"/>
                         <outlet property="secondPasscodeTextStack" destination="Iv1-9b-ncG" id="HqV-m3-eag"/>
+                        <outlet property="wrongPasswordLabel" destination="Dgz-T4-K2N" id="RvY-0N-xvF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -419,6 +428,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lyq-TE-3fz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -434,6 +444,9 @@
         <image name="delete.left.fill" catalog="system" width="128" height="102"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
