@@ -250,6 +250,18 @@ final class LockScreenViewController: UIViewController {
             // Select current element of passcode text field and change it's color after pressing the button.
             let currentPasscodeView = firstPasscodeTextFieldsStack.subviews[firstPasscode.count - 1]
             currentPasscodeView.backgroundColor = UIColor.white
+            
+            // Add special animation for the passcode view.
+            // Increase it's size for a milдisecond and get it back.
+            // Can be a little function.
+            
+            DispatchQueue.main.async {
+                currentPasscodeView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                currentPasscodeView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            }
             print("First passcode is - \(firstPasscode)")
             // There is a button label.
             print(sender.titleLabel?.text)
@@ -260,6 +272,17 @@ final class LockScreenViewController: UIViewController {
             // Select current element of passcode text field and change it's color after pressing the button.
             let currentPasscodeView = secondPasscodeTextStack.subviews[secondPasscode.count - 1]
             currentPasscodeView.backgroundColor = UIColor.white
+            
+            // Animation for passcode view
+            
+            DispatchQueue.main.async {
+                currentPasscodeView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                currentPasscodeView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            }
+            
             print("Second passcode is - \(secondPasscode)")
             // There is a button label.
             print(sender.titleLabel?.text)
@@ -274,6 +297,16 @@ final class LockScreenViewController: UIViewController {
         if firstPasscode.count > 0 && secondPasscode.isEmpty {
             let currentPasscodeView = firstPasscodeTextFieldsStack.subviews[firstPasscode.count - 1]
             currentPasscodeView.backgroundColor = UIColor.black
+            
+            // Animation for passcode view.
+            DispatchQueue.main.async {
+                currentPasscodeView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                currentPasscodeView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            }
+            
             firstPasscode.removeLast()
             print("First passcode is - \(firstPasscode)")
             print("button has been pressed")
@@ -282,6 +315,17 @@ final class LockScreenViewController: UIViewController {
         } else if firstPasscode.count == 4 && secondPasscode.count < 4 {
             let currentPasscodeView = secondPasscodeTextStack.subviews[secondPasscode.count - 1]
             currentPasscodeView.backgroundColor = UIColor.black
+            
+            // Animation for passcode View
+            
+            DispatchQueue.main.async {
+                currentPasscodeView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                currentPasscodeView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            }
+            
             secondPasscode.removeLast()
             print("Second passcode is - \(secondPasscode)")
             print("button has been pressed")
@@ -412,28 +456,3 @@ final class LockScreenViewController: UIViewController {
     
      
 }
-
-//                              showAlert(title: "Passcode successfully created",
-//                              message: "Give permission to use FaceID/TouchID for access to the app?",
-//                              isCancelButton: true,
-//                              okButtonName: "Ok",
-//                              preferredStyle: .alert) {
-//
-//
-//                        // MARK: PUT HERE METHOD FOR FACEID/TOUCHID AUTHENTIFICATION IF USER OK WITH IT.
-//                        self.useBiometrics()
-//
-//                        print("Password has been created successfully")
-//
-//                        print("First passcode is - \(self.firstPasscode)")
-//                        print("Second passcode is - \(self.secondPasscode)")
-//
-//                        // Save user password. Without a little delay it trying to save an empty passcode array. Should be refactored.
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-//                            // If passwords were equal let's save it to the keychain.
-//                            self?.savePasscode()
-//                            // Get password from the Keychain.
-//                            self?.getPasscode()
-//                            print("Programm checkpoint 2")
-//                        }
-//                    }

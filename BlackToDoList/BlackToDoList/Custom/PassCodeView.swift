@@ -8,11 +8,11 @@
 import UIKit
 /// Custom class for passcode views.
 final class PassCodeView: UIView {
-    // Change it's appearance when the user can see the screen.
     override func awakeFromNib() {
         super.awakeFromNib()
+        // Define buttons as a circle.
         makeRounded(borderColour: .white, borderWidth: 1.0)
+        // Define passcode view animation.
     }
     
- 
 }
