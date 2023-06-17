@@ -13,8 +13,20 @@ class PassCodeButton: UIButton {
         super.awakeFromNib()
         // Define buttons as a circle.
         makeRounded(borderColour: .white, borderWidth: 1.0)
+        // Define animation after initialization of the button.
+        self.addTarget(self, action: #selector(buttonClickedAnimation(sender: )), for: .touchUpInside)
     }
     
     // Add Animation to the button.
-    @objc private func 
+    @objc private func buttonClickedAnimation(sender: UIButton) {
+        DispatchQueue.main.async {
+            sender.alpha = 0.5
+            sender.backgroundColor = .white
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            sender.alpha = 1
+            sender.backgroundColor = .black
+        }
+    }
 }
