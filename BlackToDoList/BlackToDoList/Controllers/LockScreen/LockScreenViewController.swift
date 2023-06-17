@@ -256,7 +256,7 @@ final class LockScreenViewController: UIViewController {
             // Can be a little function.
             
             DispatchQueue.main.async {
-                currentPasscodeView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                currentPasscodeView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
             }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -276,7 +276,7 @@ final class LockScreenViewController: UIViewController {
             // Animation for passcode view
             
             DispatchQueue.main.async {
-                currentPasscodeView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                currentPasscodeView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
             }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -300,7 +300,7 @@ final class LockScreenViewController: UIViewController {
             
             // Animation for passcode view.
             DispatchQueue.main.async {
-                currentPasscodeView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                currentPasscodeView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
             }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -319,7 +319,7 @@ final class LockScreenViewController: UIViewController {
             // Animation for passcode View
             
             DispatchQueue.main.async {
-                currentPasscodeView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                currentPasscodeView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
             }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {

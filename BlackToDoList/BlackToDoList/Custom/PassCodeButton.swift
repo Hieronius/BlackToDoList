@@ -25,8 +25,12 @@ class PassCodeButton: UIButton {
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            sender.alpha = 1
             sender.backgroundColor = .black
+            sender.alpha = 0.6
+            sender.alpha = 0.7
+            sender.alpha = 0.8
+            sender.alpha = 0.9
+            sender.alpha = 1.0
         }
     }
 }
