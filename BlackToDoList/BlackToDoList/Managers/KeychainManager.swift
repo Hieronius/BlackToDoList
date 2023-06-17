@@ -91,28 +91,3 @@ final class KeychainManager {
         return result as? Data
     }
 }
-
-// MARK: Example of implementation
-//private func getPassword() {
-//    guard let data = KeychainManager.get(
-//        service: "BlackToDoList",
-//        account: "User"
-//    ) else {
-//        print("Failed to read password")
-//        return
-//    }
-//    let password = String(decoding: data, as: UTF8.self)
-//    print("Read password: \(password)")
-//}
-//
-//private func save() {
-//    do {
-//        try KeychainManager.save(
-//            service: "BlackToDoList",
-//            account: "User",
-//            // encode password with .utf8 encrypt code
-//            password: "some password".data(using: .utf8) ?? Data())
-//    } catch {
-//        print(error)
-//    }
-//}
