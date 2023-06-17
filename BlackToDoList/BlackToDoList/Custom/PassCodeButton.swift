@@ -11,6 +11,10 @@ class PassCodeButton: UIButton {
      // Change it's appearance when the user can see the screen.
     override func awakeFromNib() {
         super.awakeFromNib()
+        // Define buttons as a circle.
         makeRounded(borderColour: .white, borderWidth: 1.0)
     }
+    
+    // Add Animation to the button.
+    @objc private func 
 }

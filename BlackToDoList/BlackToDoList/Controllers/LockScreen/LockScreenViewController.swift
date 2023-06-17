@@ -95,29 +95,71 @@ final class LockScreenViewController: UIViewController {
                         self.wrongPasswordLabel.isHidden.toggle()
                     }
                     
-                // If password was equal, let's ask for FaceID/TouchID identification and move to the Main screen.
-                // MARK: PLACE FOR ALLERT - YOUR PASSWORD HAS BEEN SUCCESSFUL
-                // Place for the question to ask Tough ID/FaceID implementation.
+                    // If password was equal, let's ask for FaceID/TouchID identification and move to the Main screen.
+                    // MARK: PLACE FOR ALLERT - YOUR PASSWORD HAS BEEN SUCCESSFUL
+                    // Place for the question to ask Tough ID/FaceID implementation.
                 } else if firstPasscode == secondPasscode {
                     
+                    // Seems like i need a custom alert controller with two buttons. First one "Ok" button should be with default closure and the second one "Cancel" with personal AlertControllerAction.
                     
-                    print("Password has been created successfully")
-                    let storyboard = UIStoryboard(name: "MainScreenViewController", bundle: nil)
-                    let viewController = storyboard.instantiateViewController(withIdentifier: "MainScreenViewController") as! MainScreenViewController
-                    self.navigationController?.setViewControllers([viewController], animated: true)
-                    print("First passcode is - \(firstPasscode)")
-                    print("Second passcode is - \(secondPasscode)")
+                    let alertController = UIAlertController(title: "Passcode successfully created", message: "Give permission to use FaceID/TouchID ", preferredStyle: .alert)
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                        // If passwords were equal let's save it to the keychain.
-                        self?.save()
-                        // Get password from the Keychain.
-                        self?.getPassword()
-                        print("Programm checkpoint 1")
+                    // User pressed "Ok" - save passcode, use Biometrics and redirect to the main screen.
+                    let okAction = UIAlertAction(title: "Ok", style: .default) { action in
+                        
+                        
+                        // MARK: PUT HERE METHOD FOR FACEID/TOUCHID AUTHENTIFICATION IF USER OK WITH IT.
+                        self.useBiometrics()
+                        
+                        print("Password has been created successfully")
+                        
+                        print("First passcode is - \(self.firstPasscode)")
+                        print("Second passcode is - \(self.secondPasscode)")
+                        
+                        // Save user password. Without a little delay it trying to save an empty passcode array. Should be refactored.
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                            // If passwords were equal let's save it to the keychain.
+                            self?.savePasscode()
+                            // Get password from the Keychain.
+                            self?.getPasscode()
+                            print("Programm checkpoint 2")
+                        }
+                        
                     }
+                    // Add "Ok" button to the alert controller.
+                    alertController.addAction(okAction)
+                    
+                    // User pressed "Cancel" - save passcode, don't use Biometrics and redirect to the main screen.
+                    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
+                        
+                        // MARK: USER CANCELED THE FACEID AUTHENTIFICATION AND REDIRECTED TO THE MAIN SCREEN.
+                        let storyboard = UIStoryboard(name: "MainScreenViewController", bundle: nil)
+                        let viewController = storyboard.instantiateViewController(withIdentifier: "MainScreenViewController") as! MainScreenViewController
+                        self.navigationController?.setViewControllers([viewController], animated: true)
+                        
+                        print("Password has been created successfully")
+                        
+                        print("First passcode is - \(self.firstPasscode)")
+                        print("Second passcode is - \(self.secondPasscode)")
+                        
+                        // Save user password. Without a little delay it trying to save an empty passcode array. Should be refactored.
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                            // If passwords were equal let's save it to the keychain.
+                            self?.savePasscode()
+                            // Get password from the Keychain.
+                            self?.getPasscode()
+                            print("Programm checkpoint 1")
+                        }
+                    }
+                    
+                    // Add "cancel" button to the alert controller
+                    alertController.addAction(cancelAction)
+                    // Present Alert Controller
+                    self.present(alertController, animated: true)
+                    
                     // Unexpected behavior
-                } else {
-                    print("Unexpected error with secondPasscode property observer")
+                    }  else {
+                        print("Unexpected error with secondPasscode property observer")
                 }
             }
         }
@@ -133,48 +175,6 @@ final class LockScreenViewController: UIViewController {
     
     // MARK: - IBActions
     
-    // Load the password from Keychain.
-    // Convert String to the [Int] which is contain User passcode.
-    private func getPassword() {
-        guard let data = KeychainManager.get(
-            service: "BlackToDoList",
-            account: "User8"
-        ) else {
-            print("Failed to read password")
-            return
-        }
-        // Here we should convert from String to [Int] to get our passcode.
-        let password = String(decoding: data, as: UTF8.self)
-        print("This string we have got from Keychain - \(password)")
-        
-        // We wan't check each of a string elements of our password from Keychain.
-        // If there a wrong format let's just skip this symbol.
-        // MARK: Should be refactored.
-        
-        // Downcast our password as String to the actual passcode.
-        // 1. Get access to the content inside "[]"
-        // 2. Set a type of components which are we need.
-        // 3. Use compact map to get non optional numbers
-        let passcode = password.trimmingCharacters(in: CharacterSet(charactersIn: "[]")).components(separatedBy: ",").compactMap { Int($0.trimmingCharacters(in: .whitespaces)) }
-        
-        print("Read password: \(passcode)")
-    }
-    
-    // Take passcode as [Int] and encrypt it with Keychain.
-    private func save() {
-        do {
-            try KeychainManager.save(
-                service: "BlackToDoList",
-                account: "User8",
-                // encode password with .utf8 encrypt code.
-                // We wan't get an array of Int as a passcode and encrypt it as a string.
-                password: "\(firstPasscode)".data(using: .utf8) ?? Data())
-                print("Password - \(firstPasscode) has been saved to Keychain")
-        
-        } catch {
-            print(error)
-        }
-    }
     
     
     // MARK: ACTION TO ACTIVATE FACEID/TOUCHID OF THE USER
@@ -325,10 +325,115 @@ final class LockScreenViewController: UIViewController {
         }
     }
     
+    // MARK: - Private Methods
     
+    // Load the password from Keychain.
+    // Convert String to the [Int] which is contain User passcode.
+    private func getPasscode() {
+        guard let data = KeychainManager.get(
+            service: "BlackToDoList",
+            account: "User10"
+        ) else {
+            print("Failed to read password")
+            return
+        }
+        // Here we should convert from String to [Int] to get our passcode.
+        let password = String(decoding: data, as: UTF8.self)
+        print("This string we have got from Keychain - \(password)")
+        
+        // We wan't check each of a string elements of our password from Keychain.
+        // If there a wrong format let's just skip this symbol.
+        // MARK: Should be refactored.
+        
+        // Downcast our password as String to the actual passcode.
+        // 1. Get access to the content inside "[]"
+        // 2. Set a type of components which are we need.
+        // 3. Use compact map to get non optional numbers
+        let passcode = password.trimmingCharacters(in: CharacterSet(charactersIn: "[]")).components(separatedBy: ",").compactMap { Int($0.trimmingCharacters(in: .whitespaces)) }
+        
+        print("Read password: \(passcode)")
+    }
+    
+    // Take passcode as [Int] and encrypt it with Keychain.
+    private func savePasscode() {
+        do {
+            try KeychainManager.save(
+                service: "BlackToDoList",
+                account: "User10",
+                // encode password with .utf8 encrypt code.
+                // We wan't get an array of Int as a passcode and encrypt it as a string.
+                password: "\(firstPasscode)".data(using: .utf8) ?? Data())
+                print("Password - \(firstPasscode) has been saved to Keychain")
+        
+        } catch {
+            print(error)
+        }
+    }
+    
+    private func useBiometrics() {
+        // Create an abstractive model of the Apple Authentication Manager.
+        let context = LAContext()
+        
+        // Create an abstractive model for possible Errors during the usage of the service.
+        // Because this framework works with protocol NSErrorPointer and also it's a inout parameter.
+        var error: NSError? = nil
+        
+        // Seems like it's a message which should ask User to use his TouchID.
+        // Probably should be edited accordingly to variation that it can be FaceID check.
+        let reason = "Please identify yourself"
+        
+        // MARK: ACTUAL FACEID/TOUCHID/DEFAULT IPHONE PIN CODE CHECKOUT WITH A SEGUE TO THE MAIN SCREEN IN CASE OF SUCCESS
+        // context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics,
+        context.evaluatePolicy(.deviceOwnerAuthentication,
+                               localizedReason: reason) { [weak self] success, error in
+            
+            // Do the job asynchonously with help of the "Task".
+            // Because we ask Task to run it's work inside the UIButtonAction it will work in the MainThread but Asynchonously.
+            Task {
+                // Checkout of the fact that we recieved a success and no errors
+                guard success, error == nil else {
+                    
+                    // Failure of the attempt to check
+                    print("Authentication has been failed")
+                    self?.showAlert(title: "Failed to Authenticate", message: "Please try again")
+                    return }
+                
+                // MARK: SEGUE TO THE MAIN SCREEN
+                // 1. It can be a little function.
+                let storyboard = UIStoryboard(name: "MainScreenViewController", bundle: nil)
+                let viewController = storyboard.instantiateViewController(withIdentifier: "MainScreenViewController") as! MainScreenViewController
+                self?.navigationController?.setViewControllers([viewController], animated: true)
+            }
+        }
+    }
     
     
     // MARK: - UI Configuration
     
      
 }
+
+//                              showAlert(title: "Passcode successfully created",
+//                              message: "Give permission to use FaceID/TouchID for access to the app?",
+//                              isCancelButton: true,
+//                              okButtonName: "Ok",
+//                              preferredStyle: .alert) {
+//
+//
+//                        // MARK: PUT HERE METHOD FOR FACEID/TOUCHID AUTHENTIFICATION IF USER OK WITH IT.
+//                        self.useBiometrics()
+//
+//                        print("Password has been created successfully")
+//
+//                        print("First passcode is - \(self.firstPasscode)")
+//                        print("Second passcode is - \(self.secondPasscode)")
+//
+//                        // Save user password. Without a little delay it trying to save an empty passcode array. Should be refactored.
+//                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+//                            // If passwords were equal let's save it to the keychain.
+//                            self?.savePasscode()
+//                            // Get password from the Keychain.
+//                            self?.getPasscode()
+//                            print("Programm checkpoint 2")
+//                        }
+//                    }
