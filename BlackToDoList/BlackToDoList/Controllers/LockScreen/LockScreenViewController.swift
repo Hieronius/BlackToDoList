@@ -138,29 +138,25 @@ final class LockScreenViewController: UIViewController {
     private func getPassword() {
         guard let data = KeychainManager.get(
             service: "BlackToDoList",
-            account: "User7"
+            account: "User8"
         ) else {
             print("Failed to read password")
             return
         }
         // Here we should convert from String to [Int] to get our passcode.
         let password = String(decoding: data, as: UTF8.self)
-        var passcode = [Int]()
         print("This string we have got from Keychain - \(password)")
         
         // We wan't check each of a string elements of our password from Keychain.
         // If there a wrong format let's just skip this symbol.
         // MARK: Should be refactored.
-        for char in password {
-            if char != "," && char != " " && char != "[" && char != "]" {
-                let number = String(char)
-                // it's makes commas from the String array into 0.
-                passcode.append(Int(number) ?? 0)
-                print(char)
-            } else {
-                print("Character is not a number")
-            }
-        }
+        
+        // Downcast our password as String to the actual passcode.
+        // 1. Get access to the content inside "[]"
+        // 2. Set a type of components which are we need.
+        // 3. Use compact map to get non optional numbers
+        let passcode = password.trimmingCharacters(in: CharacterSet(charactersIn: "[]")).components(separatedBy: ",").compactMap { Int($0.trimmingCharacters(in: .whitespaces)) }
+        
         print("Read password: \(passcode)")
     }
     
@@ -169,7 +165,7 @@ final class LockScreenViewController: UIViewController {
         do {
             try KeychainManager.save(
                 service: "BlackToDoList",
-                account: "User7",
+                account: "User8",
                 // encode password with .utf8 encrypt code.
                 // We wan't get an array of Int as a passcode and encrypt it as a string.
                 password: "\(firstPasscode)".data(using: .utf8) ?? Data())
