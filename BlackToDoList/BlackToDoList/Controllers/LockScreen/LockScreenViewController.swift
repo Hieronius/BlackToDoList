@@ -207,10 +207,7 @@ final class LockScreenViewController: UIViewController {
                     return }
                 
                 // MARK: SEGUE TO THE MAIN SCREEN
-                // 1. It can be a little function.
-                let storyboard = UIStoryboard(name: "MainScreenViewController", bundle: nil)
-                let viewController = storyboard.instantiateViewController(withIdentifier: "MainScreenViewController") as! MainScreenViewController
-                self?.navigationController?.setViewControllers([viewController], animated: true)
+                self?.segueToMainScreen()
             }
         }
     }
@@ -370,6 +367,12 @@ final class LockScreenViewController: UIViewController {
     }
     
     // MARK: - Private Methods
+    
+    private func segueToMainScreen() {
+        let storyboard = UIStoryboard(name: "MainScreenViewController", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "MainScreenViewController") as! MainScreenViewController
+        self.navigationController?.setViewControllers([viewController], animated: true)
+    }
     
     // Load the password from Keychain.
     // Convert String to the [Int] which is contain User passcode.
