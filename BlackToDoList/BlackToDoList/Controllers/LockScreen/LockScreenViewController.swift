@@ -207,7 +207,7 @@ final class LockScreenViewController: UIViewController {
                     return }
                 
                 // MARK: SEGUE TO THE MAIN SCREEN
-                self?.segueToMainScreen()
+                self?.segueToMainScreenAndMakeItAsRoot()
             }
         }
     }
@@ -224,10 +224,7 @@ final class LockScreenViewController: UIViewController {
             
             // Place for a segue to the log in Screen.
             // MARK: Alert controller with confirmation can be used here.
-            // 1. It can be a little function.
-            let storyboard = UIStoryboard(name: "LogInViewController", bundle: nil)
-            let viewController = storyboard.instantiateViewController(withIdentifier: "LogInViewController") as! LogInViewController
-            self.navigationController?.setViewControllers([viewController], animated: true)
+            segueToLogInScreenAndMakeItAsRoot()
             
         // Catch the error here.
         } catch let signOutError as NSError {
@@ -295,14 +292,7 @@ final class LockScreenViewController: UIViewController {
             let currentPasscodeView = firstPasscodeTextFieldsStack.subviews[firstPasscode.count - 1]
             currentPasscodeView.backgroundColor = UIColor.black
             
-            // Animation for passcode view.
-            DispatchQueue.main.async {
-                currentPasscodeView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-            }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                currentPasscodeView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-            }
+            activateAsyncAnimationForPasscodeViewAfterBeingFilled(view: currentPasscodeView)
             
             firstPasscode.removeLast()
             print("First passcode is - \(firstPasscode)")
@@ -315,13 +305,7 @@ final class LockScreenViewController: UIViewController {
             
             // Animation for passcode View
             
-            DispatchQueue.main.async {
-                currentPasscodeView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-            }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                currentPasscodeView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-            }
+            activateAsyncAnimationForPasscodeViewAfterBeingFilled(view: currentPasscodeView)
             
             secondPasscode.removeLast()
             print("Second passcode is - \(secondPasscode)")
@@ -368,9 +352,16 @@ final class LockScreenViewController: UIViewController {
     
     // MARK: - Private Methods
     
-    private func segueToMainScreen() {
+    private func segueToMainScreenAndMakeItAsRoot() {
         let storyboard = UIStoryboard(name: "MainScreenViewController", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "MainScreenViewController") as! MainScreenViewController
+        self.navigationController?.setViewControllers([viewController], animated: true)
+    }
+    
+    private func segueToLogInScreenAndMakeItAsRoot() {
+        // 1. It can be a little function.
+        let storyboard = UIStoryboard(name: "LogInViewController", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "LogInViewController") as! LogInViewController
         self.navigationController?.setViewControllers([viewController], animated: true)
     }
     
@@ -457,5 +448,14 @@ final class LockScreenViewController: UIViewController {
     
     // MARK: - UI Configuration
     
-     
+    private func activateAsyncAnimationForPasscodeViewAfterBeingFilled(view: UIView) {
+        // Animation for passcode view.
+        DispatchQueue.main.async {
+            view.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        }
+    }
 }
