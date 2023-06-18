@@ -298,38 +298,12 @@ final class LockScreenViewController: UIViewController {
     }
     
     @IBAction func forgetPasswordButtonAction(_ sender: Any) {
-        // Create an abstractive model of the Apple Authentication Manager.
-        let context = LAContext()
         
-        // Create an abstractive model for possible Errors during the usage of the service.
-        // Because this framework works with protocol NSErrorPointer and also it's a inout parameter.
-        var error: NSError? = nil
-        
-        // Seems like it's a message which should ask User to use his TouchID.
-        // Probably should be edited accordingly to variation that it can be FaceID check.
-        let reason = "Please identify yourself to clear an old passcode and create a new one"
-        
-        // MARK: ACTUAL FACEID/TOUCHID/DEFAULT IPHONE PASSWORD CHECKOUT. IS SUCCESS CLEAN THE OLD PASSCODE AND CREATE A NEW ONE
-        // context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics,
-        context.evaluatePolicy(.deviceOwnerAuthentication,
-                               localizedReason: reason) { [weak self] success, error in
-            
-            // Do the job asynchonously with help of the "Task".
-            // Because we ask Task to run it's work inside the UIButtonAction it will work in the MainThread but Asynchonously.
-            Task {
-                // Checkout of the fact that we recieved a success and no errors
-                guard success, error == nil else {
-                    
-                    // Failure of the attempt to check
-                    print("Authentication has been failed")
-                    self?.showAlert(title: "Failed to Authenticate", message: "Please try again")
-                    return }
-                
-                // MARK: DELETE OLD PASSCODE AND CLEAN PASSCODE FIELDS VIEW PLUS PASSCODEARRAYS
-                
-                
-            }
+        showAlert(title: "Please relogin to create a new passcode", message: "Old passcode will be deleted. Are you sure to procedure?", isCancelButton: true, okButtonName: "Relogin") {
+            // function to delete current passcode from Keychain.
+            self.segueToLogInScreenAndMakeItAsRoot()
         }
+        
     }
     
     // MARK: - Private Methods
@@ -389,6 +363,7 @@ final class LockScreenViewController: UIViewController {
             print(error)
         }
     }
+    
     
     private func useBiometrics() {
         // Create an abstractive model of the Apple Authentication Manager.
