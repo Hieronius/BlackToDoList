@@ -285,8 +285,6 @@ final class LockScreenViewController: UIViewController {
             let currentPasscodeView = secondPasscodeTextStack.subviews[secondPasscode.count - 1]
             currentPasscodeView.backgroundColor = UIColor.black
             
-            // Animation for passcode View
-            
             activateAsyncAnimationForPasscodeViewAfterBeingFilled(view: currentPasscodeView)
             
             secondPasscode.removeLast()
@@ -300,7 +298,8 @@ final class LockScreenViewController: UIViewController {
     @IBAction func forgetPasswordButtonAction(_ sender: Any) {
         
         showAlert(title: "Please relogin to create a new passcode", message: "Old passcode will be deleted. Are you sure to procedure?", isCancelButton: true, okButtonName: "Relogin") {
-            // function to delete current passcode from Keychain.
+            // Function to delete current passcode from Keychain.
+            // Also i should implement force LogOut of the user.
             self.segueToLogInScreenAndMakeItAsRoot()
         }
         
@@ -324,7 +323,7 @@ final class LockScreenViewController: UIViewController {
     // Load the password from Keychain.
     // Convert String to the [Int] which is contain User passcode.
     private func getPasscode() {
-        guard let data = KeychainManager.get(
+        guard let data = KeychainManager.getData(
             service: "BlackToDoList",
             account: "User10"
         ) else {
@@ -362,6 +361,9 @@ final class LockScreenViewController: UIViewController {
         } catch {
             print(error)
         }
+    }
+    
+    private func deletePasscode() {
     }
     
     
