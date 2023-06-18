@@ -364,6 +364,10 @@ final class LockScreenViewController: UIViewController {
     }
     
     private func deletePasscode() {
+        KeychainManager.deleteData(
+            service: "BlackToDoList",
+            account: "User10")
+        print("Passcode has been deleted from Keychain")
     }
     
     

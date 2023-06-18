@@ -114,7 +114,6 @@ final class KeychainManager {
         
         
         let status = SecItemDelete(query as CFDictionary)
-        
         // Print if there is an Error
         print("Read status: \(status)")
     }
