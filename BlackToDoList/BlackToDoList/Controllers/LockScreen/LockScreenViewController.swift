@@ -245,17 +245,7 @@ final class LockScreenViewController: UIViewController {
             let currentPasscodeView = firstPasscodeTextFieldsStack.subviews[firstPasscode.count - 1]
             currentPasscodeView.backgroundColor = UIColor.white
             
-            // Add special animation for the passcode view.
-            // Increase it's size for a milдisecond and get it back.
-            // Can be a little function.
-            
-            DispatchQueue.main.async {
-                currentPasscodeView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-            }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                currentPasscodeView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-            }
+            activateAsyncAnimationForPasscodeViewAfterBeingFilled(view: currentPasscodeView)
             print("First passcode is - \(firstPasscode)")
             // There is a button label.
             print(sender.titleLabel?.text)
@@ -267,15 +257,7 @@ final class LockScreenViewController: UIViewController {
             let currentPasscodeView = secondPasscodeTextStack.subviews[secondPasscode.count - 1]
             currentPasscodeView.backgroundColor = UIColor.white
             
-            // Animation for passcode view
-            
-            DispatchQueue.main.async {
-                currentPasscodeView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-            }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                currentPasscodeView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-            }
+            activateAsyncAnimationForPasscodeViewAfterBeingFilled(view: currentPasscodeView)
             
             print("Second passcode is - \(secondPasscode)")
             // There is a button label.
@@ -448,6 +430,7 @@ final class LockScreenViewController: UIViewController {
     
     // MARK: - UI Configuration
     
+    // Can be expanded with repeating code from the main function.
     private func activateAsyncAnimationForPasscodeViewAfterBeingFilled(view: UIView) {
         // Animation for passcode view.
         DispatchQueue.main.async {
@@ -458,4 +441,6 @@ final class LockScreenViewController: UIViewController {
             view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
         }
     }
+    
+    
 }
