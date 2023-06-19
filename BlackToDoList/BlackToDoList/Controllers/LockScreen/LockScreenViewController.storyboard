@@ -483,9 +483,11 @@
                     <navigationItem key="navigationItem" id="5UR-yT-T59"/>
                     <connections>
                         <outlet property="createPasscodeLabel" destination="wYj-wh-o7g" id="s27-bL-TvG"/>
-                        <outlet property="firstPasscodeTextFieldsStack" destination="zrI-FH-kXR" id="bZm-bN-wrY"/>
+                        <outlet property="enterPasscodeLabe" destination="lxt-fj-b34" id="JEG-b3-Mqc"/>
+                        <outlet property="enterPasscodeViewStack" destination="Tm1-HY-4G9" id="THc-et-q9B"/>
+                        <outlet property="firstPasscodeViewFieldsStack" destination="zrI-FH-kXR" id="bZm-bN-wrY"/>
                         <outlet property="repeatPasscodeLabel" destination="VBL-SP-wGG" id="Q2c-EO-Wbj"/>
-                        <outlet property="secondPasscodeTextStack" destination="Iv1-9b-ncG" id="HqV-m3-eag"/>
+                        <outlet property="secondPasscodeViewStack" destination="Iv1-9b-ncG" id="HqV-m3-eag"/>
                         <outlet property="wrongPasswordLabel" destination="Dgz-T4-K2N" id="RvY-0N-xvF"/>
                     </connections>
                 </viewController>

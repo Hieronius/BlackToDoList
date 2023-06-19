@@ -14,9 +14,14 @@ final class LockScreenViewController: UIViewController {
     // MARK: - IBOutlets
     
     @IBOutlet weak var createPasscodeLabel: UILabel!
-    @IBOutlet weak var firstPasscodeTextFieldsStack: UIStackView!
+    @IBOutlet weak var firstPasscodeViewFieldsStack: UIStackView!
+    
     @IBOutlet weak var repeatPasscodeLabel: UILabel!
-    @IBOutlet weak var secondPasscodeTextStack: UIStackView!
+    @IBOutlet weak var secondPasscodeViewStack: UIStackView!
+    
+    @IBOutlet weak var enterPasscodeViewStack: UIStackView!
+    @IBOutlet weak var enterPasscodeLabe: UILabel!
+    
     @IBOutlet weak var wrongPasswordLabel: UILabel!
     
     // MARK: - Private Properties
@@ -30,11 +35,11 @@ final class LockScreenViewController: UIViewController {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     // Reload UI.
                     self.createPasscodeLabel.isHidden.toggle()
-                    self.firstPasscodeTextFieldsStack.isHidden.toggle()
+                    self.firstPasscodeViewFieldsStack.isHidden.toggle()
                     self.repeatPasscodeLabel.isHidden.toggle()
-                    self.secondPasscodeTextStack.isHidden.toggle()
+                    self.secondPasscodeViewStack.isHidden.toggle()
                     
-                    let currentPasscodeView = self.firstPasscodeTextFieldsStack.subviews
+                    let currentPasscodeView = self.firstPasscodeViewFieldsStack.subviews
                     
                     for view in currentPasscodeView {
                         view.backgroundColor = UIColor.black
@@ -59,9 +64,9 @@ final class LockScreenViewController: UIViewController {
                 if firstPasscode != secondPasscode {
                     // Reload UI.
                     createPasscodeLabel.isHidden.toggle()
-                    firstPasscodeTextFieldsStack.isHidden.toggle()
+                    firstPasscodeViewFieldsStack.isHidden.toggle()
                     repeatPasscodeLabel.isHidden.toggle()
-                    secondPasscodeTextStack.isHidden.toggle()
+                    secondPasscodeViewStack.isHidden.toggle()
                     
                     print("First passcode is - \(firstPasscode)")
                     print("Second passcode is - \(secondPasscode)")
@@ -79,7 +84,7 @@ final class LockScreenViewController: UIViewController {
                         self.secondPasscode.removeAll()
                         
                         // Reload UI.
-                        let currentPasscodeView = self.secondPasscodeTextStack.subviews
+                        let currentPasscodeView = self.secondPasscodeViewStack.subviews
                         
                         for view in currentPasscodeView {
                             view.backgroundColor = UIColor.black
@@ -244,7 +249,7 @@ final class LockScreenViewController: UIViewController {
         if firstPasscode.count < 4 && secondPasscode.isEmpty {
             firstPasscode.append(number)
             // Select current element of passcode text field and change it's color after pressing the button.
-            let currentPasscodeView = firstPasscodeTextFieldsStack.subviews[firstPasscode.count - 1]
+            let currentPasscodeView = firstPasscodeViewFieldsStack.subviews[firstPasscode.count - 1]
             currentPasscodeView.backgroundColor = UIColor.white
             
             activateAsyncAnimationForPasscodeViewAfterBeingFilled(view: currentPasscodeView)
@@ -256,7 +261,7 @@ final class LockScreenViewController: UIViewController {
         } else if firstPasscode.count == 4 && secondPasscode.count < 4 {
             secondPasscode.append(number)
             // Select current element of passcode text field and change it's color after pressing the button.
-            let currentPasscodeView = secondPasscodeTextStack.subviews[secondPasscode.count - 1]
+            let currentPasscodeView = secondPasscodeViewStack.subviews[secondPasscode.count - 1]
             currentPasscodeView.backgroundColor = UIColor.white
             
             activateAsyncAnimationForPasscodeViewAfterBeingFilled(view: currentPasscodeView)
@@ -273,7 +278,7 @@ final class LockScreenViewController: UIViewController {
     @IBAction func deletePasscodeButtonAction(_ sender: UIButton) {
         // If first passcode numbers array is not empty and a second one are empty let's remove one last element from first passcode array one by one.
         if firstPasscode.count > 0 && secondPasscode.isEmpty {
-            let currentPasscodeView = firstPasscodeTextFieldsStack.subviews[firstPasscode.count - 1]
+            let currentPasscodeView = firstPasscodeViewFieldsStack.subviews[firstPasscode.count - 1]
             currentPasscodeView.backgroundColor = UIColor.black
             
             activateAsyncAnimationForPasscodeViewAfterBeingFilled(view: currentPasscodeView)
@@ -284,7 +289,7 @@ final class LockScreenViewController: UIViewController {
             
         // If first passcode array are full we wan't remove elements from the second passcode array.
         } else if firstPasscode.count == 4 && secondPasscode.count < 4 {
-            let currentPasscodeView = secondPasscodeTextStack.subviews[secondPasscode.count - 1]
+            let currentPasscodeView = secondPasscodeViewStack.subviews[secondPasscode.count - 1]
             currentPasscodeView.backgroundColor = UIColor.black
             
             activateAsyncAnimationForPasscodeViewAfterBeingFilled(view: currentPasscodeView)
