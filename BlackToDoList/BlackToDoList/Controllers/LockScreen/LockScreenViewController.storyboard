@@ -471,11 +471,6 @@
                             <constraint firstItem="lxt-fj-b34" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="r8d-un-O8a"/>
                             <constraint firstItem="lxt-fj-b34" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="50" id="yLs-lA-1p0"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="Iv1-9b-ncG"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="5UR-yT-T59"/>
                     <connections>

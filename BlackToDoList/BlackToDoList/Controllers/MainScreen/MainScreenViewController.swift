@@ -27,4 +27,11 @@ class MainScreenViewController: UIViewController {
             print(error)
         }
     }
+    
+    @IBAction func enterPasscode(_ sender: UIButton) {
+            let storyboard = UIStoryboard(name: "LockScreenViewController", bundle: nil)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "LockScreenViewController") as! LockScreenViewController
+            self.navigationController?.setViewControllers([viewController], animated: true)
+    }
+    
 }

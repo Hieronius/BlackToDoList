@@ -34,6 +34,15 @@
                                     <segue destination="ZLJ-di-OnH" kind="show" id="gmE-dN-1up"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LGm-R2-LWz">
+                                <rect key="frame" x="119" y="431" width="138" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="EnterPasscode"/>
+                                <connections>
+                                    <action selector="enterPasscode:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Xdf-a9-vpb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
