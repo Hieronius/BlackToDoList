@@ -21,7 +21,7 @@ final class KeychainManager {
     // Get data and encrypt it.
     // Function can throw an error.
     // Can't rename function 18.06.23 due to an error. Let's try again later.
-    static func save(
+    static func saveData(
         // a few input parameters to identify what we wan't to save and where.
         service: String,
         account: String,
@@ -103,13 +103,7 @@ final class KeychainManager {
             // Our service.
             kSecAttrService: service,
             // Our account.
-            kSecAttrAccount: account,
-            // Out password data type for exctaction.
-            // Seems like mean is there a data for return action.
-            kSecReturnData: kCFBooleanTrue as Any,
-            // How many items to match we wan't with requested data.
-            // So, the answer is one single item.
-            kSecMatchLimit: kSecMatchLimitOne]
+            kSecAttrAccount: account]
         
         
         
@@ -118,6 +112,7 @@ final class KeychainManager {
         print("Read status: \(status)")
         guard status == errSecSuccess else {
             print(KeychainError.unknown(status).localizedDescription)
+            print("Delete data checkpoint 1")
             throw KeychainError.unknown(status)
         }
     }

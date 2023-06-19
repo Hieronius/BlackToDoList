@@ -23,6 +23,7 @@ class MainScreenViewController: UIViewController {
                 account: "User10")
             print("Passcode has been deleted from Keychain")
         } catch {
+            print("Delete account check point 2")
             print(error)
         }
     }

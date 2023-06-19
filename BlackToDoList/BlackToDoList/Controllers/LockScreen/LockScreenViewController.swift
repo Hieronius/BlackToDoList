@@ -214,6 +214,8 @@ final class LockScreenViewController: UIViewController {
     
     // MARK: LOGOUT FROM THE APP
     @IBAction func logOutButtonAction(_ sender: Any) {
+        
+        // MARK: Add Alert controller here to ask the user about logOut
         // Define an instance of FirebaseAuthorisation module
         let firebaseAuth = FirebaseAuth.Auth.auth()
         
@@ -326,7 +328,7 @@ final class LockScreenViewController: UIViewController {
     private func getPasscode() {
         guard let data = KeychainManager.getData(
             service: "BlackToDoList",
-            account: "User10"
+            account: "User11"
         ) else {
             print("Failed to read password")
             return
@@ -351,9 +353,9 @@ final class LockScreenViewController: UIViewController {
     // Take passcode as [Int] and encrypt it with Keychain.
     private func savePasscode() {
         do {
-            try KeychainManager.save(
+            try KeychainManager.saveData(
                 service: "BlackToDoList",
-                account: "User10",
+                account: "User11",
                 // encode password with .utf8 encrypt code.
                 // We wan't get an array of Int as a passcode and encrypt it as a string.
                 password: "\(firstPasscode)".data(using: .utf8) ?? Data())
@@ -368,7 +370,7 @@ final class LockScreenViewController: UIViewController {
         do {
             try KeychainManager.deleteData(
                 service: "BlackToDoList",
-                account: "User10")
+                account: "User11")
             print("Passcode has been deleted from Keychain")
         } catch {
             print(error)
