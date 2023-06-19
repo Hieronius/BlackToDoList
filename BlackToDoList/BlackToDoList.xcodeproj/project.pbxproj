@@ -43,6 +43,7 @@
 		DD90805D2A38749A009EC99E /* PassCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassCodeView.swift; sourceTree = "<group>"; };
 		DD90805F2A3874CB009EC99E /* PassCodeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassCodeButton.swift; sourceTree = "<group>"; };
 		DD958C4B2A28425100B0986B /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
+		DDD5D5902A3F025D000F9CCB /* BlackToDoList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BlackToDoList.entitlements; sourceTree = "<group>"; };
 		DDDB65DD2A25D2EE00FE519B /* BlackToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlackToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDDB65E02A25D2EE00FE519B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDDB65E22A25D2EE00FE519B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +101,7 @@
 		DDDB65DF2A25D2EE00FE519B /* BlackToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				DDD5D5902A3F025D000F9CCB /* BlackToDoList.entitlements */,
 				DDEA32BF2A286B4900684F92 /* GoogleService-Info.plist */,
 				DDDB65F72A25D78900FE519B /* Controllers */,
 				DDDB65F62A25D78000FE519B /* Models */,
@@ -497,6 +499,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BlackToDoList/BlackToDoList.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7YW3V66545;
@@ -529,6 +532,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BlackToDoList/BlackToDoList.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7YW3V66545;

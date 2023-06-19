@@ -300,6 +300,7 @@ final class LockScreenViewController: UIViewController {
         showAlert(title: "Please relogin to create a new passcode", message: "Old passcode will be deleted. Are you sure to procedure?", isCancelButton: true, okButtonName: "Relogin") {
             // Function to delete current passcode from Keychain.
             // Also i should implement force LogOut of the user.
+            self.deletePasscode()
             self.segueToLogInScreenAndMakeItAsRoot()
         }
         
@@ -364,10 +365,14 @@ final class LockScreenViewController: UIViewController {
     }
     
     private func deletePasscode() {
-        KeychainManager.deleteData(
-            service: "BlackToDoList",
-            account: "User10")
-        print("Passcode has been deleted from Keychain")
+        do {
+            try KeychainManager.deleteData(
+                service: "BlackToDoList",
+                account: "User10")
+            print("Passcode has been deleted from Keychain")
+        } catch {
+            print(error)
+        }
     }
     
     

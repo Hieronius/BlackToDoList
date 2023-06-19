@@ -96,7 +96,7 @@ final class KeychainManager {
         service: String,
         account: String
         // We wan't extract password to delete it, so we don't need this input parameter.
-    ) {
+    ) throws {
         // Abstraction of the data storage.
         let query: [CFString: Any] = [
             kSecClass: kSecClassGenericPassword,
@@ -116,5 +116,9 @@ final class KeychainManager {
         let status = SecItemDelete(query as CFDictionary)
         // Print if there is an Error
         print("Read status: \(status)")
+        guard status == errSecSuccess else {
+            print(KeychainError.unknown(status).localizedDescription)
+            throw KeychainError.unknown(status)
+        }
     }
 }
