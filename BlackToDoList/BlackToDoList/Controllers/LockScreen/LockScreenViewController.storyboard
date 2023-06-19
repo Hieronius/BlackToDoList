@@ -473,17 +473,14 @@
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="zrI-FH-kXR"/>
-                                <exclude reference="wYj-wh-o7g"/>
                                 <exclude reference="Iv1-9b-ncG"/>
-                                <exclude reference="VBL-SP-wGG"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="5UR-yT-T59"/>
                     <connections>
                         <outlet property="createPasscodeLabel" destination="wYj-wh-o7g" id="s27-bL-TvG"/>
-                        <outlet property="enterPasscodeLabe" destination="lxt-fj-b34" id="JEG-b3-Mqc"/>
+                        <outlet property="enterPasscodeLabel" destination="lxt-fj-b34" id="JEG-b3-Mqc"/>
                         <outlet property="enterPasscodeViewStack" destination="Tm1-HY-4G9" id="THc-et-q9B"/>
                         <outlet property="firstPasscodeViewFieldsStack" destination="zrI-FH-kXR" id="bZm-bN-wrY"/>
                         <outlet property="repeatPasscodeLabel" destination="VBL-SP-wGG" id="Q2c-EO-Wbj"/>

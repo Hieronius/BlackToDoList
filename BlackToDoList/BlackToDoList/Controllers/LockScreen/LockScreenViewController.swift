@@ -20,8 +20,7 @@ final class LockScreenViewController: UIViewController {
     @IBOutlet weak var secondPasscodeViewStack: UIStackView!
     
     @IBOutlet weak var enterPasscodeViewStack: UIStackView!
-    @IBOutlet weak var enterPasscodeLabe: UILabel!
-    
+    @IBOutlet weak var enterPasscodeLabel: UILabel!
     @IBOutlet weak var wrongPasswordLabel: UILabel!
     
     // MARK: - Private Properties
@@ -170,6 +169,29 @@ final class LockScreenViewController: UIViewController {
         }
     }
     
+    private var isUserLoggedIn = false {
+        didSet {
+            if isUserLoggedIn {
+                createPasscodeLabel.isHidden = true
+                firstPasscodeViewFieldsStack.isHidden = true
+                repeatPasscodeLabel.isHidden = true
+                secondPasscodeViewStack.isHidden = true
+                
+                enterPasscodeLabel.isHidden = false
+                enterPasscodeViewStack.isHidden = false
+                
+            } else {
+                createPasscodeLabel.isHidden = false
+                firstPasscodeViewFieldsStack.isHidden = false
+                repeatPasscodeLabel.isHidden = false
+                secondPasscodeViewStack.isHidden = false
+                
+                enterPasscodeLabel.isHidden = true
+                enterPasscodeViewStack.isHidden = true
+            }
+        }
+    }
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -220,24 +242,25 @@ final class LockScreenViewController: UIViewController {
     // MARK: LOGOUT FROM THE APP
     @IBAction func logOutButtonAction(_ sender: Any) {
         
-        // MARK: Add Alert controller here to ask the user about logOut
-        // Define an instance of FirebaseAuthorisation module
-        let firebaseAuth = FirebaseAuth.Auth.auth()
-        
-        //  implement error handling while you wan't log out. Seems like it's need because there can be nil instead of user.
-        do {
-            try firebaseAuth.signOut()
-            print("User has been logged out")
+        showAlert(title: "LogOut", message: "Are you sure to logout from the app?", isCancelButton: true, okButtonName: "Relogin") {
+            // MARK: Add "isUserLoggedIn" as false.
+            // Define an instance of FirebaseAuthorisation module
+            let firebaseAuth = FirebaseAuth.Auth.auth()
             
-            // Place for a segue to the log in Screen.
-            // MARK: Alert controller with confirmation can be used here.
-            segueToLogInScreenAndMakeItAsRoot()
-            
-        // Catch the error here.
-        } catch let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
+            //  implement error handling while you wan't log out. Seems like it's need because there can be nil instead of user.
+            do {
+                try firebaseAuth.signOut()
+                print("User has been logged out")
+                
+                // Place for a segue to the log in Screen.
+                // MARK: Alert controller with confirmation can be used here.
+                self.segueToLogInScreenAndMakeItAsRoot()
+                
+                // Catch the error here.
+            } catch let signOutError as NSError {
+                print("Error signing out: %@", signOutError)
+            }
         }
-        
     }
     
     // MARK: ENTER THE NUMBER FOR THE PASSWORD
@@ -381,7 +404,6 @@ final class LockScreenViewController: UIViewController {
         }
     }
     
-    
     private func useBiometrics() {
         // Create an abstractive model of the Apple Authentication Manager.
         let context = LAContext()
@@ -418,7 +440,6 @@ final class LockScreenViewController: UIViewController {
             }
         }
     }
-    
     
     // MARK: - UI Configuration
     
