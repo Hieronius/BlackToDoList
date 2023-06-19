@@ -137,9 +137,7 @@ final class LockScreenViewController: UIViewController {
                     let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
                         
                         // MARK: USER CANCELED THE FACEID AUTHENTIFICATION AND REDIRECTED TO THE MAIN SCREEN.
-                        let storyboard = UIStoryboard(name: "MainScreenViewController", bundle: nil)
-                        let viewController = storyboard.instantiateViewController(withIdentifier: "MainScreenViewController") as! MainScreenViewController
-                        self.navigationController?.setViewControllers([viewController], animated: true)
+                        self.segueToMainScreenAndMakeItAsRoot()
                         
                         print("Password has been created successfully")
                         
