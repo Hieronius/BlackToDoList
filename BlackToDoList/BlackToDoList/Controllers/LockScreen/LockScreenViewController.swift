@@ -121,11 +121,15 @@ final class LockScreenViewController: UIViewController {
                         print("Second passcode is - \(self.secondPasscode)")
                         
                         // Save user password. Without a little delay it trying to save an empty passcode array. Should be refactored.
+                        // MARK: Can be replaced with a small function.
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
                             // If passwords were equal let's save it to the keychain.
                             self?.savePasscode()
                             // Get password from the Keychain.
                             self?.getPasscode()
+                            // Set status of the current user session to true
+                            self?.isUserLoggedIn = true
+                            print("Current status of user session - \(self?.isUserLoggedIn)")
                             print("Programm checkpoint 2")
                         }
                         
@@ -150,6 +154,9 @@ final class LockScreenViewController: UIViewController {
                             self?.savePasscode()
                             // Get password from the Keychain.
                             self?.getPasscode()
+                            // Set status of the current user session to true
+                            self?.isUserLoggedIn = true
+                            print("Current status of user session - \(self?.isUserLoggedIn)")
                             print("Programm checkpoint 1")
                         }
                     }
@@ -169,6 +176,7 @@ final class LockScreenViewController: UIViewController {
     
     private var isUserLoggedIn = false {
         didSet {
+            // If user is not logged in ask him for creation of passcode.
             if isUserLoggedIn {
                 createPasscodeLabel.isHidden = true
                 firstPasscodeViewFieldsStack.isHidden = true
@@ -177,7 +185,9 @@ final class LockScreenViewController: UIViewController {
                 
                 enterPasscodeLabel.isHidden = false
                 enterPasscodeViewStack.isHidden = false
+                print("User logged into the app")
                 
+            // If user already logged in to the app, ask him to enter his passcode.
             } else {
                 createPasscodeLabel.isHidden = false
                 firstPasscodeViewFieldsStack.isHidden = false
@@ -186,6 +196,7 @@ final class LockScreenViewController: UIViewController {
                 
                 enterPasscodeLabel.isHidden = true
                 enterPasscodeViewStack.isHidden = true
+                print("User logged out from the app")
             }
         }
     }
@@ -252,6 +263,7 @@ final class LockScreenViewController: UIViewController {
                 
                 // Place for a segue to the log in Screen.
                 // MARK: Alert controller with confirmation can be used here.
+                self.isUserLoggedIn = false
                 self.segueToLogInScreenAndMakeItAsRoot()
                 
                 // Catch the error here.
@@ -329,6 +341,7 @@ final class LockScreenViewController: UIViewController {
             // Function to delete current passcode from Keychain.
             // Also i should implement force LogOut of the user.
             self.deletePasscode()
+            self.isUserLoggedIn = false
             self.segueToLogInScreenAndMakeItAsRoot()
         }
         
