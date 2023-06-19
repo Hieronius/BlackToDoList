@@ -20,7 +20,7 @@ class MainScreenViewController: UIViewController {
         do {
             try KeychainManager.deleteData(
                 service: "BlackToDoList",
-                account: "User10")
+                account: "User1")
             print("Passcode has been deleted from Keychain")
         } catch {
             print("Delete account check point 2")

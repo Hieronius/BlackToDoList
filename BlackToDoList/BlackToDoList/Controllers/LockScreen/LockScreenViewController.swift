@@ -317,7 +317,6 @@ final class LockScreenViewController: UIViewController {
     }
     
     private func segueToLogInScreenAndMakeItAsRoot() {
-        // 1. It can be a little function.
         let storyboard = UIStoryboard(name: "LogInViewController", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "LogInViewController") as! LogInViewController
         self.navigationController?.setViewControllers([viewController], animated: true)
@@ -328,7 +327,7 @@ final class LockScreenViewController: UIViewController {
     private func getPasscode() {
         guard let data = KeychainManager.getData(
             service: "BlackToDoList",
-            account: "User11"
+            account: "User1"
         ) else {
             print("Failed to read password")
             return
@@ -355,7 +354,7 @@ final class LockScreenViewController: UIViewController {
         do {
             try KeychainManager.saveData(
                 service: "BlackToDoList",
-                account: "User11",
+                account: "User1",
                 // encode password with .utf8 encrypt code.
                 // We wan't get an array of Int as a passcode and encrypt it as a string.
                 password: "\(firstPasscode)".data(using: .utf8) ?? Data())
@@ -370,7 +369,7 @@ final class LockScreenViewController: UIViewController {
         do {
             try KeychainManager.deleteData(
                 service: "BlackToDoList",
-                account: "User11")
+                account: "User1")
             print("Passcode has been deleted from Keychain")
         } catch {
             print(error)
