@@ -399,6 +399,52 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the passcode" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxt-fj-b34" userLabel="Enter Passcode Label">
+                                <rect key="frame" x="103" y="50" width="169" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="Iv3-VR-zVN"/>
+                                    <constraint firstAttribute="height" constant="20" id="pKU-Tm-5j3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Tm1-HY-4G9" userLabel="EnterPasscodeStack">
+                                <rect key="frame" x="125" y="85" width="125" height="20"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pz7-Hm-nnL" userLabel="First Number" customClass="PassCodeView" customModule="BlackToDoList" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="TWH-NZ-s63"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ihm-DU-Y4j" userLabel="Second Number" customClass="PassCodeView" customModule="BlackToDoList" customModuleProvider="target">
+                                        <rect key="frame" x="35" y="0.0" width="20" height="20"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="ALh-SU-8Vy"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WSh-f5-DeU" userLabel="Thirtd Number" customClass="PassCodeView" customModule="BlackToDoList" customModuleProvider="target">
+                                        <rect key="frame" x="70" y="0.0" width="20" height="20"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="bwu-3v-C5W"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="46g-B9-FNr" userLabel="Fourth Number" customClass="PassCodeView" customModule="BlackToDoList" customModuleProvider="target">
+                                        <rect key="frame" x="105" y="0.0" width="20" height="20"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="NGL-PX-UHx"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="SCu-D7-4Q8"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -412,6 +458,7 @@
                             <constraint firstItem="zc6-6b-lpb" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="QSR-0g-g4S"/>
                             <constraint firstItem="Iv1-9b-ncG" firstAttribute="top" secondItem="VBL-SP-wGG" secondAttribute="bottom" constant="15" id="Rfa-QQ-kW7"/>
                             <constraint firstItem="Dgz-T4-K2N" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="Rhv-V3-ehF"/>
+                            <constraint firstItem="Tm1-HY-4G9" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="SVQ-zq-aGf"/>
                             <constraint firstItem="8AW-Kj-Ak4" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="150" id="UOS-Wj-0wC"/>
                             <constraint firstItem="zrI-FH-kXR" firstAttribute="top" secondItem="wYj-wh-o7g" secondAttribute="bottom" constant="15" id="XQ5-Sl-FLv"/>
                             <constraint firstItem="8AW-Kj-Ak4" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="Xp2-qa-WMz"/>
@@ -420,7 +467,18 @@
                             <constraint firstItem="wYj-wh-o7g" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="gnR-aI-aIY"/>
                             <constraint firstItem="Dgz-T4-K2N" firstAttribute="top" secondItem="8AW-Kj-Ak4" secondAttribute="bottom" constant="20" id="iaO-XD-LKC"/>
                             <constraint firstItem="Iv1-9b-ncG" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="lIs-JR-QML"/>
+                            <constraint firstItem="Tm1-HY-4G9" firstAttribute="top" secondItem="lxt-fj-b34" secondAttribute="bottom" constant="15" id="ofw-1V-Gut"/>
+                            <constraint firstItem="lxt-fj-b34" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="r8d-un-O8a"/>
+                            <constraint firstItem="lxt-fj-b34" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="50" id="yLs-lA-1p0"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="zrI-FH-kXR"/>
+                                <exclude reference="wYj-wh-o7g"/>
+                                <exclude reference="Iv1-9b-ncG"/>
+                                <exclude reference="VBL-SP-wGG"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="5UR-yT-T59"/>
                     <connections>
@@ -434,6 +492,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2954.4000000000001" y="3.1484257871064472"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="vy2-5s-b2U">
+            <objects>
+                <viewController id="AZJ-tS-eLe" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OPp-M5-xaf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="YB1-Ir-h3R"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MlJ-jl-meS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3707" y="14"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Be6-iq-laA">
