@@ -21,7 +21,8 @@ final class LockScreenViewController: UIViewController {
     
     @IBOutlet weak var enterPasscodeViewStack: UIStackView!
     @IBOutlet weak var enterPasscodeLabel: UILabel!
-    @IBOutlet weak var wrongPasswordLabel: UILabel!
+    
+    @IBOutlet weak var wrongPasscodeLabel: UILabel!
     
     // MARK: - Private Properties
     
@@ -76,7 +77,7 @@ final class LockScreenViewController: UIViewController {
                     
                     // display a label "password is not correct"
                     // it can be a little function "displayLabelAndHide"
-                    wrongPasswordLabel.isHidden.toggle()
+                    wrongPasscodeLabel.isHidden.toggle()
                     
                     // Made an async work after a little time because property observer removing passwords before it's checkout for equality.
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -97,7 +98,7 @@ final class LockScreenViewController: UIViewController {
                     
                     // Hide label "wrong password"
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                        self.wrongPasswordLabel.isHidden.toggle()
+                        self.wrongPasscodeLabel.isHidden.toggle()
                     }
                     
                     // If password was equal, let's ask for FaceID/TouchID identification and move to the Main screen.
@@ -175,7 +176,39 @@ final class LockScreenViewController: UIViewController {
         }
     }
     // Current passcode combination when user wan't to LogIn to the app from new app session.
-    private var currentPasscode = [Int]()
+    private var currentPasscode = [Int]() {
+        didSet {
+            // If passcode was correct let's redirect user into the main screen.
+            if currentPasscode.count == 4 && currentPasscode == self.getPasscode() {
+                segueToMainScreenAndMakeItAsRoot()
+                isUserLoggedIn = true
+                print("Welcome to the app")
+            } else if currentPasscode.count == 4 && currentPasscode != self.getPasscode() {
+                // If passcode was wrong let's delete all numbers and views and try again.
+                wrongPasscodeLabel.isHidden = false
+                print("Wrong passcode. Please try again")
+                
+                // Remove current passcode and clean passcode view. Let's enter passcode again.
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    self.currentPasscode.removeAll()
+                    
+                    // Reload UI.
+                    let currentPasscodeView = self.enterPasscodeViewStack.subviews
+                    
+                    for view in currentPasscodeView {
+                        view.backgroundColor = UIColor.black
+                        print("Passcode view has been cleaned")
+                    }
+                    
+                    print("Current passcode is - \(self.currentPasscode)")
+                }
+                // Hide label "wrong password" after a little while.
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    self.wrongPasscodeLabel.isHidden.toggle()
+                }
+            }
+        }
+    }
     
     private var isUserLoggedIn = false {
         didSet {
@@ -215,9 +248,8 @@ final class LockScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // some core here
-        // check our logic here.
-        isUserLoggedIn = true
+        // Test of user current session
+         isUserLoggedIn = true
     }
     
     
@@ -413,29 +445,36 @@ final class LockScreenViewController: UIViewController {
     
     // Load the password from Keychain.
     // Convert String to the [Int] which is contain User passcode.
-    private func getPasscode() {
-        guard let data = KeychainManager.getData(
-            service: "BlackToDoList",
-            account: "User1"
-        ) else {
-            print("Failed to read password")
-            return
+    private func getPasscode() -> [Int] {
+        
+        var passcode = [Int]()
+        
+        do {
+            
+            let data = try KeychainManager.getData(
+                service: "BlackToDoList",
+                account: "User1")
+            
+            let password = String(decoding: data!, as: UTF8.self)
+            print("This string we have got from Keychain - \(password)")
+            
+            // We wan't check each of a string elements of our password from Keychain.
+            // If there a wrong format let's just skip this symbol.
+            // MARK: Should be refactored.
+            
+            // Downcast our password as String to the actual passcode.
+            // 1. Get access to the content inside "[]"
+            // 2. Set a type of components which are we need.
+            // 3. Use compact map to get non optional numbers
+            passcode = password.trimmingCharacters(in: CharacterSet(charactersIn: "[]")).components(separatedBy: ",").compactMap { Int($0.trimmingCharacters(in: .whitespaces)) }
+            
+        } catch {
+            print(error)
         }
-        // Here we should convert from String to [Int] to get our passcode.
-        let password = String(decoding: data, as: UTF8.self)
-        print("This string we have got from Keychain - \(password)")
-        
-        // We wan't check each of a string elements of our password from Keychain.
-        // If there a wrong format let's just skip this symbol.
-        // MARK: Should be refactored.
-        
-        // Downcast our password as String to the actual passcode.
-        // 1. Get access to the content inside "[]"
-        // 2. Set a type of components which are we need.
-        // 3. Use compact map to get non optional numbers
-        let passcode = password.trimmingCharacters(in: CharacterSet(charactersIn: "[]")).components(separatedBy: ",").compactMap { Int($0.trimmingCharacters(in: .whitespaces)) }
         
         print("Read password: \(passcode)")
+        print("Correct passcode. Welcome to the app")
+        return passcode
     }
     
     // Take passcode as [Int] and encrypt it with Keychain.

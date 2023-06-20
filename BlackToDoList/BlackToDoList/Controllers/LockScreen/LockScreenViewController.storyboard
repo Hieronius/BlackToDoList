@@ -480,7 +480,7 @@
                         <outlet property="firstPasscodeViewFieldsStack" destination="zrI-FH-kXR" id="bZm-bN-wrY"/>
                         <outlet property="repeatPasscodeLabel" destination="VBL-SP-wGG" id="Q2c-EO-Wbj"/>
                         <outlet property="secondPasscodeViewStack" destination="Iv1-9b-ncG" id="HqV-m3-eag"/>
-                        <outlet property="wrongPasswordLabel" destination="Dgz-T4-K2N" id="RvY-0N-xvF"/>
+                        <outlet property="wrongPasscodeLabel" destination="Dgz-T4-K2N" id="RvY-0N-xvF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

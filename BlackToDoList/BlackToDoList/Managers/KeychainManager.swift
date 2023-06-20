@@ -62,7 +62,7 @@ final class KeychainManager {
         account: String
         // We wan't extract password, so we don't need this input parameter.
         // This data should be extracted with Data type.
-    ) -> Data? {
+    ) throws -> Data? {
         // Service, account, password, class, data.
         // Seems like it's not a dictionary of data, but a one object as unmutable data.
         // Like one user, one password, one page and so one.
@@ -86,7 +86,18 @@ final class KeychainManager {
             query as CFDictionary,
             // i don't know why this parameter should be "inout"
             &result
-        )
+            )
+        // If item is already exists throw an error.
+        guard status != errSecDuplicateItem else {
+            throw KeychainError.duplicateEntry
+        }
+        
+        // If our status is ok, let's do some job.
+        guard status == errSecSuccess else {
+            throw KeychainError.unknown(status)
+        }
+        
+       
         // Print if there is an Error
         print("Read status: \(status)")
         return result as? Data
