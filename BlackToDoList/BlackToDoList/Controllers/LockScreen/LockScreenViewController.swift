@@ -329,7 +329,7 @@ final class LockScreenViewController: UIViewController {
                 currentPasscodeView.backgroundColor = UIColor.white
                 
                 activateAsyncAnimationForPasscodeViewAfterBeingFilled(view: currentPasscodeView)
-                print("First passcode is - \(currentPasscode)")
+                print("Current passcode is - \(currentPasscode)")
                 // There is a button label.
                 print(sender.titleLabel?.text)
             }
@@ -338,29 +338,48 @@ final class LockScreenViewController: UIViewController {
     
     // MARK: DELETE A NUMBER FROM THE PASSWORD
     @IBAction func deletePasscodeButtonAction(_ sender: UIButton) {
-        // If first passcode numbers array is not empty and a second one are empty let's remove one last element from first passcode array one by one.
-        if firstPasscode.count > 0 && secondPasscode.isEmpty {
-            let currentPasscodeView = firstPasscodeViewFieldsStack.subviews[firstPasscode.count - 1]
-            currentPasscodeView.backgroundColor = UIColor.black
+        // Check of the current user session status. If loggen in fill the passcode field "Enter the passcode". If not let's create a new one.
+        if !isUserLoggedIn {
             
-            activateAsyncAnimationForPasscodeViewAfterBeingFilled(view: currentPasscodeView)
-            
-            firstPasscode.removeLast()
-            print("First passcode is - \(firstPasscode)")
-            print("button has been pressed")
-            
-        // If first passcode array are full we wan't remove elements from the second passcode array.
-        } else if firstPasscode.count == 4 && secondPasscode.count < 4 {
-            let currentPasscodeView = secondPasscodeViewStack.subviews[secondPasscode.count - 1]
-            currentPasscodeView.backgroundColor = UIColor.black
-            
-            activateAsyncAnimationForPasscodeViewAfterBeingFilled(view: currentPasscodeView)
-            
-            secondPasscode.removeLast()
-            print("Second passcode is - \(secondPasscode)")
-            print("button has been pressed")
+            // If first passcode numbers array is not empty and a second one are empty let's remove one last element from first passcode array one by one.
+            if firstPasscode.count > 0 && secondPasscode.isEmpty {
+                let currentPasscodeView = firstPasscodeViewFieldsStack.subviews[firstPasscode.count - 1]
+                currentPasscodeView.backgroundColor = UIColor.black
+                
+                activateAsyncAnimationForPasscodeViewAfterBeingFilled(view: currentPasscodeView)
+                
+                firstPasscode.removeLast()
+                print("First passcode is - \(firstPasscode)")
+                print("button has been pressed")
+                
+                // If first passcode array are full we wan't remove elements from the second passcode array.
+            } else if firstPasscode.count == 4 && secondPasscode.count < 4 {
+                let currentPasscodeView = secondPasscodeViewStack.subviews[secondPasscode.count - 1]
+                currentPasscodeView.backgroundColor = UIColor.black
+                
+                activateAsyncAnimationForPasscodeViewAfterBeingFilled(view: currentPasscodeView)
+                
+                secondPasscode.removeLast()
+                print("Second passcode is - \(secondPasscode)")
+                print("button has been pressed")
+            } else {
+                print("no elements to remove")
+            }
         } else {
-            print("no elements to remove")
+            if currentPasscode.count > 0 && currentPasscode.count <= 4  {
+                print("delete enter passcode number")
+                currentPasscode.removeLast()
+                // Select current element of passcode text field and change it's color after pressing the button.
+                let currentPasscodeView = enterPasscodeViewStack.subviews[currentPasscode.count]
+                currentPasscodeView.backgroundColor = UIColor.black
+                
+                activateAsyncAnimationForPasscodeViewAfterBeingFilled(view: currentPasscodeView)
+                print("Current passcode is - \(currentPasscode)")
+                // There is a button label.
+                print(sender.titleLabel?.text)
+            } else {
+                print("no elements to remove")
+            }
         }
     }
     
