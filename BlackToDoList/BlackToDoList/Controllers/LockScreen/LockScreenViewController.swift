@@ -185,6 +185,9 @@ final class LockScreenViewController: UIViewController {
                 
                 enterPasscodeLabel.isHidden = false
                 enterPasscodeViewStack.isHidden = false
+                
+                // Change global property of User Current Session Status.
+                UserSessionManager.isUserLoggedIn = true
                 print("User logged into the app")
                 
             // If user already logged in to the app, ask him to enter his passcode.
@@ -196,6 +199,9 @@ final class LockScreenViewController: UIViewController {
                 
                 enterPasscodeLabel.isHidden = true
                 enterPasscodeViewStack.isHidden = true
+                
+                // Change global property of User Current Session Status.
+                UserSessionManager.isUserLoggedIn = false
                 print("User logged out from the app")
             }
         }
@@ -207,7 +213,10 @@ final class LockScreenViewController: UIViewController {
         super.viewDidLoad()
         
         // some core here
+        // check our logic here.
+        isUserLoggedIn = true
     }
+    
     
     // MARK: - IBActions
     
@@ -264,6 +273,8 @@ final class LockScreenViewController: UIViewController {
                 // Place for a segue to the log in Screen.
                 // MARK: Alert controller with confirmation can be used here.
                 self.isUserLoggedIn = false
+                // Change global property of User Current Session Status.
+                UserSessionManager.isUserLoggedIn = false
                 self.segueToLogInScreenAndMakeItAsRoot()
                 
                 // Catch the error here.
@@ -342,6 +353,8 @@ final class LockScreenViewController: UIViewController {
             // Also i should implement force LogOut of the user.
             self.deletePasscode()
             self.isUserLoggedIn = false
+            // Change global property of User Current Session Status.
+            UserSessionManager.isUserLoggedIn = false
             self.segueToLogInScreenAndMakeItAsRoot()
         }
         
