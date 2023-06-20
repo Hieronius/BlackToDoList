@@ -25,6 +25,7 @@ final class LockScreenViewController: UIViewController {
     
     // MARK: - Private Properties
     
+    // Array of first user passcode combination during registration.
     private var firstPasscode = [Int]() {
         // When first passcode will be finished let's change label and passcode field.
         // MARK: I CAN PUT THIS CHUNK OF CODE INTO A SMALLER FUNCTION
@@ -50,7 +51,7 @@ final class LockScreenViewController: UIViewController {
             }
         }
     }
-
+    // Array of second user passcode combination during registration.
     private var secondPasscode = [Int]() {
         // When both passcodes are done we should check it on equality.
         // If the checkout has been failed let's clean both passcodes array and clean all animation.
@@ -173,6 +174,8 @@ final class LockScreenViewController: UIViewController {
             }
         }
     }
+    // Current passcode combination when user wan't to LogIn to the app from new app session.
+    private var currentPasscode = [Int]()
     
     private var isUserLoggedIn = false {
         didSet {
@@ -289,32 +292,47 @@ final class LockScreenViewController: UIViewController {
         // Let's define a number which is equal to the button label.
         let number = Int(sender.titleLabel?.text ?? "0") ?? 0
         
-        // If first passcode numbers array have enough place for numbers add number to the first passcode array and change color.
-        if firstPasscode.count < 4 && secondPasscode.isEmpty {
-            firstPasscode.append(number)
-            // Select current element of passcode text field and change it's color after pressing the button.
-            let currentPasscodeView = firstPasscodeViewFieldsStack.subviews[firstPasscode.count - 1]
-            currentPasscodeView.backgroundColor = UIColor.white
-            
-            activateAsyncAnimationForPasscodeViewAfterBeingFilled(view: currentPasscodeView)
-            print("First passcode is - \(firstPasscode)")
-            // There is a button label.
-            print(sender.titleLabel?.text)
-            
-        // If a first passcode already filled and second passcode is still has less than 4 elements let's fill a second passcode array
-        } else if firstPasscode.count == 4 && secondPasscode.count < 4 {
-            secondPasscode.append(number)
-            // Select current element of passcode text field and change it's color after pressing the button.
-            let currentPasscodeView = secondPasscodeViewStack.subviews[secondPasscode.count - 1]
-            currentPasscodeView.backgroundColor = UIColor.white
-            
-            activateAsyncAnimationForPasscodeViewAfterBeingFilled(view: currentPasscodeView)
-            
-            print("Second passcode is - \(secondPasscode)")
-            // There is a button label.
-            print(sender.titleLabel?.text)
+        // Check of the current user session status. If loggen in fill the passcode field "Enter the passcode". If not let's create a new one.
+        if !isUserLoggedIn {
+            // If first passcode numbers array have enough place for numbers add number to the first passcode array and change color.
+            if firstPasscode.count < 4 && secondPasscode.isEmpty {
+                firstPasscode.append(number)
+                // Select current element of passcode text field and change it's color after pressing the button.
+                let currentPasscodeView = firstPasscodeViewFieldsStack.subviews[firstPasscode.count - 1]
+                currentPasscodeView.backgroundColor = UIColor.white
+                
+                activateAsyncAnimationForPasscodeViewAfterBeingFilled(view: currentPasscodeView)
+                print("First passcode is - \(firstPasscode)")
+                // There is a button label.
+                print(sender.titleLabel?.text)
+                
+                // If a first passcode already filled and second passcode is still has less than 4 elements let's fill a second passcode array
+            } else if firstPasscode.count == 4 && secondPasscode.count < 4 {
+                secondPasscode.append(number)
+                // Select current element of passcode text field and change it's color after pressing the button.
+                let currentPasscodeView = secondPasscodeViewStack.subviews[secondPasscode.count - 1]
+                currentPasscodeView.backgroundColor = UIColor.white
+                
+                activateAsyncAnimationForPasscodeViewAfterBeingFilled(view: currentPasscodeView)
+                
+                print("Second passcode is - \(secondPasscode)")
+                // There is a button label.
+                print(sender.titleLabel?.text)
+            } else {
+                print("Too much numbers")
+            }
         } else {
-            print("Too much numbers")
+            if currentPasscode.count < 4 {
+                currentPasscode.append(number)
+                // Select current element of passcode text field and change it's color after pressing the button.
+                let currentPasscodeView = enterPasscodeViewStack.subviews[currentPasscode.count - 1]
+                currentPasscodeView.backgroundColor = UIColor.white
+                
+                activateAsyncAnimationForPasscodeViewAfterBeingFilled(view: currentPasscodeView)
+                print("First passcode is - \(currentPasscode)")
+                // There is a button label.
+                print(sender.titleLabel?.text)
+            }
         }
     }
     
