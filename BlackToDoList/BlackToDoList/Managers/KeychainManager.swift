@@ -123,7 +123,7 @@ final class KeychainManager {
         print("Read status: \(status)")
         guard status == errSecSuccess else {
             print(KeychainError.unknown(status).localizedDescription)
-            print("Delete data checkpoint 1")
+            print("Delete data Error")
             throw KeychainError.unknown(status)
         }
     }

@@ -115,7 +115,9 @@ final class LockScreenViewController: UIViewController {
                         
                         
                         // MARK: PUT HERE METHOD FOR FACEID/TOUCHID AUTHENTIFICATION IF USER OK WITH IT.
-                        self.useBiometrics()
+                        // self.useBiometrics()
+                        self.askUserBiometricsData()
+                        self.segueToMainScreenAndMakeItAsRoot()
                         
                         print("Password has been created successfully")
                         
@@ -127,8 +129,10 @@ final class LockScreenViewController: UIViewController {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
                             // If passwords were equal let's save it to the keychain.
                             self?.savePasscode()
+                            print("\(self?.savePasscode()) has been saved")
                             // Get password from the Keychain.
                             self?.getPasscode()
+                            print("\(self?.getPasscode())) has been saved")
                             // Set status of the current user session to true
                             self?.isUserLoggedIn = true
                             print("Current status of user session - \(self?.isUserLoggedIn)")
@@ -249,8 +253,11 @@ final class LockScreenViewController: UIViewController {
         super.viewDidLoad()
         
         // Test of user current session
-         isUserLoggedIn = true
+           isUserLoggedIn = true
+        
+        
     }
+    
     
     
     // MARK: - IBActions
@@ -259,37 +266,7 @@ final class LockScreenViewController: UIViewController {
     
     // MARK: ACTION TO ACTIVATE FACEID/TOUCHID OF THE USER
     @IBAction private func authenticationButtonAction(_ sender: Any) {
-        // Create an abstractive model of the Apple Authentication Manager.
-        let context = LAContext()
-        
-        // Create an abstractive model for possible Errors during the usage of the service.
-        // Because this framework works with protocol NSErrorPointer and also it's a inout parameter.
-        var error: NSError? = nil
-        
-        // Seems like it's a message which should ask User to use his TouchID.
-        // Probably should be edited accordingly to variation that it can be FaceID check.
-        let reason = "Please identify yourself"
-        
-        // MARK: ACTUAL FACEID/TOUCHID/DEFAULT IPHONE PIN CODE CHECKOUT WITH A SEGUE TO THE MAIN SCREEN IN CASE OF SUCCESS
-        // context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics,
-        context.evaluatePolicy(.deviceOwnerAuthentication,
-                               localizedReason: reason) { [weak self] success, error in
-            
-            // Do the job asynchonously with help of the "Task".
-            // Because we ask Task to run it's work inside the UIButtonAction it will work in the MainThread but Asynchonously.
-            Task {
-                // Checkout of the fact that we recieved a success and no errors
-                guard success, error == nil else {
-                    
-                    // Failure of the attempt to check
-                    print("Authentication has been failed")
-                    self?.showAlert(title: "Failed to Authenticate", message: "Please try again")
-                    return }
-                
-                // MARK: SEGUE TO THE MAIN SCREEN
-                self?.segueToMainScreenAndMakeItAsRoot()
-            }
-        }
+        askUserBiometricsData()
     }
     
     // MARK: LOGOUT FROM THE APP
@@ -431,80 +408,7 @@ final class LockScreenViewController: UIViewController {
     
     // MARK: - Private Methods
     
-    private func segueToMainScreenAndMakeItAsRoot() {
-        let storyboard = UIStoryboard(name: "MainScreenViewController", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "MainScreenViewController") as! MainScreenViewController
-        self.navigationController?.setViewControllers([viewController], animated: true)
-    }
-    
-    private func segueToLogInScreenAndMakeItAsRoot() {
-        let storyboard = UIStoryboard(name: "LogInViewController", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "LogInViewController") as! LogInViewController
-        self.navigationController?.setViewControllers([viewController], animated: true)
-    }
-    
-    // Load the password from Keychain.
-    // Convert String to the [Int] which is contain User passcode.
-    private func getPasscode() -> [Int] {
-        
-        var passcode = [Int]()
-        
-        do {
-            
-            let data = try KeychainManager.getData(
-                service: "BlackToDoList",
-                account: "User1")
-            
-            let password = String(decoding: data!, as: UTF8.self)
-            print("This string we have got from Keychain - \(password)")
-            
-            // We wan't check each of a string elements of our password from Keychain.
-            // If there a wrong format let's just skip this symbol.
-            // MARK: Should be refactored.
-            
-            // Downcast our password as String to the actual passcode.
-            // 1. Get access to the content inside "[]"
-            // 2. Set a type of components which are we need.
-            // 3. Use compact map to get non optional numbers
-            passcode = password.trimmingCharacters(in: CharacterSet(charactersIn: "[]")).components(separatedBy: ",").compactMap { Int($0.trimmingCharacters(in: .whitespaces)) }
-            
-        } catch {
-            print(error)
-        }
-        
-        print("Read password: \(passcode)")
-        print("Correct passcode. Welcome to the app")
-        return passcode
-    }
-    
-    // Take passcode as [Int] and encrypt it with Keychain.
-    private func savePasscode() {
-        do {
-            try KeychainManager.saveData(
-                service: "BlackToDoList",
-                account: "User1",
-                // encode password with .utf8 encrypt code.
-                // We wan't get an array of Int as a passcode and encrypt it as a string.
-                password: "\(firstPasscode)".data(using: .utf8) ?? Data())
-                print("Password - \(firstPasscode) has been saved to Keychain")
-        
-        } catch {
-            print(error)
-        }
-    }
-    
-    private func deletePasscode() {
-        do {
-            try KeychainManager.deleteData(
-                service: "BlackToDoList",
-                account: "User1")
-            print("Passcode has been deleted from Keychain")
-        } catch {
-            print(error)
-        }
-    }
-    
-    private func useBiometrics() {
+    private func askUserBiometricsData() {
         // Create an abstractive model of the Apple Authentication Manager.
         let context = LAContext()
         
@@ -533,11 +437,81 @@ final class LockScreenViewController: UIViewController {
                     return }
                 
                 // MARK: SEGUE TO THE MAIN SCREEN
-                // 1. It can be a little function.
-                let storyboard = UIStoryboard(name: "MainScreenViewController", bundle: nil)
-                let viewController = storyboard.instantiateViewController(withIdentifier: "MainScreenViewController") as! MainScreenViewController
-                self?.navigationController?.setViewControllers([viewController], animated: true)
+                self?.segueToMainScreenAndMakeItAsRoot()
             }
+        }
+    }
+    
+    private func segueToMainScreenAndMakeItAsRoot() {
+        let storyboard = UIStoryboard(name: "MainScreenViewController", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "MainScreenViewController") as! MainScreenViewController
+        self.navigationController?.setViewControllers([viewController], animated: true)
+    }
+    
+    private func segueToLogInScreenAndMakeItAsRoot() {
+        let storyboard = UIStoryboard(name: "LogInViewController", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "LogInViewController") as! LogInViewController
+        self.navigationController?.setViewControllers([viewController], animated: true)
+    }
+    
+    // Load the password from Keychain.
+    // Convert String to the [Int] which is contain User passcode.
+    private func getPasscode() -> [Int] {
+        
+        var passcode = [Int]()
+        
+        do {
+            
+            let data = try KeychainManager.getData(
+                service: "BlackToDoList",
+                account: "User2")
+            
+            let password = String(decoding: data!, as: UTF8.self)
+            print("This string we have got from Keychain - \(password)")
+            
+            // We wan't check each of a string elements of our password from Keychain.
+            // If there a wrong format let's just skip this symbol.
+            // MARK: Should be refactored.
+            
+            // Downcast our password as String to the actual passcode.
+            // 1. Get access to the content inside "[]"
+            // 2. Set a type of components which are we need.
+            // 3. Use compact map to get non optional numbers
+            passcode = password.trimmingCharacters(in: CharacterSet(charactersIn: "[]")).components(separatedBy: ",").compactMap { Int($0.trimmingCharacters(in: .whitespaces)) }
+            
+        } catch {
+            print(error)
+        }
+        
+        print("Read password: \(passcode)")
+        print("Correct passcode. Welcome to the app")
+        return passcode
+    }
+    
+    // Take passcode as [Int] and encrypt it with Keychain.
+    private func savePasscode() {
+        do {
+            try KeychainManager.saveData(
+                service: "BlackToDoList",
+                account: "User2",
+                // encode password with .utf8 encrypt code.
+                // We wan't get an array of Int as a passcode and encrypt it as a string.
+                password: "\(firstPasscode)".data(using: .utf8) ?? Data())
+                print("Password - \(firstPasscode) has been saved to Keychain")
+        
+        } catch {
+            print(error)
+        }
+    }
+    
+    private func deletePasscode() {
+        do {
+            try KeychainManager.deleteData(
+                service: "BlackToDoList",
+                account: "User2")
+            print("Passcode has been deleted from Keychain")
+        } catch {
+            print(error)
         }
     }
     

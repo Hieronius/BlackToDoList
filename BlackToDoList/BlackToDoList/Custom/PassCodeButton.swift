@@ -63,6 +63,7 @@ class PassCodeButton: UIButton {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.13) {
             sender.alpha = 0.9
         }
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.14) {
             sender.alpha = 1
         }
