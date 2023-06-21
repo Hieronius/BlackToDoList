@@ -18,10 +18,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zc6-6b-lpb" userLabel="BottomButtonsStack">
-                                <rect key="frame" x="25" y="592.5" width="325" height="54.5"/>
+                                <rect key="frame" x="25" y="540" width="325" height="107"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QzT-8E-4SC">
-                                        <rect key="frame" x="0.0" y="0.0" width="108.5" height="54.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="108.5" height="107"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="LogOut">
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -31,7 +31,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5yT-Cm-Mfg">
-                                        <rect key="frame" x="108.5" y="0.0" width="108" height="54.5"/>
+                                        <rect key="frame" x="108.5" y="0.0" width="108" height="107"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Forget password?">
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -41,9 +41,9 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDx-mR-zyz">
-                                        <rect key="frame" x="216.5" y="0.0" width="108.5" height="54.5"/>
+                                        <rect key="frame" x="216.5" y="0.0" width="108.5" height="107"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Auth">
+                                        <buttonConfiguration key="configuration" style="plain" image="AuthButton" title=" ">
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
@@ -52,7 +52,7 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="zrI-FH-kXR" userLabel="FirstPassCodeStack">
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="zrI-FH-kXR" userLabel="FirstPassCodeStack">
                                 <rect key="frame" x="125" y="85" width="125" height="20"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fsx-dI-sHi" userLabel="First Number" customClass="PassCodeView" customModule="BlackToDoList" customModuleProvider="target">
@@ -88,7 +88,7 @@
                                     <constraint firstAttribute="height" constant="20" id="W7L-5T-mtW"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create your passcode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wYj-wh-o7g">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create your passcode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wYj-wh-o7g">
                                 <rect key="frame" x="92" y="50" width="191.5" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="7pY-RH-apk"/>
@@ -523,6 +523,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AuthButton" width="71.666664123535156" height="31"/>
         <image name="delete.left.fill" catalog="system" width="128" height="102"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

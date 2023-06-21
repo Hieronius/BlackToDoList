@@ -134,8 +134,8 @@ final class LockScreenViewController: UIViewController {
                             self?.getPasscode()
                             print("\(self?.getPasscode())) has been saved")
                             // Set status of the current user session to true
-                            self?.isUserLoggedIn = true
-                            print("Current status of user session - \(self?.isUserLoggedIn)")
+                            UserSessionManager.isUserLoggedIn = true
+                            print("Current status of user session - \(UserSessionManager.isUserLoggedIn = true)")
                             print("Programm checkpoint 2")
                         }
                         
@@ -161,8 +161,8 @@ final class LockScreenViewController: UIViewController {
                             // Get password from the Keychain.
                             self?.getPasscode()
                             // Set status of the current user session to true
-                            self?.isUserLoggedIn = true
-                            print("Current status of user session - \(self?.isUserLoggedIn)")
+                            UserSessionManager.isUserLoggedIn = true
+                            print("Current status of user session - \(UserSessionManager.isUserLoggedIn)")
                             print("Programm checkpoint 1")
                         }
                     }
@@ -185,7 +185,7 @@ final class LockScreenViewController: UIViewController {
             // If passcode was correct let's redirect user into the main screen.
             if currentPasscode.count == 4 && currentPasscode == self.getPasscode() {
                 segueToMainScreenAndMakeItAsRoot()
-                isUserLoggedIn = true
+                UserSessionManager.isUserLoggedIn = true
                 print("Welcome to the app")
             } else if currentPasscode.count == 4 && currentPasscode != self.getPasscode() {
                 // If passcode was wrong let's delete all numbers and views and try again.
@@ -214,38 +214,34 @@ final class LockScreenViewController: UIViewController {
         }
     }
     
-    private var isUserLoggedIn = false {
-        didSet {
-            // If user is not logged in ask him for creation of passcode.
-            if isUserLoggedIn {
-                createPasscodeLabel.isHidden = true
-                firstPasscodeViewFieldsStack.isHidden = true
-                repeatPasscodeLabel.isHidden = true
-                secondPasscodeViewStack.isHidden = true
-                
-                enterPasscodeLabel.isHidden = false
-                enterPasscodeViewStack.isHidden = false
-                
-                // Change global property of User Current Session Status.
-                UserSessionManager.isUserLoggedIn = true
-                print("User logged into the app")
-                
-            // If user already logged in to the app, ask him to enter his passcode.
-            } else {
-                createPasscodeLabel.isHidden = false
-                firstPasscodeViewFieldsStack.isHidden = false
-                repeatPasscodeLabel.isHidden = false
-                secondPasscodeViewStack.isHidden = false
-                
-                enterPasscodeLabel.isHidden = true
-                enterPasscodeViewStack.isHidden = true
-                
-                // Change global property of User Current Session Status.
-                UserSessionManager.isUserLoggedIn = false
-                print("User logged out from the app")
-            }
-        }
-    }
+//    private var isUserLoggedIn: Bool? {
+//        didSet {
+//             // USER IS NOT LOGGED TO THE APP (FALSE).
+//            if isUserLoggedIn == false {
+//                createPasscodeLabel.isHidden = false
+//                firstPasscodeViewFieldsStack.isHidden = false
+//                repeatPasscodeLabel.isHidden = false
+//                secondPasscodeViewStack.isHidden = false
+//
+//                enterPasscodeLabel.isHidden = true
+//                enterPasscodeViewStack.isHidden = true
+//
+//                print("USER IS NOT LOGGED IN. YOU SHOULD CREATE A NEW PASSWORD")
+//
+//            // USER ALREADY INSIDE THE APP.
+//            } else if isUserLoggedIn == true {
+//                createPasscodeLabel.isHidden = true
+//                repeatPasscodeLabel.isHidden = true
+//                secondPasscodeViewStack.isHidden = true
+//                firstPasscodeViewFieldsStack.isHidden = true
+//
+//                enterPasscodeLabel.isHidden = false
+//                enterPasscodeViewStack.isHidden = false
+//
+//                print("USER IS ALREADY INSIDE THE APP. JUST ENTER THE PASSCODE")
+//            }
+//        }
+//    }
     
     // MARK: - Lifecycle
     
@@ -253,7 +249,8 @@ final class LockScreenViewController: UIViewController {
         super.viewDidLoad()
         
         // Test of user current session
-           isUserLoggedIn = true
+        checkCurrentUserSession()
+        // print(isUserLoggedIn)
         
         
     }
@@ -284,7 +281,7 @@ final class LockScreenViewController: UIViewController {
                 
                 // Place for a segue to the log in Screen.
                 // MARK: Alert controller with confirmation can be used here.
-                self.isUserLoggedIn = false
+        // self.isUserLoggedIn = false
                 // Change global property of User Current Session Status.
                 UserSessionManager.isUserLoggedIn = false
                 self.segueToLogInScreenAndMakeItAsRoot()
@@ -302,7 +299,7 @@ final class LockScreenViewController: UIViewController {
         let number = Int(sender.titleLabel?.text ?? "0") ?? 0
         
         // Check of the current user session status. If loggen in fill the passcode field "Enter the passcode". If not let's create a new one.
-        if !isUserLoggedIn {
+        if !(UserSessionManager.isUserLoggedIn) {
             // If first passcode numbers array have enough place for numbers add number to the first passcode array and change color.
             if firstPasscode.count < 4 && secondPasscode.isEmpty {
                 firstPasscode.append(number)
@@ -348,7 +345,7 @@ final class LockScreenViewController: UIViewController {
     // MARK: DELETE A NUMBER FROM THE PASSWORD
     @IBAction func deletePasscodeButtonAction(_ sender: UIButton) {
         // Check of the current user session status. If loggen in fill the passcode field "Enter the passcode". If not let's create a new one.
-        if !isUserLoggedIn {
+        if !(UserSessionManager.isUserLoggedIn) {
             
             // If first passcode numbers array is not empty and a second one are empty let's remove one last element from first passcode array one by one.
             if firstPasscode.count > 0 && secondPasscode.isEmpty {
@@ -398,7 +395,7 @@ final class LockScreenViewController: UIViewController {
             // Function to delete current passcode from Keychain.
             // Also i should implement force LogOut of the user.
             self.deletePasscode()
-            self.isUserLoggedIn = false
+//            self.isUserLoggedIn = false
             // Change global property of User Current Session Status.
             UserSessionManager.isUserLoggedIn = false
             self.segueToLogInScreenAndMakeItAsRoot()
@@ -513,6 +510,34 @@ final class LockScreenViewController: UIViewController {
         } catch {
             print(error)
         }
+    }
+    
+    private func checkCurrentUserSession() {
+        
+        // USER IS NOT LOGGED TO THE APP (FALSE).
+        if UserSessionManager.isUserLoggedIn == false {
+           createPasscodeLabel.isHidden = false
+           firstPasscodeViewFieldsStack.isHidden = false
+           repeatPasscodeLabel.isHidden = true
+           secondPasscodeViewStack.isHidden = true
+
+           enterPasscodeLabel.isHidden = true
+           enterPasscodeViewStack.isHidden = true
+           
+           print("USER IS NOT LOGGED IN. YOU SHOULD CREATE A NEW PASSWORD")
+
+       // USER ALREADY INSIDE THE APP.
+        } else if UserSessionManager.isUserLoggedIn == true {
+           createPasscodeLabel.isHidden = true
+           repeatPasscodeLabel.isHidden = true
+           secondPasscodeViewStack.isHidden = true
+           firstPasscodeViewFieldsStack.isHidden = true
+
+           enterPasscodeLabel.isHidden = false
+           enterPasscodeViewStack.isHidden = false
+
+           print("USER IS ALREADY INSIDE THE APP. JUST ENTER THE PASSCODE")
+       }
     }
     
     // MARK: - UI Configuration
