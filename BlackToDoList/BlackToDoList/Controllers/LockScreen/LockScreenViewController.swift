@@ -214,6 +214,7 @@ final class LockScreenViewController: UIViewController {
         }
     }
     
+    private var isUserGavePermissionToUseBiometrics = false
     
     // MARK: - Lifecycle
     
