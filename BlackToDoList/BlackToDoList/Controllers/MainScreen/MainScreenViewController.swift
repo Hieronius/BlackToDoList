@@ -32,6 +32,7 @@ class MainScreenViewController: UIViewController {
             let storyboard = UIStoryboard(name: "LockScreenViewController", bundle: nil)
             let viewController = storyboard.instantiateViewController(withIdentifier: "LockScreenViewController") as! LockScreenViewController
             self.navigationController?.setViewControllers([viewController], animated: true)
+
     }
     
 }

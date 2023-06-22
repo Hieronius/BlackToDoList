@@ -286,6 +286,9 @@ final class LockScreenViewController: UIViewController {
                 UserSessionManager.isUserLoggedIn = false
                 self.segueToLogInScreenAndMakeItAsRoot()
                 
+                KeychainManager.getAllKeyChainItemsOfClass(kSecClassGenericPassword as String)
+                print("Data has been loaded")
+                
                 // Catch the error here.
             } catch let signOutError as NSError {
                 print("Error signing out: %@", signOutError)

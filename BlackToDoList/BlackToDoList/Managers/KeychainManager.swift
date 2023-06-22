@@ -128,6 +128,21 @@ final class KeychainManager {
         }
     }
     
+    
+    /// Produce all stored data as dictionary with the type of given `secClass`.
+    ///
+    /// ```
+    /// getAllKeyChainItemsOfClass(_ secClass: kSecClassGenericPassword as String) // ["User6": "[7, 8, 9, 6]"
+    /// ```
+    ///
+    /// > Warning: possible to find data only with kSecClassGenericPassword
+    /// > all other data such as "kSecAttrService as String" - User service or
+    /// > "kSecAttrAccount as String" - User account will return nil
+    ///
+    /// - Parameters:
+    ///     - secClass: Class of data to find
+    ///
+    /// - Returns: All stored data as dictionary of the given type  `secClass`.
     static func getAllKeyChainItemsOfClass(_ secClass: String) -> [String: String] {
         // Storage of all possible data from Keychain.
         let query: [String: Any] = [
@@ -136,7 +151,7 @@ final class KeychainManager {
             kSecReturnAttributes as String: kCFBooleanTrue,
             kSecReturnRef as String: kCFBooleanTrue,
             kSecMatchLimit as String: kSecMatchLimitAll
-            ]
+        ]
         
         var result: AnyObject?
         
@@ -155,7 +170,7 @@ final class KeychainManager {
                 }
             }
         }
-        
+        print(values)
         return values
     }
 }
