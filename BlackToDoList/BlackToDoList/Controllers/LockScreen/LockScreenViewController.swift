@@ -214,34 +214,6 @@ final class LockScreenViewController: UIViewController {
         }
     }
     
-//    private var isUserLoggedIn: Bool? {
-//        didSet {
-//             // USER IS NOT LOGGED TO THE APP (FALSE).
-//            if isUserLoggedIn == false {
-//                createPasscodeLabel.isHidden = false
-//                firstPasscodeViewFieldsStack.isHidden = false
-//                repeatPasscodeLabel.isHidden = false
-//                secondPasscodeViewStack.isHidden = false
-//
-//                enterPasscodeLabel.isHidden = true
-//                enterPasscodeViewStack.isHidden = true
-//
-//                print("USER IS NOT LOGGED IN. YOU SHOULD CREATE A NEW PASSWORD")
-//
-//            // USER ALREADY INSIDE THE APP.
-//            } else if isUserLoggedIn == true {
-//                createPasscodeLabel.isHidden = true
-//                repeatPasscodeLabel.isHidden = true
-//                secondPasscodeViewStack.isHidden = true
-//                firstPasscodeViewFieldsStack.isHidden = true
-//
-//                enterPasscodeLabel.isHidden = false
-//                enterPasscodeViewStack.isHidden = false
-//
-//                print("USER IS ALREADY INSIDE THE APP. JUST ENTER THE PASSCODE")
-//            }
-//        }
-//    }
     
     // MARK: - Lifecycle
     
