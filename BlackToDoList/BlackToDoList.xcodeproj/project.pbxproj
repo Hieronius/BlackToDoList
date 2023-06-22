@@ -10,6 +10,7 @@
 		DD01E3272A31B03D00C99DCC /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DD01E3262A31B03D00C99DCC /* IQKeyboardManagerSwift */; };
 		DD01E32B2A31C12F00C99DCC /* CleaningButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD01E32A2A31C12F00C99DCC /* CleaningButton.swift */; };
 		DD882B492A402CE1006DA78A /* UserSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD882B482A402CE1006DA78A /* UserSessionManager.swift */; };
+		DD89DAED2A4415A600C0BAE6 /* MarkDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD89DAEC2A4415A600C0BAE6 /* MarkDown.swift */; };
 		DD8C21222A36EC9900DC4CFC /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8C21212A36EC9900DC4CFC /* KeychainManager.swift */; };
 		DD90805E2A38749A009EC99E /* PassCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD90805D2A38749A009EC99E /* PassCodeView.swift */; };
 		DD9080602A3874CB009EC99E /* PassCodeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD90805F2A3874CB009EC99E /* PassCodeButton.swift */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		DD01E32A2A31C12F00C99DCC /* CleaningButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleaningButton.swift; sourceTree = "<group>"; };
 		DD882B482A402CE1006DA78A /* UserSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionManager.swift; sourceTree = "<group>"; };
+		DD89DAEC2A4415A600C0BAE6 /* MarkDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkDown.swift; sourceTree = "<group>"; };
 		DD8C21212A36EC9900DC4CFC /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		DD90805D2A38749A009EC99E /* PassCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassCodeView.swift; sourceTree = "<group>"; };
 		DD90805F2A3874CB009EC99E /* PassCodeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassCodeButton.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				DDDB65E22A25D2EE00FE519B /* SceneDelegate.swift */,
 				DDDB65EB2A25D2F100FE519B /* LaunchScreen.storyboard */,
 				DDDB65EE2A25D2F100FE519B /* Info.plist */,
+				DD89DAEC2A4415A600C0BAE6 /* MarkDown.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				DDDB660C2A25DDA900FE519B /* RegistrationViewController.swift in Sources */,
 				DDDB66182A25DE3400FE519B /* MainScreenViewController.swift in Sources */,
 				DDDB65E12A25D2EE00FE519B /* AppDelegate.swift in Sources */,
+				DD89DAED2A4415A600C0BAE6 /* MarkDown.swift in Sources */,
 				DD882B492A402CE1006DA78A /* UserSessionManager.swift in Sources */,
 				DD8C21222A36EC9900DC4CFC /* KeychainManager.swift in Sources */,
 				DDDB66052A25DC0C00FE519B /* Set NavigationViewController for UIWindow.swift in Sources */,
