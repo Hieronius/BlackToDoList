@@ -127,4 +127,35 @@ final class KeychainManager {
             throw KeychainError.unknown(status)
         }
     }
+    
+    static func getAllKeyChainItemsOfClass(_ secClass: String) -> [String: String] {
+        // Storage of all possible data from Keychain.
+        let query: [String: Any] = [
+            kSecClass as String: secClass,
+            kSecReturnData as String: kCFBooleanTrue,
+            kSecReturnAttributes as String: kCFBooleanTrue,
+            kSecReturnRef as String: kCFBooleanTrue,
+            kSecMatchLimit as String: kSecMatchLimitAll
+            ]
+        
+        var result: AnyObject?
+        
+        let lastResultCode = withUnsafeMutablePointer(to: &result) {
+            SecItemCopyMatching(query as CFDictionary, UnsafeMutablePointer($0))
+        }
+        
+        var values = [String: String]()
+        if lastResultCode == noErr {
+            let array = result as? Array<Dictionary<String, Any>>
+            
+            for item in array! {
+                if let key = item[kSecAttrAccount as String] as? String,
+                   let value = item[kSecValueData as String] as? Data {
+                    values[key] = String(data: value, encoding: .utf8)
+                }
+            }
+        }
+        
+        return values
+    }
 }
