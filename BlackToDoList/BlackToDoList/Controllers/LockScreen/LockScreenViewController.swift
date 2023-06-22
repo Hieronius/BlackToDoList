@@ -117,7 +117,7 @@ final class LockScreenViewController: UIViewController {
                         // MARK: PUT HERE METHOD FOR FACEID/TOUCHID AUTHENTIFICATION IF USER OK WITH IT.
                         // self.useBiometrics()
                         self.askUserBiometricsData()
-                        self.segueToMainScreenAndMakeItAsRoot()
+                        // self.segueToMainScreenAndMakeItAsRoot()
                         
                         print("Password has been created successfully")
                         
@@ -407,7 +407,6 @@ final class LockScreenViewController: UIViewController {
                     self?.showAlert(title: "Failed to Authenticate", message: "Please try again")
                     return }
                 
-                // MARK: SEGUE TO THE MAIN SCREEN
                 self?.segueToMainScreenAndMakeItAsRoot()
             }
         }
