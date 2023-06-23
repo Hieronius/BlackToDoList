@@ -9,71 +9,91 @@ import FirebaseAuth
 import UIKit
 
 final class AuthManager {
-    
+
+    /// function is a static function that is used to sign up a new user with their email and password. This function takes four parameters: user's email address, user's password, user's password verification and the view controller that is calling the function. If user's email and password are correct this function should create a new account and send a verification link to the user's email address and redirect user to the LogIn Screen. Otherwice, it's shows an alert with an error message.
+    /// - Parameters:
+    ///   - userEmail: A String that represents the user's email address. This parameter is optional and defaults to an empty string if it is not provided.
+    ///   - userPassword: A String that represents the user's password. This parameter is optional and defaults to an empty string if it is not provided.
+    ///   - repeatPassword: A String that represents the user's repeated password. This parameter is optional and defaults to an empty string if it is not provided.
+    ///   - currentViewController: A UIViewController that represents the current view controller. This parameter is required and must be provided when calling the function.
     static func signUp(_ userEmail: String?,
                        _ userPassword: String?,
                        _ repeatPassword: String?,
-                       _ viewController: UIViewController) {
-        // MARK: TEXT FIELDS VERIFICATION
-        // Check are all text fields not empty.
-        // 1. Probably it's a code for function "CheckTextFields".
+                       _ currentViewController: UIViewController) {
+        
         let email = userEmail ?? ""
         let password = userPassword ?? ""
         let repeatPassword = repeatPassword ?? ""
         
-        // If some of the text fields are empty throw an alert controller.
         if email.isEmpty || password.isEmpty || repeatPassword.isEmpty {
-            viewController.showAlert(title: "Empty field", message: "One of a few feilds are empty")
+            currentViewController.showAlert(title: "Empty field", message: "One of a few feilds are empty")
             
-            // If email is not valid throw an alert controller.
-        } else if !viewController.isValidEmail(email) {
-            viewController.showAlert(title: "Not valid email", message: "Please check and correct your email")
+        } else if !currentViewController.isValidEmail(email) {
+            currentViewController.showAlert(title: "Not valid email", message: "Please check and correct your email")
             
-            // If password and repeat password are different throw an alert controller.
         } else if password != repeatPassword {
-            viewController.showAlert(title: "Passwords are not the same", message: "Please check your password")
+            currentViewController.showAlert(title: "Passwords are not the same", message: "Please check your password")
             
-            // If all conditions has been checked successfully let's proceed to the user registration.
         } else {
-            // MARK: Creation of new account with FirebaseAuth()
-            // Use [weak self] as a referance to the current ViewController which we use for user data resouce.
-            // It's mean if we would delete this viewController or change it our creation function won't "hold" link to view controller.
-            // Also we wan't check the result of this method to throw a new account or an error to work with.
-            // 3. There can be the whole method to create a new account - "CreateNewAccount".
-            FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { [weak viewController] userAccount, error in
+            FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { [weak currentViewController] userAccount, error in
                 
-                // Check is our account has been created.
-                guard let userAccount = viewController else { return}
+                guard let userAccount = currentViewController else { return}
                 
-                // MARK: PLACE FOR SUCCESS ACCOUNT CREATION WITH SEGUE TO THE LOGIN SCREEN
-                
-                // MARK: EMAIL VERIFICATION
-                // 4. Place for a little function to "verifyUserEmail".
                 Auth.auth().currentUser?.sendEmailVerification()
                 
-                // If creation of new account has been failed deal with an Error.
                 guard error == nil else {
                     print("Account created has been failed")
-                    // Error handling if the user tried to use already registered email.
                     if error?.localizedDescription == "The email address is already in use by another account." {
-                        viewController?.showAlert(title: "Wrong Email", message: "Email has been already used")
+                        currentViewController?.showAlert(title: "Wrong Email", message: "Email has been already used")
                     }
                     return
                 }
                 
-                // MARK: PLACE FOR "PLEASE VERIFY YOUR EMAIL" ALERT CONTROLLER
                 print("A new account was created successfuly")
-                viewController?.showAlert(title: "Account has been created",
+                currentViewController?.showAlert(title: "Account has been created",
                                          message: "Link to the account verification has been sent to your email address") {
-                    // Back to the LogIn screen if our registration was successful.
-                    viewController?.navigationController?.popViewController(animated: true)
+                    currentViewController?.navigationController?.popViewController(animated: true)
                 }
             }
         }
     }
     
-    static func signIn() {
+    /// This is a static function that allows a user to sign in to the app using their email and password. It takes in three parameters: the user's email address, the user's password, and the view controller that is calling the function. If the user's email and password are correct, and the user's email address is verified, the function segues to the Lock Screen view controller. Otherwise, it shows an alert with an error message.
+    /// - Parameters:
+    ///   - userEmail: A String that represents the user's email address. This parameter is optional and defaults to an empty string if it is not provided.
+    ///   - userPassword: A String that represents the user's password. This parameter is optional and defaults to an empty string if it is not provided.
+    ///   - currentViewController: A UIViewController that represents the view controller that is calling the function.
+    static func signIn(_ userEmail: String?,
+                       _ userPassword: String?,
+                       _ currentViewController: UIViewController) {
         
+        let email = userEmail ?? ""
+        let password = userPassword ?? ""
+        
+        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { [weak currentViewController] User, error in
+            guard let User = currentViewController else { return }
+            
+            guard error == nil else {
+                currentViewController?.showAlert(title: "Account hasn't been found",
+                                message: "Please check your email and password")
+                print("Wrong login or password")
+                return
+            }
+            
+            if Auth.auth().currentUser?.isEmailVerified == true {
+                print("Welcome to the app")
+                print("User is verified")
+                
+                let storyboard = UIStoryboard(name: "LockScreenViewController", bundle: nil)
+                let viewController = storyboard.instantiateViewController(withIdentifier: "LockScreenViewController") as! LockScreenViewController
+                currentViewController?.navigationController?.setViewControllers([viewController], animated: true)
+                
+            } else {
+                print("User still need to verify email")
+                currentViewController?.showAlert(title: "Account is not verified",
+                                message: "Please check your email address for verification")
+            }
+        }
     }
     
     static func sendEmailVerification() {
@@ -90,6 +110,11 @@ final class AuthManager {
         }
     }
     
+    
+    /// This is a static function that resets the password for a user's email address. It takes in two parameters: the user's email address and the view controller that is calling the function. If the email address is valid, the function sends a password reset email to the user's email address.
+    /// - Parameters:
+    ///   - userEmail: A String value that represents the user's email address.
+    ///   - viewController: A UIViewController that represents the view controller that is calling the function
     static func resetPassword(_ userEmail: String?, _ viewController: UIViewController) {
             let email = userEmail ?? ""
             
