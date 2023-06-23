@@ -18,6 +18,9 @@ final class KeychainManager {
         case unknown(OSStatus)
     }
     
+    static var serviceId = "BlackToDoList"
+    static var currentUser = "User"
+    
     // Get data and encrypt it.
     // Function can throw an error.
     // Can't rename function 18.06.23 due to an error. Let's try again later.

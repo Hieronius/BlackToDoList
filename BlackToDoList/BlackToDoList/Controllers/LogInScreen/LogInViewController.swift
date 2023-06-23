@@ -36,7 +36,6 @@ final class LogInViewController: UIViewController {
     // MARK: LOGIN AND CHECK IS USER EMAIL VEFIRFIED
     @IBAction private func logInButtonAction(_ sender: UIButton) {
         Task {
-            print("button tapped")
             AuthManager.signIn(logInEmailTextField.text,
                                logInPasswordTextField.text,
                                self)

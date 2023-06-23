@@ -32,8 +32,6 @@ final class ResetPasswordViewController: UIViewController {
     
     // MARK: SEND LINK TO PASSWORD RESET TO THE EMAIL AND REDIRECT TO THE LOGIN SCREEN
     @IBAction private func resetPasswordButtonAction(_ sender: UIButton) {
-        // Do the job asynchonously with help of the "Task".
-        // Because we ask Task to run it's work inside the UIButtonAction it will work in the MainThread but Asynchonously.
         Task {
             AuthManager.resetPassword(resetPasswordEmailTextField.text, self)
         }
