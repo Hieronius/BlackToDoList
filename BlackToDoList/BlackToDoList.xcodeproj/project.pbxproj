@@ -11,7 +11,7 @@
 		DD01E32B2A31C12F00C99DCC /* CleaningButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD01E32A2A31C12F00C99DCC /* CleaningButton.swift */; };
 		DD882B492A402CE1006DA78A /* UserSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD882B482A402CE1006DA78A /* UserSessionManager.swift */; };
 		DD89DAED2A4415A600C0BAE6 /* MarkDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD89DAEC2A4415A600C0BAE6 /* MarkDown.swift */; };
-		DD89DAEF2A443FD300C0BAE6 /* AuthorisationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD89DAEE2A443FD300C0BAE6 /* AuthorisationManager.swift */; };
+		DD89DAEF2A443FD300C0BAE6 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD89DAEE2A443FD300C0BAE6 /* AuthManager.swift */; };
 		DD8C21222A36EC9900DC4CFC /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8C21212A36EC9900DC4CFC /* KeychainManager.swift */; };
 		DD90805E2A38749A009EC99E /* PassCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD90805D2A38749A009EC99E /* PassCodeView.swift */; };
 		DD9080602A3874CB009EC99E /* PassCodeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD90805F2A3874CB009EC99E /* PassCodeButton.swift */; };
@@ -44,7 +44,7 @@
 		DD01E32A2A31C12F00C99DCC /* CleaningButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleaningButton.swift; sourceTree = "<group>"; };
 		DD882B482A402CE1006DA78A /* UserSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionManager.swift; sourceTree = "<group>"; };
 		DD89DAEC2A4415A600C0BAE6 /* MarkDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkDown.swift; sourceTree = "<group>"; };
-		DD89DAEE2A443FD300C0BAE6 /* AuthorisationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorisationManager.swift; sourceTree = "<group>"; };
+		DD89DAEE2A443FD300C0BAE6 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		DD8C21212A36EC9900DC4CFC /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		DD90805D2A38749A009EC99E /* PassCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassCodeView.swift; sourceTree = "<group>"; };
 		DD90805F2A3874CB009EC99E /* PassCodeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassCodeButton.swift; sourceTree = "<group>"; };
@@ -209,7 +209,7 @@
 			children = (
 				DD8C21212A36EC9900DC4CFC /* KeychainManager.swift */,
 				DD882B482A402CE1006DA78A /* UserSessionManager.swift */,
-				DD89DAEE2A443FD300C0BAE6 /* AuthorisationManager.swift */,
+				DD89DAEE2A443FD300C0BAE6 /* AuthManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -361,7 +361,7 @@
 				DD01E32B2A31C12F00C99DCC /* CleaningButton.swift in Sources */,
 				DD9080602A3874CB009EC99E /* PassCodeButton.swift in Sources */,
 				DD958C4C2A28425100B0986B /* NewTaskViewController.swift in Sources */,
-				DD89DAEF2A443FD300C0BAE6 /* AuthorisationManager.swift in Sources */,
+				DD89DAEF2A443FD300C0BAE6 /* AuthManager.swift in Sources */,
 				DDDB66162A25DE2900FE519B /* PresentationScreenViewController.swift in Sources */,
 				DDDB65FF2A25D98600FE519B /* UIViewController+Extension .swift in Sources */,
 				DDDB66012A25DAA700FE519B /* UIView+Extension.swift in Sources */,

@@ -248,11 +248,10 @@ final class LockScreenViewController: UIViewController {
         /// - Returns: This function does not return any value.
     @IBAction func logOutButtonAction(_ sender: Any) {
         showAlert(title: "LogOut", message: "Are you sure to logout from the app?", isCancelButton: true, okButtonName: "Relogin") {
-            AuthorisationManager.logOut()
+            AuthManager.logOut()
                 print("User has been logged out")
                 UserSessionManager.isUserLoggedIn = false
                 self.segueToLogInScreenAndMakeItAsRoot()
-                
         }
     }
     
@@ -352,6 +351,7 @@ final class LockScreenViewController: UIViewController {
         }
     }
     
+    // MARK: SHOULD ADD "deletePasscode()" to KEYCHAIN MANAGER AND REPLACE THE LOCAL FUNCTION.
     @IBAction func forgetPasswordButtonAction(_ sender: Any) {
         
         showAlert(title: "Please relogin to create a new passcode", message: "Old passcode will be deleted. Are you sure to procedure?", isCancelButton: true, okButtonName: "Relogin") {
