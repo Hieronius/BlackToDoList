@@ -240,17 +240,16 @@ final class LockScreenViewController: UIViewController {
     }
     
     // MARK: LOGOUT FROM THE APP
+        /// This function is an IBAction function that is triggered when the user taps the "Log Out" button in the app. It shows an alert to confirm if the user wants to log out, and if the user confirms, it logs the user out of the app, sets the "isUserLoggedIn" flag to false, and segues to the login screen
+        ///
+        /// - Parameters:
+        ///     - sender: An object that represents the sender of the action.
+        ///
+        /// - Returns: This function does not return any value.
     @IBAction func logOutButtonAction(_ sender: Any) {
-        
         showAlert(title: "LogOut", message: "Are you sure to logout from the app?", isCancelButton: true, okButtonName: "Relogin") {
-            // MARK: Add "isUserLoggedIn" as false.
             AuthorisationManager.logOut()
                 print("User has been logged out")
-                
-                // Place for a segue to the log in Screen.
-                // MARK: Alert controller with confirmation can be used here.
-        // self.isUserLoggedIn = false
-                // Change global property of User Current Session Status.
                 UserSessionManager.isUserLoggedIn = false
                 self.segueToLogInScreenAndMakeItAsRoot()
                 
