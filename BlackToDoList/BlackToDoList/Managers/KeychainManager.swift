@@ -16,6 +16,7 @@ final class KeychainManager {
         // Can't identify data request.
         // Error of all purposes type.
         case unknown(OSStatus)
+        case invalidData
     }
     
     static var serviceId = "BlackToDoList"
@@ -29,8 +30,11 @@ final class KeychainManager {
         // a few input parameters to identify what we wan't to save and where.
         service: String,
         account: String,
-        password: Data
+        password: [Int]
     ) throws {
+        
+        let data = try NSKeyedArchiver.archivedData(withRootObject: password,
+                                                    requiringSecureCoding: true)
         // Service, account, password, class, data.
         // Seems like it's not a dictionary of data, but a one object as unmutable data.
         // Like one user, one password, one page and so one.
@@ -42,7 +46,7 @@ final class KeychainManager {
             // Our account.
             kSecAttrAccount: account,
             // Out password.
-            kSecValueData: password
+            kSecValueData: data
         ]
         // This chunk of code should add to our Dictionary a checkout of data for being "nil".
         // Our current status.
@@ -60,13 +64,14 @@ final class KeychainManager {
         print("saved")
     }
     
+    // MARK: NEED DOCUMENTATION
     // Find data and give it.
     static func getData(
         service: String,
         account: String
         // We wan't extract password, so we don't need this input parameter.
         // This data should be extracted with Data type.
-    ) throws -> Data? {
+    ) throws -> [Int]? {
         // Service, account, password, class, data.
         // Seems like it's not a dictionary of data, but a one object as unmutable data.
         // Like one user, one password, one page and so one.
@@ -90,7 +95,7 @@ final class KeychainManager {
             query as CFDictionary,
             // i don't know why this parameter should be "inout"
             &result
-            )
+        )
         // If item is already exists throw an error.
         guard status != errSecDuplicateItem else {
             throw KeychainError.duplicateEntry
@@ -101,10 +106,15 @@ final class KeychainManager {
             throw KeychainError.unknown(status)
         }
         
-       
-        // Print if there is an Error
+        guard let data = result as? Data else {
+            throw KeychainError.invalidData
+        }
+        
+        let passcode = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Int]
         print("Read status: \(status)")
-        return result as? Data
+        print("Read password: \(passcode)")
+        print("Correct passcode. Welcome to the app")
+        return passcode
     }
     
     // MARK: NEED DOCUMENTATION WITH MARKDAWN.
@@ -178,46 +188,6 @@ final class KeychainManager {
         }
         return values
     }
-    
-    /// Delete all stored data as dictionary with the type of given `secClass`.
-    ///
-    /// ```
-    /// getAllKeyChainItemsOfClass(_ secClass: kSecClassGenericPassword as String) // [:]"
-    /// ```
-    ///
-    /// > Warning: possible to find data only with kSecClassGenericPassword
-    /// > all other data such as "kSecAttrService as String" - User service or
-    /// > "kSecAttrAccount as String" - User account will return nil
-    ///
-    /// - Parameters:
-    ///     - secClass: Class of data to find and delete
-    ///
-    /// - Returns: Delete all stored data as dictionary of the given type  `secClass`.
-    static func getAllKeyChainItemsOfClassAndDelete(_ secClass: String) -> [String: String] {
-        // Storage of all possible data from Keychain.
-        let query: [String: Any] = [
-            kSecClass as String: secClass,
-            kSecReturnData as String: kCFBooleanTrue,
-            kSecReturnAttributes as String: kCFBooleanTrue,
-            kSecReturnRef as String: kCFBooleanTrue,
-            kSecMatchLimit as String: kSecMatchLimitAll
-        ]
-        
-        var result: AnyObject?
-        
-        let lastResultCode = withUnsafeMutablePointer(to: &result) {
-            SecItemCopyMatching(query as CFDictionary, UnsafeMutablePointer($0))
-        }
-        
-        var values = [String: String]()
-        if lastResultCode == noErr {
-            let array = result as? Array<Dictionary<String, Any>>
-            
-            for item in array! {
-                SecItemDelete(item as CFDictionary)
-                print("\(item) has been deleted")
-            }
-        }
-        return values
-    }
 }
+
+
