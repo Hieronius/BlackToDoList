@@ -21,6 +21,7 @@ final class KeychainManager {
     static var serviceId = "BlackToDoList"
     static var currentUser = "User"
     
+    // MARK: NEED DOCUMENTATION
     // Get data and encrypt it.
     // Function can throw an error.
     // Can't rename function 18.06.23 due to an error. Let's try again later.
@@ -106,6 +107,7 @@ final class KeychainManager {
         return result as? Data
     }
     
+    // MARK: NEED DOCUMENTATION WITH MARKDAWN.
     static func deleteData(
         service: String,
         account: String
@@ -132,6 +134,7 @@ final class KeychainManager {
     }
     
     
+    // MARK: MAKE BETTER EXPLANATION FOR THIS FUNCTION
     /// Get's all stored data as dictionary with the type of given `secClass`.
     ///
     /// ```

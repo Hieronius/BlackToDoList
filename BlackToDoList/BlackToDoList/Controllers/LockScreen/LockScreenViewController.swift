@@ -128,8 +128,16 @@ final class LockScreenViewController: UIViewController {
                         // MARK: Can be replaced with a small function.
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
                             // If passwords were equal let's save it to the keychain.
-                            self?.savePasscode()
-                            print("\(self?.savePasscode()) has been saved")
+                            // self?.savePasscode()
+                            // print("\(self?.savePasscode()) has been saved")
+                            do {
+                                try KeychainManager.saveData(service: KeychainManager.serviceId,
+                                                             account: KeychainManager.currentUser,
+                                                             password: "\(self?.firstPasscode)".data(using: .utf8) ?? Data())
+                            } catch {
+                                print(error)
+                            }
+                            
                             // Get password from the Keychain.
                             self?.getPasscode()
                             print("\(self?.getPasscode())) has been saved")
@@ -240,7 +248,7 @@ final class LockScreenViewController: UIViewController {
     }
     
     // MARK: LOGOUT FROM THE APP
-    /// This function is an IBAction function that is triggered when the user taps the "Log Out" button in the app. It shows an alert to confirm if the user wants to log out, and if the user confirms, it logs the user out of the app, sets the "isUserLoggedIn" flag to false, and segues to the login screen
+    /// This function is an IBAction function that is triggered when the user taps the "Log Out" button in the app. It shows an alert to confirm if the user wants to log out, and if the user confirms, it logs the user out of the app, sets the "isUserLoggedIn" flag to false, and segues to the login screen.
     /// - Parameters:
     ///     - sender: An object that represents the sender of the action.
     /// - Returns: This function does not return any value.
@@ -350,12 +358,20 @@ final class LockScreenViewController: UIViewController {
     }
     
     // MARK: SHOULD ADD "deletePasscode()" to KEYCHAIN MANAGER AND REPLACE THE LOCAL FUNCTION.
+    // MARK: NEED DOCUMENTATION FOR THIS METHOD. TOO MUCH DIFFERENT FUNCTIONALITIES.
     @IBAction func forgetPasswordButtonAction(_ sender: Any) {
         
         showAlert(title: "Please relogin to create a new passcode", message: "Old passcode will be deleted. Are you sure to procedure?", isCancelButton: true, okButtonName: "Relogin") {
             // Function to delete current passcode from Keychain.
             // Also i should implement force LogOut of the user.
-            self.deletePasscode()
+            // MARK: implement DeletePasscode from Keychain Here. Refactor all methods from Keychain.
+            // self.deletePasscode()
+            do {
+                try KeychainManager.deleteData(service: KeychainManager.serviceId,
+                                               account: KeychainManager.currentUser)
+            } catch {
+                print(KeychainManager.KeychainError.unknown(OSStatus()))
+            }
             // Change global property of User Current Session Status.
             UserSessionManager.isUserLoggedIn = false
             self.segueToLogInScreenAndMakeItAsRoot()
@@ -363,6 +379,7 @@ final class LockScreenViewController: UIViewController {
         
     }
     
+    // MARK: SHOULD BE PLACED TO THE BIOMETRICS MANAGER WITH DOCUMENTATION.
     // MARK: - Private Methods
     
     private func askUserBiometricsData() {
