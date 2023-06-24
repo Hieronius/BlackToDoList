@@ -253,6 +253,8 @@ final class LockScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Test of user current session
+        checkCurrentUserSession()
     }
     
     
@@ -262,7 +264,7 @@ final class LockScreenViewController: UIViewController {
     
     
     // MARK: ACTION TO ACTIVATE FACEID/TOUCHID OF THE USER
-    @IBAction private func authenticationButtonAction(_ sender: Any) {
+    @IBAction private func useBiometricsButtonAction(_ sender: Any) {
         askUserBiometricsData()
     }
     
@@ -376,7 +378,6 @@ final class LockScreenViewController: UIViewController {
         }
     }
     
-    // MARK: SHOULD ADD "deletePasscode()" to KEYCHAIN MANAGER AND REPLACE THE LOCAL FUNCTION.
     // MARK: NEED DOCUMENTATION FOR THIS METHOD. TOO MUCH DIFFERENT FUNCTIONALITIES.
     @IBAction func forgetPasswordButtonAction(_ sender: Any) {
         
@@ -445,19 +446,6 @@ final class LockScreenViewController: UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "LogInViewController") as! LogInViewController
         self.navigationController?.setViewControllers([viewController], animated: true)
     }
-    
-    
-    private func deletePasscode() {
-        do {
-            try KeychainManager.deleteData(
-                service: "BlackToDoList",
-                account: "User2")
-            print("Passcode has been deleted from Keychain")
-        } catch {
-            print(error)
-        }
-    }
-    
     
     private func checkCurrentUserSession() {
         

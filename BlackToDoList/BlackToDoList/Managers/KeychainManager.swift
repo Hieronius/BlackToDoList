@@ -9,7 +9,6 @@ import UIKit
 
 final class KeychainManager {
     
-    // Enum for handling errors of the Keychain.
     enum KeychainError: Error {
         // The data already exists.
         case duplicateEntry
