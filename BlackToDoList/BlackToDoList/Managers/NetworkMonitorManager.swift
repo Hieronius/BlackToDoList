@@ -13,7 +13,11 @@ final class NetworkMonitorManager {
     private let monitor: NWPathMonitor
     
     /// Getter of this variable is internal but Setter is private
-    private(set) var isConnected = false
+    private(set) var isConnected = false {
+        didSet {
+            print("current status of the user internet connection is \(isConnected)")
+        }
+    }
     
     private(set) var isExpensive = false
     
@@ -21,7 +25,7 @@ final class NetworkMonitorManager {
     
     private let queue = DispatchQueue(label: "NetworkConnectivityMonitor")
     
-    private func startMonitoring() {
+    func startMonitoring() {
         monitor.pathUpdateHandler = { [weak self] path in
             self?.isConnected = path.status != .unsatisfied
             self?.isExpensive = path.isExpensive
@@ -31,7 +35,7 @@ final class NetworkMonitorManager {
         monitor.start(queue: queue)
     }
     
-    private func stopMonitoring() {
+    func stopMonitoring() {
         monitor.cancel()
     }
     
