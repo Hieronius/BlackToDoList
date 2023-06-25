@@ -25,6 +25,8 @@ final class NetworkMonitorManager {
     
     private let queue = DispatchQueue(label: "NetworkConnectivityMonitor")
     
+    
+    /// This method starts monitoring network connectivity by setting the `pathUpdateHandler` property of the `monitor` object and calling the `start(queue:)` method.
     func startMonitoring() {
         monitor.pathUpdateHandler = { [weak self] path in
             self?.isConnected = path.status != .unsatisfied
