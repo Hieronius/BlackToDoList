@@ -14,6 +14,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
+        NetworkMonitorManager.shared.startMonitoring()
+        print("Start to monitor a current connection status")
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         /// Define NavigationViewController  steck with LoginViewController as it's root view controller
@@ -50,7 +53,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
-        
+        NetworkMonitorManager.shared.startMonitoring()
+        print("End to monitor a current connection status")
     }
 
 

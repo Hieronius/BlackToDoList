@@ -268,6 +268,8 @@ final class LockScreenViewController: UIViewController {
         // Test of user current session
         checkCurrentUserSession()
         
+        
+        
     }
     
     
