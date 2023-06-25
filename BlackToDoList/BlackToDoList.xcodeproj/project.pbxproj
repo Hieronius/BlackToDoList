@@ -12,6 +12,7 @@
 		DD882B492A402CE1006DA78A /* UserSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD882B482A402CE1006DA78A /* UserSessionManager.swift */; };
 		DD89DAED2A4415A600C0BAE6 /* MarkDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD89DAEC2A4415A600C0BAE6 /* MarkDown.swift */; };
 		DD89DAEF2A443FD300C0BAE6 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD89DAEE2A443FD300C0BAE6 /* AuthManager.swift */; };
+		DD8B97542A481B2D006112D5 /* NetworkMonitorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8B97532A481B2D006112D5 /* NetworkMonitorManager.swift */; };
 		DD8C1EE32A46D35E008A6AB9 /* BiometricsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8C1EE22A46D35E008A6AB9 /* BiometricsManager.swift */; };
 		DD8C1EE52A46D611008A6AB9 /* UIViewController+Extension (segue).swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8C1EE42A46D611008A6AB9 /* UIViewController+Extension (segue).swift */; };
 		DD8C21222A36EC9900DC4CFC /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8C21212A36EC9900DC4CFC /* KeychainManager.swift */; };
@@ -47,6 +48,7 @@
 		DD882B482A402CE1006DA78A /* UserSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionManager.swift; sourceTree = "<group>"; };
 		DD89DAEC2A4415A600C0BAE6 /* MarkDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkDown.swift; sourceTree = "<group>"; };
 		DD89DAEE2A443FD300C0BAE6 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		DD8B97532A481B2D006112D5 /* NetworkMonitorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitorManager.swift; sourceTree = "<group>"; };
 		DD8C1EE22A46D35E008A6AB9 /* BiometricsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricsManager.swift; sourceTree = "<group>"; };
 		DD8C1EE42A46D611008A6AB9 /* UIViewController+Extension (segue).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension (segue).swift"; sourceTree = "<group>"; };
 		DD8C21212A36EC9900DC4CFC /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				DD882B482A402CE1006DA78A /* UserSessionManager.swift */,
 				DD89DAEE2A443FD300C0BAE6 /* AuthManager.swift */,
 				DD8C1EE22A46D35E008A6AB9 /* BiometricsManager.swift */,
+				DD8B97532A481B2D006112D5 /* NetworkMonitorManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				DD89DAED2A4415A600C0BAE6 /* MarkDown.swift in Sources */,
 				DD882B492A402CE1006DA78A /* UserSessionManager.swift in Sources */,
 				DD8C21222A36EC9900DC4CFC /* KeychainManager.swift in Sources */,
+				DD8B97542A481B2D006112D5 /* NetworkMonitorManager.swift in Sources */,
 				DDDB66052A25DC0C00FE519B /* Set NavigationViewController for UIWindow.swift in Sources */,
 				DD01E32B2A31C12F00C99DCC /* CleaningButton.swift in Sources */,
 				DD9080602A3874CB009EC99E /* PassCodeButton.swift in Sources */,
