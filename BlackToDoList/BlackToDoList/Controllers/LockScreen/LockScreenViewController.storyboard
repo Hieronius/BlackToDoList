@@ -480,6 +480,7 @@
                         <outlet property="firstPasscodeViewFieldsStack" destination="zrI-FH-kXR" id="bZm-bN-wrY"/>
                         <outlet property="repeatPasscodeLabel" destination="VBL-SP-wGG" id="Q2c-EO-Wbj"/>
                         <outlet property="secondPasscodeViewStack" destination="Iv1-9b-ncG" id="HqV-m3-eag"/>
+                        <outlet property="useBiometricsButtonView" destination="gDx-mR-zyz" id="646-5X-A2f"/>
                         <outlet property="wrongPasscodeLabel" destination="Dgz-T4-K2N" id="RvY-0N-xvF"/>
                     </connections>
                 </viewController>

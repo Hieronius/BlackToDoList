@@ -24,6 +24,21 @@ final class LockScreenViewController: UIViewController {
     
     @IBOutlet weak var wrongPasscodeLabel: UILabel!
     
+    
+    @IBOutlet weak var useBiometricsButtonView: UIButton! {
+        didSet {
+            DispatchQueue.main.async {
+                if BiometricManager.isUserGavePermissionToUseBiometrics {
+                    self.useBiometricsButtonView.isHidden = false
+                    print("Biometric button should be visible")
+                } else {
+                    self.useBiometricsButtonView.isHidden = true
+                    print("Biometric button should be hidden")
+                }
+            }
+        }
+    }
+    
     // MARK: - Private Properties
     
     // Array of first user passcode combination during registration.
@@ -57,148 +72,149 @@ final class LockScreenViewController: UIViewController {
         // When both passcodes are done we should check it on equality.
         // If the checkout has been failed let's clean both passcodes array and clean all animation.
         didSet {
-            
-            // MARK: PROBABLY SHOULD USE SWITCH
-            // Checkout of passwords equality.
-            if secondPasscode.count == 4 && firstPasscode.count == 4 {
-                
-                if firstPasscode != secondPasscode {
-                    // Reload UI.
-                    createPasscodeLabel.isHidden.toggle()
-                    firstPasscodeViewFieldsStack.isHidden.toggle()
-                    repeatPasscodeLabel.isHidden.toggle()
-                    secondPasscodeViewStack.isHidden.toggle()
+            DispatchQueue.main.async {
+                // MARK: PROBABLY SHOULD USE SWITCH
+                // Checkout of passwords equality.
+                if self.secondPasscode.count == 4 && self.firstPasscode.count == 4 {
                     
-                    print("First passcode is - \(firstPasscode)")
-                    print("Second passcode is - \(secondPasscode)")
-                    
-                    // Clean all passcode views to it's original color.
-                    print("Not equal passwords")
-                    
-                    // display a label "password is not correct"
-                    // it can be a little function "displayLabelAndHide"
-                    wrongPasscodeLabel.isHidden.toggle()
-                    
-                    // Made an async work after a little time because property observer removing passwords before it's checkout for equality.
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        self.firstPasscode.removeAll()
-                        self.secondPasscode.removeAll()
-                        
+                    if self.firstPasscode != self.secondPasscode {
                         // Reload UI.
-                        let currentPasscodeView = self.secondPasscodeViewStack.subviews
-                        
-                        for view in currentPasscodeView {
-                            view.backgroundColor = UIColor.black
-                            print("Passcode view has been cleaned")
-                        }
+                        self.createPasscodeLabel.isHidden.toggle()
+                        self.firstPasscodeViewFieldsStack.isHidden.toggle()
+                        self.repeatPasscodeLabel.isHidden.toggle()
+                        self.secondPasscodeViewStack.isHidden.toggle()
                         
                         print("First passcode is - \(self.firstPasscode)")
                         print("Second passcode is - \(self.secondPasscode)")
-                    }
-                    
-                    // Hide label "wrong password"
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        
+                        // Clean all passcode views to it's original color.
+                        print("Not equal passwords")
+                        
+                        // display a label "password is not correct"
+                        // it can be a little function "displayLabelAndHide"
                         self.wrongPasscodeLabel.isHidden.toggle()
-                    }
-                    
-                    // If password was equal, let's ask for FaceID/TouchID identification and move to the Main screen.
-                    // MARK: PLACE FOR ALLERT - YOUR PASSWORD HAS BEEN SUCCESSFUL
-                    // Place for the question to ask Tough ID/FaceID implementation.
-                } else if firstPasscode == secondPasscode {
-                    
-                    // Seems like i need a custom alert controller with two buttons. First one "Ok" button should be with default closure and the second one "Cancel" with personal AlertControllerAction.
-                    
-                    let alertController = UIAlertController(title: "Passcode successfully created", message: "Give permission to use FaceID/TouchID ", preferredStyle: .alert)
-                    
-                    // User pressed "Ok" - save passcode, use Biometrics and redirect to the main screen.
-                    let okAction = UIAlertAction(title: "Ok", style: .default) { action in
                         
-                        
-                        // MARK: PUT HERE METHOD FOR FACEID/TOUCHID AUTHENTIFICATION IF USER OK WITH IT.
-                        // self.useBiometrics()
-                        self.askUserBiometricsData()
-                        // self.segueToMainScreenAndMakeItAsRoot()
-                        
-                        print("Password has been created successfully")
-                        
-                        print("First passcode is - \(self.firstPasscode)")
-                        print("Second passcode is - \(self.secondPasscode)")
-                        
-                        // Save user password. Without a little delay it trying to save an empty passcode array. Should be refactored.
-                        // MARK: Can be replaced with a small function.
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                            // If passwords were equal let's save it to the keychain.
-                            do {
-                                try KeychainManager.saveData(service: KeychainManager.serviceId,
-                                                             account: KeychainManager.currentUser,
-                                                             password: self?.firstPasscode ?? [0, 0, 0, 0])
-                            } catch {
-                                print(error)
+                        // Made an async work after a little time because property observer removing passwords before it's checkout for equality.
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            self.firstPasscode.removeAll()
+                            self.secondPasscode.removeAll()
+                            
+                            // Reload UI.
+                            let currentPasscodeView = self.secondPasscodeViewStack.subviews
+                            
+                            for view in currentPasscodeView {
+                                view.backgroundColor = UIColor.black
+                                print("Passcode view has been cleaned")
                             }
                             
-                            // Get password from the Keychain.
-                            // self?.getPasscode()
-                            
-                            do {
-                                try KeychainManager.getData(service: KeychainManager.serviceId, account: KeychainManager.currentUser)
-                            } catch {
-                                print(error)
-                            }
-                            // print("\(self?.getPasscode())) has been saved")
-                            // Set status of the current user session to true
-                            UserSessionManager.isUserLoggedIn = true
-                            print("Current status of user session - \(UserSessionManager.isUserLoggedIn = true)")
-                            print("Programm checkpoint 2")
+                            print("First passcode is - \(self.firstPasscode)")
+                            print("Second passcode is - \(self.secondPasscode)")
                         }
                         
-                    }
-                    // Add "Ok" button to the alert controller.
-                    alertController.addAction(okAction)
-                    
-                    // User pressed "Cancel" - save passcode, don't use Biometrics and redirect to the main screen.
-                    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
+                        // Hide label "wrong password"
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                            self.wrongPasscodeLabel.isHidden.toggle()
+                        }
                         
-                        // MARK: USER CANCELED THE FACEID AUTHENTIFICATION AND REDIRECTED TO THE MAIN SCREEN.
-                        self.segueToMainScreenAndMakeItAsRoot()
+                        // If password was equal, let's ask for FaceID/TouchID identification and move to the Main screen.
+                        // MARK: PLACE FOR ALLERT - YOUR PASSWORD HAS BEEN SUCCESSFUL
+                        // Place for the question to ask Tough ID/FaceID implementation.
+                    } else if self.firstPasscode == self.secondPasscode {
                         
-                        print("Password has been created successfully")
+                        // Seems like i need a custom alert controller with two buttons. First one "Ok" button should be with default closure and the second one "Cancel" with personal AlertControllerAction.
                         
-                        print("First passcode is - \(self.firstPasscode)")
-                        print("Second passcode is - \(self.secondPasscode)")
+                        let alertController = UIAlertController(title: "Passcode successfully created", message: "Give permission to use FaceID/TouchID ", preferredStyle: .alert)
                         
-                        // Save user password. Without a little delay it trying to save an empty passcode array. Should be refactored.
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                            // If passwords were equal let's save it to the keychain.
-                            do {
-                                try KeychainManager.saveData(service: KeychainManager.serviceId,
-                                                             account: KeychainManager.currentUser,
-                                                             password: self?.firstPasscode ?? [0, 0, 0, 0])
-                            } catch {
-                                print(error)
-                            }
-                            // Get password from the Keychain.
-                            // self?.getPasscode()
-                            do {
-                                try KeychainManager.getData(service: KeychainManager.serviceId, account: KeychainManager.currentUser)
-                            } catch {
-                                print(error)
+                        // User pressed "Ok" - save passcode, use Biometrics and redirect to the main screen.
+                        let okAction = UIAlertAction(title: "Ok", style: .default) { action in
+                            
+                            
+                            // MARK: PUT HERE METHOD FOR FACEID/TOUCHID AUTHENTIFICATION IF USER OK WITH IT.
+                                BiometricManager.askForBiometrics(self)
+                                BiometricManager.isUserGavePermissionToUseBiometrics = true
+                            
+                            
+                            print("Password has been created successfully")
+                            
+                            print("First passcode is - \(self.firstPasscode)")
+                            print("Second passcode is - \(self.secondPasscode)")
+                            
+                            // Save user password. Without a little delay it trying to save an empty passcode array. Should be refactored.
+                            // MARK: Can be replaced with a small function.
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                                // If passwords were equal let's save it to the keychain.
+                                do {
+                                    try KeychainManager.saveData(service: KeychainManager.serviceId,
+                                                                 account: KeychainManager.currentUser,
+                                                                 password: self?.firstPasscode ?? [0, 0, 0, 0])
+                                } catch {
+                                    print(error)
+                                }
+                                
+                                // Get password from the Keychain.
+                                // self?.getPasscode()
+                                
+                                do {
+                                    try KeychainManager.getData(service: KeychainManager.serviceId, account: KeychainManager.currentUser)
+                                } catch {
+                                    print(error)
+                                }
+                                // print("\(self?.getPasscode())) has been saved")
+                                // Set status of the current user session to true
+                                UserSessionManager.isUserLoggedIn = true
+                                print("Current status of user session - \(UserSessionManager.isUserLoggedIn = true)")
+                                print("Programm checkpoint 2")
                             }
                             
-                            // Set status of the current user session to true
-                            UserSessionManager.isUserLoggedIn = true
-                            print("Current status of user session - \(UserSessionManager.isUserLoggedIn)")
-                            print("Programm checkpoint 1")
                         }
-                    }
-                    
-                    // Add "cancel" button to the alert controller
-                    alertController.addAction(cancelAction)
-                    // Present Alert Controller
-                    self.present(alertController, animated: true)
-                    
-                    // Unexpected behavior
+                        // Add "Ok" button to the alert controller.
+                        alertController.addAction(okAction)
+                        
+                        // User pressed "Cancel" - save passcode, don't use Biometrics and redirect to the main screen.
+                        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
+                            
+                            // MARK: USER CANCELED THE FACEID AUTHENTIFICATION AND REDIRECTED TO THE MAIN SCREEN.
+                            self.segueToMainScreenAndMakeItAsRoot()
+                            
+                            print("Password has been created successfully")
+                            
+                            print("First passcode is - \(self.firstPasscode)")
+                            print("Second passcode is - \(self.secondPasscode)")
+                            
+                            // Save user password. Without a little delay it trying to save an empty passcode array. Should be refactored.
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                                // If passwords were equal let's save it to the keychain.
+                                do {
+                                    try KeychainManager.saveData(service: KeychainManager.serviceId,
+                                                                 account: KeychainManager.currentUser,
+                                                                 password: self?.firstPasscode ?? [0, 0, 0, 0])
+                                } catch {
+                                    print(error)
+                                }
+                                // Get password from the Keychain.
+                                // self?.getPasscode()
+                                do {
+                                    try KeychainManager.getData(service: KeychainManager.serviceId, account: KeychainManager.currentUser)
+                                } catch {
+                                    print(error)
+                                }
+                                
+                                // Set status of the current user session to true
+                                UserSessionManager.isUserLoggedIn = true
+                                print("Current status of user session - \(UserSessionManager.isUserLoggedIn)")
+                                print("Programm checkpoint 1")
+                            }
+                        }
+                        
+                        // Add "cancel" button to the alert controller
+                        alertController.addAction(cancelAction)
+                        // Present Alert Controller
+                        self.present(alertController, animated: true)
+                        
+                        // Unexpected behavior
                     }  else {
                         print("Unexpected error with secondPasscode property observer")
+                    }
                 }
             }
         }
@@ -246,8 +262,6 @@ final class LockScreenViewController: UIViewController {
         }
     }
     
-    private var isUserGavePermissionToUseBiometrics = false
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -260,12 +274,12 @@ final class LockScreenViewController: UIViewController {
     
     
     // MARK: - IBActions
-        
+    
     
     
     // MARK: ACTION TO ACTIVATE FACEID/TOUCHID OF THE USER
     @IBAction private func useBiometricsButtonAction(_ sender: Any) {
-        askUserBiometricsData()
+            BiometricManager.askForBiometrics(self)
     }
     
     // MARK: LOGOUT FROM THE APP
@@ -276,9 +290,9 @@ final class LockScreenViewController: UIViewController {
     @IBAction func logOutButtonAction(_ sender: Any) {
         showAlert(title: "LogOut", message: "Are you sure to logout from the app?", isCancelButton: true, okButtonName: "Relogin") {
             AuthManager.logOut()
-                print("User has been logged out")
-                UserSessionManager.isUserLoggedIn = false
-                self.segueToLogInScreenAndMakeItAsRoot()
+            print("User has been logged out")
+            UserSessionManager.isUserLoggedIn = false
+            self.segueToLogInScreenAndMakeItAsRoot()
         }
     }
     
@@ -403,6 +417,7 @@ final class LockScreenViewController: UIViewController {
     // MARK: - Private Methods
     
     private func askUserBiometricsData() {
+        
         // Create an abstractive model of the Apple Authentication Manager.
         let context = LAContext()
         
