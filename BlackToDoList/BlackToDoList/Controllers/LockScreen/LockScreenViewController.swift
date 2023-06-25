@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import LocalAuthentication
 import FirebaseAuth
 
 final class LockScreenViewController: UIViewController {
@@ -269,6 +268,7 @@ final class LockScreenViewController: UIViewController {
         
         // Test of user current session
         checkCurrentUserSession()
+        
     }
     
     
@@ -411,43 +411,6 @@ final class LockScreenViewController: UIViewController {
             self.segueToLogInScreenAndMakeItAsRoot()
         }
         
-    }
-    
-    // MARK: SHOULD BE PLACED TO THE BIOMETRICS MANAGER WITH DOCUMENTATION.
-    // MARK: - Private Methods
-    
-    private func askUserBiometricsData() {
-        
-        // Create an abstractive model of the Apple Authentication Manager.
-        let context = LAContext()
-        
-        // Create an abstractive model for possible Errors during the usage of the service.
-        // Because this framework works with protocol NSErrorPointer and also it's a inout parameter.
-        var error: NSError? = nil
-        
-        // Seems like it's a message which should ask User to use his TouchID.
-        // Probably should be edited accordingly to variation that it can be FaceID check.
-        let reason = "Please identify yourself"
-        
-        // MARK: ACTUAL FACEID/TOUCHID/DEFAULT IPHONE PIN CODE CHECKOUT WITH A SEGUE TO THE MAIN SCREEN IN CASE OF SUCCESS
-        // context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics,
-        context.evaluatePolicy(.deviceOwnerAuthentication,
-                               localizedReason: reason) { [weak self] success, error in
-            
-            // Do the job asynchonously with help of the "Task".
-            // Because we ask Task to run it's work inside the UIButtonAction it will work in the MainThread but Asynchonously.
-            Task {
-                // Checkout of the fact that we recieved a success and no errors
-                guard success, error == nil else {
-                    
-                    // Failure of the attempt to check
-                    print("Authentication has been failed")
-                    self?.showAlert(title: "Failed to Authenticate", message: "Please try again")
-                    return }
-                
-                self?.segueToMainScreenAndMakeItAsRoot()
-            }
-        }
     }
     
     private func segueToMainScreenAndMakeItAsRoot() {
