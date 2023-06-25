@@ -12,6 +12,15 @@ final class NetworkMonitorManager {
     
     private let monitor: NWPathMonitor
     
+    /// Getter of this variable is internal but Setter is private
+    private(set) var isConnected = false
+    
+    private(set) var currentConnectionType: NWInterface.InterfaceType?
+    
+    private let queue = DispatchQueue(label: "NetworkConnectivityMonitor")
+    
+    
+    
     private init() {
         monitor = NWPathMonitor()
     }
