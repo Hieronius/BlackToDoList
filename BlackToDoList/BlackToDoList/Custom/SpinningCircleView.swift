@@ -35,6 +35,13 @@ final class SpinningCircleView: UIView {
         spinningCircle.strokeEnd = 0.25
         spinningCircle.lineCap = .round
         
+        spinningCircle.frame = CGRect(x: -50, y: 100, width: 100, height: 100)
+        
         self.layer.addSublayer(spinningCircle)
     }
+    
+//    private func configureSpinningCircleAndDisplay(_ currentViewController: UIViewController) {
+//        spinningCircle.frame = CGRect(x: -50, y: 100, width: 100, height: 100)
+//        currentViewController.view.addSubview(spinningCircle)
+//    }
 }
