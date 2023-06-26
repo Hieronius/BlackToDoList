@@ -6,21 +6,18 @@
 //
 
 import UIKit
-/// Custom class for pass code numbers buttons to press.
+
 class PassCodeButton: UIButton {
-    // Change it's appearance when the user can see the screen.
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Define buttons as a circle.
         makeRounded(borderColour: .white, borderWidth: 1.0)
-        // Define animation after initialization of the button.
         self.addTarget(self, action: #selector(buttonClickedAnimation(sender: )), for: .touchUpInside)
     }
     
-    // Add Animation to the button.
+    
+    /// Method creates an animation for "smooth" fade out and light up effect.
+    /// - Parameter sender: representation of the tapped button.
     @objc private func buttonClickedAnimation(sender: UIButton) {
-        
-        // Button fades out.
         DispatchQueue.main.async {
             sender.backgroundColor = .white
             sender.alpha = 0.9
@@ -46,7 +43,6 @@ class PassCodeButton: UIButton {
             sender.alpha = 0.5
         }
         
-        // Button light up.
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             sender.backgroundColor = .black
             sender.alpha = 0.6

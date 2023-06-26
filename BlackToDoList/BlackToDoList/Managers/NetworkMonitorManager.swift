@@ -4,7 +4,7 @@
 //
 //  Created by Арсентий Халимовский on 25.06.2023.
 //
-
+import UIKit
 import Network
 
 final class NetworkMonitorManager {
@@ -13,11 +13,12 @@ final class NetworkMonitorManager {
     private let monitor: NWPathMonitor
     
     /// Getter of this variable is internal but Setter is private
-    private(set) var isConnected = false {
+    private(set) var isConnected: Bool? {
         didSet {
             print("current status of the user internet connection is \(isConnected)")
+                
+            }
         }
-    }
     
     private(set) var isExpensive = false
     
