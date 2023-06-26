@@ -54,6 +54,7 @@ final class NetworkMonitorManager {
                     } else {
                         print("5.B")
                         // There we should present our spinner.
+                        self.configureSpinner(currentViewController ?? UIViewController())
                         currentViewController?.view.addSubview(self.spinningCircle)
                         // 5.B) Present an alert controller:
                         currentViewController?.showAlert(title: "Internet connection status", message: "Check your internet connection")
@@ -90,14 +91,9 @@ final class NetworkMonitorManager {
         monitor.cancel()
     }
     
-    
-//    private func configureSpinningCircleAndDisplay(_ currentViewController: UIViewController) {
-//        spinningCircle.frame = CGRect(x: -50, y: 100, width: 100, height: 100)
-//        currentViewController.view.addSubview(spinningCircle)
-//    }
-    
-    private func dismissSpinningCircle(_ currentViewController: UIViewController) {
-        currentViewController.view.willRemoveSubview(spinningCircle)
+    private func configureSpinner(_ currentViewController: UIViewController) {
+        spinningCircle.translatesAutoresizingMaskIntoConstraints = false
+        spinningCircle.frame = CGRect(x: currentViewController.view.center.x - 50, y: currentViewController.view.center.y - 50, width: 100, height: 100)
     }
 }
 
