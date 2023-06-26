@@ -7,7 +7,7 @@
 
 import Foundation
 
-// Remove this file fast as possible
+// MARK: Remove this file fast as possible
 
 //Method to set windowRootViewController as NagivationViewController with rootStoryboard(ViewController)
 //After you can just change root view controller of this NaviVC and do a lot of stuff later
