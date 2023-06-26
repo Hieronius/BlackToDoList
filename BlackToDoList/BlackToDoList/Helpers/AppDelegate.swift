@@ -17,13 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         NetworkMonitorManager.shared.startMonitoring()
-        print("Start to monitor a current connection status")
         
-        // Activate IQKeyboardManager.
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.toolbarTintColor = .white
-        
-        // Activate Firebase.
+         
         FirebaseApp.configure()
         
         return true
@@ -49,7 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillTerminate(_ application: UIApplication) {
         NetworkMonitorManager.shared.stopMonitoring()
-        print("End to monitor a current connection status")
     }
 
 }

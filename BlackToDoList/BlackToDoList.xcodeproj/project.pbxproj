@@ -14,6 +14,7 @@
 		DD89DAEF2A443FD300C0BAE6 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD89DAEE2A443FD300C0BAE6 /* AuthManager.swift */; };
 		DD8B97542A481B2D006112D5 /* NetworkMonitorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8B97532A481B2D006112D5 /* NetworkMonitorManager.swift */; };
 		DD8B97562A481E7C006112D5 /* NWInterface+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8B97552A481E7C006112D5 /* NWInterface+Extension.swift */; };
+		DD8BC8172A494DFD003597F1 /* SpinningCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8BC8162A494DFD003597F1 /* SpinningCircleView.swift */; };
 		DD8C1EE32A46D35E008A6AB9 /* BiometricsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8C1EE22A46D35E008A6AB9 /* BiometricsManager.swift */; };
 		DD8C1EE52A46D611008A6AB9 /* UIViewController+Extension (segue).swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8C1EE42A46D611008A6AB9 /* UIViewController+Extension (segue).swift */; };
 		DD8C21222A36EC9900DC4CFC /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8C21212A36EC9900DC4CFC /* KeychainManager.swift */; };
@@ -51,6 +52,7 @@
 		DD89DAEE2A443FD300C0BAE6 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		DD8B97532A481B2D006112D5 /* NetworkMonitorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitorManager.swift; sourceTree = "<group>"; };
 		DD8B97552A481E7C006112D5 /* NWInterface+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NWInterface+Extension.swift"; sourceTree = "<group>"; };
+		DD8BC8162A494DFD003597F1 /* SpinningCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinningCircleView.swift; sourceTree = "<group>"; };
 		DD8C1EE22A46D35E008A6AB9 /* BiometricsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricsManager.swift; sourceTree = "<group>"; };
 		DD8C1EE42A46D611008A6AB9 /* UIViewController+Extension (segue).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension (segue).swift"; sourceTree = "<group>"; };
 		DD8C21212A36EC9900DC4CFC /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				DD01E32A2A31C12F00C99DCC /* CleaningButton.swift */,
 				DD90805D2A38749A009EC99E /* PassCodeView.swift */,
 				DD90805F2A3874CB009EC99E /* PassCodeButton.swift */,
+				DD8BC8162A494DFD003597F1 /* SpinningCircleView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				DD8C1EE52A46D611008A6AB9 /* UIViewController+Extension (segue).swift in Sources */,
 				DD90805E2A38749A009EC99E /* PassCodeView.swift in Sources */,
 				DDDB660E2A25DDBF00FE519B /* ResetPasswordViewController.swift in Sources */,
+				DD8BC8172A494DFD003597F1 /* SpinningCircleView.swift in Sources */,
 				DDDB65E52A25D2EE00FE519B /* LogInViewController.swift in Sources */,
 				DDDB660C2A25DDA900FE519B /* RegistrationViewController.swift in Sources */,
 				DDDB66182A25DE3400FE519B /* MainScreenViewController.swift in Sources */,
