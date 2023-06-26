@@ -12,12 +12,23 @@ final class NetworkMonitorManager {
     
     private let monitor: NWPathMonitor
     
+    // MARK: Create documentation for this property
     /// Getter of this variable is internal but Setter is private
     private(set) var isConnected: Bool? {
         didSet {
-            print("current status of the user internet connection is \(isConnected)")
+            DispatchQueue.main.async {
+                print("current status of the user internet connection is \(self.isConnected)")
+                let currentViewController = UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController
+                if currentViewController?.presentedViewController as? UIAlertController != nil {
+                    currentViewController?.presentedViewController?.dismiss(animated: true)
+                    
+                } else {
+                    currentViewController?.showAlert(title: "Internet connection status", message: "Check your internet connection")
+                }
                 
+                print("current view controller \(currentViewController)")
             }
+        }
         }
     
     private(set) var isExpensive = false
