@@ -2,7 +2,16 @@
 Simple and fast app to manage your tasks.
 
 
-# User use cases
+
+# 🛠Technologies
+- UIKit
+- Keychain
+- FirebaseAuth
+- LocalAuthorisation
+- Network
+
+
+# 👱‍♂️User use cases
 
 1. User Registration -> Redirect to the Login Screen -> Email Verification -> LogIn. ✅
 2. User LogIn -> Create passcode -> Repeat passcode -> SavePasscode in Keychain -> Give Permission to use Biometrics -> Redirect to the Main Screen. ✅
