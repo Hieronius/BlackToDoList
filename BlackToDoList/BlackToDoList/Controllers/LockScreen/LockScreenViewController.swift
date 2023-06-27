@@ -128,7 +128,7 @@ final class LockScreenViewController: UIViewController {
                             
                             
                             // MARK: PUT HERE METHOD FOR FACEID/TOUCHID AUTHENTIFICATION IF USER OK WITH IT.
-                                BiometricManager.askForBiometrics(self)
+                                BiometricManager.askForBiometricsAndRedirectToMainScreen(self)
                                 BiometricManager.isUserGavePermissionToUseBiometrics = true
                             
                             
@@ -280,7 +280,7 @@ final class LockScreenViewController: UIViewController {
     
     // MARK: ACTION TO ACTIVATE FACEID/TOUCHID OF THE USER
     @IBAction private func useBiometricsButtonAction(_ sender: Any) {
-            BiometricManager.askForBiometrics(self)
+            BiometricManager.askForBiometricsAndRedirectToMainScreen(self)
     }
     
     // MARK: LOGOUT FROM THE APP

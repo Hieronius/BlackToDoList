@@ -12,7 +12,7 @@ final class BiometricManager {
     
     static var isUserGavePermissionToUseBiometrics = false
     
-    static func askForBiometrics(_ viewController: UIViewController) {
+    static func askForBiometricsAndRedirectToMainScreen(_ viewController: UIViewController) {
         let context = LAContext()
         let reason = "Please identify yourself"
         
