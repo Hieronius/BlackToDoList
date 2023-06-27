@@ -9,12 +9,16 @@ import Network
 
 final class NetworkMonitorManager {
     
-    // MARK: - Private Properties
+    // MARK: - Static Properties
     
     static let shared = NetworkMonitorManager()
     
+    // MARK: - Private Properties
+    
     private let monitor: NWPathMonitor
     
+    
+    /// Custom spinner which presents when user lost internet connection.
     private let spinningCircle = SpinningCircleView()
     
     
@@ -54,7 +58,7 @@ final class NetworkMonitorManager {
                     } else {
                         print("5.B")
                         // There we should present our spinner.
-                        self.configureSpinner(currentViewController ?? UIViewController())
+                        self.configureSpinnerAndDisplay(currentViewController ?? UIViewController())
                         // 5.B) Present an alert controller:
                         currentViewController?.showAlert(title: "Internet connection status", message: "Check your internet connection")
                     }
@@ -70,10 +74,13 @@ final class NetworkMonitorManager {
     
     private let queue = DispatchQueue(label: "NetworkConnectivityMonitor")
     
+    // MARK: - Initializers
+    
     private init() {
         monitor = NWPathMonitor()
     }
     
+    // MARK: - Public Methods
     
     /// This method starts monitoring network connectivity by setting the `pathUpdateHandler` property of the `monitor` object and calling the `start(queue:)` method.
     func startMonitoring() {
@@ -89,13 +96,26 @@ final class NetworkMonitorManager {
     func stopMonitoring() {
         monitor.cancel()
     }
+}
+
+// MARK: - Extension of custom spinner "no internet connection" UI
     
-    private func configureSpinner(_ currentViewController: UIViewController) {
+extension NetworkMonitorManager {
+    
+    private func configureSpinnerAndDisplay(_ currentViewController: UIViewController) {
+        // Attempt to implement a background view with a different color.
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = currentViewController.view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        currentViewController.view.addSubview(blurEffectView)
+        
         spinningCircle.translatesAutoresizingMaskIntoConstraints = false
         spinningCircle.frame = CGRect(x: currentViewController.view.center.x - 50,
                                       y: currentViewController.view.center.y - 50,
                                       width: 100,
                                       height: 100)
+        spinningCircle.becomeFirstResponder()
         currentViewController.view.addSubview(spinningCircle)
     }
 }
