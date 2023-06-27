@@ -17,62 +17,19 @@ final class NetworkMonitorManager {
     
     private let monitor: NWPathMonitor
     
-    
     /// Custom spinner which presents when user lost internet connection.
     private let spinningCircle = SpinningCircleView()
     
     private var spinnerBackgroundView = UIView()
     
-    
-    // MARK: Create documentation for this property
     /// Getter of this variable is internal but Setter is private
     private(set) var isConnected = false {
         didSet {
-            
-            // MARK: PUT THE CODE TO THE PRIVATE LOCAL FUNCTION
-            // 0. Define all actions on the main thread:
-            DispatchQueue.main.async {
-                // 1. Define current presented view controller:
-                let currentViewController = UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController
-                // 2. If we have internet connection:
-                if self.isConnected {
-                    // 3. If we already presented an alert controller:
-                    if currentViewController?.presentedViewController as? UIAlertController != nil {
-                        // 3.A) Dismiss this alert controller:
-                        print("3.A")
-                        currentViewController?.presentedViewController?.dismiss(animated: true)
-                    } else {
-                        print("3.B")
-                        // There we don't need to present any controllers, because user has internet connection.
-                        // MARK: STILL RUNS THIS CHUNK OF CODE TWICE
-                        // probably need a check is there a presented spinner or not.
-                        self.spinnerBackgroundView.removeFromSuperview()
-                        self.spinningCircle.removeFromSuperview()
-                        // 3.B) Present an alert controller:
-                        // currentViewController?.showAlert(title: "Internet connection status", message: "Check your internet connection")
-                    }
-                    // 4. If we don't have internet connection:
-                } else {
-                    // 5. If we already presented an alert controller:
-                    if currentViewController?.presentedViewController as? UIAlertController != nil {
-                        print("5.A")
-                        // 5.A) Dismiss this alert controller:
-                        currentViewController?.presentedViewController?.dismiss(animated: true)
-                    } else {
-                        print("5.B")
-                        // There we should present our spinner.
-                        self.configureSpinnerBackgroundAndDisplay(currentViewController ?? UIViewController())
-                        self.configureSpinnerAndDisplay(currentViewController ?? UIViewController())
-                        
-                        // 5.B) Present an alert controller:
-                        currentViewController?.showAlert(title: "Internet connection status", message: "Check your internet connection")
-                    }
-                    
-                }
-            }
+            throwNoInternetConnectionSpinner()
         }
     }
     
+    /// Property to evaluate current user internet connection. Expensive can be cellular and wi-fi from hotSpot internet connection.
     private(set) var isExpensive = false
     
     private(set) var currentConnectionType: NWInterface.InterfaceType?
@@ -101,10 +58,36 @@ final class NetworkMonitorManager {
     func stopMonitoring() {
         monitor.cancel()
     }
+    
+    // MARK: - Private Methods
+    
+    private func throwNoInternetConnectionSpinner() {
+        DispatchQueue.main.async {
+            let currentViewController = UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController
+            if self.isConnected {
+                if currentViewController?.presentedViewController as? UIAlertController != nil {
+                    currentViewController?.presentedViewController?.dismiss(animated: true)
+                } else {
+                    self.spinnerBackgroundView.removeFromSuperview()
+                    self.spinningCircle.removeFromSuperview()
+                }
+                
+            } else {
+                if currentViewController?.presentedViewController as? UIAlertController != nil {
+                    currentViewController?.presentedViewController?.dismiss(animated: true)
+                } else {
+                    self.configureSpinnerBackgroundAndDisplay(currentViewController ?? UIViewController())
+                    self.configureSpinnerAndDisplay(currentViewController ?? UIViewController())
+                    currentViewController?.showAlert(title: "Internet connection status",
+                                                     message: "Check your internet connection")
+                }
+            }
+        }
+    }
 }
 
 // MARK: - Extension of custom spinner "no internet connection" UI
-    
+
 extension NetworkMonitorManager {
     
     private func configureSpinnerBackgroundAndDisplay(_ currentViewController: UIViewController) {
@@ -117,7 +100,6 @@ extension NetworkMonitorManager {
     }
     
     private func configureSpinnerAndDisplay(_ currentViewController: UIViewController) {
-        
         spinningCircle.translatesAutoresizingMaskIntoConstraints = false
         spinningCircle.frame = CGRect(x: currentViewController.view.center.x - 50,
                                       y: currentViewController.view.center.y - 50,
