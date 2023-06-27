@@ -22,15 +22,13 @@ final class BiometricManager {
             guard success, error == nil else {
                 
                 DispatchQueue.main.async {
-                    // Failure of the attempt to check
-                    print("Authentication has been failed")
                     viewController?.showAlert(title: "Failed to Authenticate", message: "Authentication has been canceled", okButtonName: "Continue") {
-                        viewController?.segueToMainScreenAndMakeItAsRootTest(viewController!)
+                        viewController?.segueToMainScreenAndMakeItRootVC(viewController!)
                     }
                 }
                 return
             }
-            viewController?.segueToMainScreenAndMakeItAsRootTest(viewController!)
+            viewController?.segueToMainScreenAndMakeItRootVC(viewController!)
         }
     }
 }

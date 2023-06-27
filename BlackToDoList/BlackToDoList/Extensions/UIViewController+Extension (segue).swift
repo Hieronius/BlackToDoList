@@ -9,7 +9,7 @@ import UIKit
 
 extension UIViewController {
     
-    func segueToMainScreenAndMakeItAsRootTest(_ currentViewController: UIViewController) {
+    func segueToMainScreenAndMakeItRootVC(_ currentViewController: UIViewController) {
         Task {
             let storyboard = UIStoryboard(name: "MainScreenViewController", bundle: nil)
             let viewController = storyboard.instantiateViewController(withIdentifier: "MainScreenViewController") as! MainScreenViewController

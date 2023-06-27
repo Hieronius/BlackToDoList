@@ -22,18 +22,9 @@ final class LockScreenViewController: UIViewController {
     
     @IBOutlet weak var wrongPasscodeLabel: UILabel!
     
-    
     @IBOutlet weak var useBiometricsButtonView: UIButton! {
         didSet {
-            DispatchQueue.main.async {
-                if BiometricManager.isUserGavePermissionToUseBiometrics {
-                    self.useBiometricsButtonView.isHidden = false
-                    print("Biometric button should be visible")
-                } else {
-                    self.useBiometricsButtonView.isHidden = true
-                    print("Biometric button should be hidden")
-                }
-            }
+            hideBiometricsButtonIfUserWontGivePermission()
         }
     }
     
@@ -267,23 +258,16 @@ final class LockScreenViewController: UIViewController {
         
         // Test of user current session
         checkCurrentUserSession()
-        
-        
-        
     }
     
     
     
     // MARK: - IBActions
     
-    
-    
-    // MARK: ACTION TO ACTIVATE FACEID/TOUCHID OF THE USER
     @IBAction private func useBiometricsButtonAction(_ sender: Any) {
             BiometricManager.askForBiometricsAndRedirectToMainScreen(self)
     }
     
-    // MARK: LOGOUT FROM THE APP
     /// This function is an IBAction function that is triggered when the user taps the "Log Out" button in the app. It shows an alert to confirm if the user wants to log out, and if the user confirms, it logs the user out of the app, sets the "isUserLoggedIn" flag to false, and segues to the login screen.
     /// - Parameters:
     ///     - sender: An object that represents the sender of the action.
@@ -297,7 +281,7 @@ final class LockScreenViewController: UIViewController {
         }
     }
     
-    // MARK: ENTER THE NUMBER FOR THE PASSWORD
+    // Need documentation.
     @IBAction func passcodeNumberPressed(_ sender: UIButton) {
         // Let's define a number which is equal to the button label.
         let number = Int(sender.titleLabel?.text ?? "0") ?? 0
@@ -346,8 +330,20 @@ final class LockScreenViewController: UIViewController {
         }
     }
     
-    // MARK: DELETE A NUMBER FROM THE PASSWORD
+    
+    /**
+     This method handles the action when the "delete passcode" button is pressed. It performs different actions based on the user's session status and the passcode arrays.
+     
+     - Parameter sender: The object that triggered the action.
+
+     If the user is not logged in, it checks the passcode arrays and removes the last element from the appropriate array. The function also updates the UI by changing the background color of the passcode view and triggers an asynchronous animation.
+
+     If the user is logged in, it checks the current passcode array and removes the last element if there are elements present. Similar to the previous case, it updates the UI and triggers the animation.
+
+     The method also prints debug information to the console for logging purposes
+     */
     @IBAction func deletePasscodeButtonAction(_ sender: UIButton) {
+        // Need to be cleaned.
         // Check of the current user session status. If loggen in fill the passcode field "Enter the passcode". If not let's create a new one.
         if !(UserSessionManager.isUserLoggedIn) {
             
@@ -393,25 +389,37 @@ final class LockScreenViewController: UIViewController {
         }
     }
     
-    // MARK: NEED DOCUMENTATION FOR THIS METHOD. TOO MUCH DIFFERENT FUNCTIONALITIES.
+    /**
+     This method displays an alert to the user, asking them to relogin in order to create a new passcode. It informs the user that the old passcode will be deleted. If the user confirms the action, the current passcode is deleted from the Keychain, the user session status is updated to "not logged in", and the user is redirected to the login screen.
+
+     - Parameter sender: The object that triggered the action.
+     */
     @IBAction func forgetPasswordButtonAction(_ sender: Any) {
-        
-        showAlert(title: "Please relogin to create a new passcode", message: "Old passcode will be deleted. Are you sure to procedure?", isCancelButton: true, okButtonName: "Relogin") {
-            // Function to delete current passcode from Keychain.
-            // Also i should implement force LogOut of the user.
-            // MARK: implement DeletePasscode from Keychain Here. Refactor all methods from Keychain.
-            // self.deletePasscode()
+        showAlert(title: "Please relogin to create a new passcode",
+                  message: "Old passcode will be deleted. Are you sure to procedure?",
+                  isCancelButton: true,
+                  okButtonName: "Relogin") {
+            
             do {
                 try KeychainManager.deleteData(service: KeychainManager.serviceId,
                                                account: KeychainManager.currentUser)
             } catch {
                 print(KeychainManager.KeychainError.unknown(OSStatus()))
             }
-            // Change global property of User Current Session Status.
             UserSessionManager.isUserLoggedIn = false
             self.segueToLogInScreenAndMakeItAsRoot()
         }
         
+    }
+    
+    private func hideBiometricsButtonIfUserWontGivePermission() {
+        DispatchQueue.main.async {
+            if BiometricManager.isUserGavePermissionToUseBiometrics {
+                self.useBiometricsButtonView.isHidden = false
+            } else {
+                self.useBiometricsButtonView.isHidden = true
+            }
+        }
     }
     
     private func segueToMainScreenAndMakeItAsRoot() {
@@ -467,6 +475,5 @@ final class LockScreenViewController: UIViewController {
             view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
         }
     }
-    
     
 }

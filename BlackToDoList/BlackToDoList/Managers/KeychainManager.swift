@@ -19,7 +19,6 @@ final class KeychainManager {
     static var serviceId = "BlackToDoList"
     static var currentUser = "User"
     
-    
     /**
      This static function is used to save data to the Keychain, which securely stores sensitive information like passwords. It takes three input parameters: `service` (a string representing the service or application for which the data is being saved), `account` (a string representing the account or user associated with the data), and `password` (an array of integers representing the password to be saved).
 
@@ -130,7 +129,6 @@ final class KeychainManager {
             throw KeychainError.unknown(status)
         }
     }
-    
     
     /**
      Get's all stored data as dictionary with the type of given `secClass`.
