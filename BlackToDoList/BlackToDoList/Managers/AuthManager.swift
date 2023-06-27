@@ -11,6 +11,7 @@ import UIKit
 final class AuthManager {
 
     /// function is a static function that is used to sign up a new user with their email and password. This function takes four parameters: user's email address, user's password, user's password verification and the view controller that is calling the function. If user's email and password are correct this function should create a new account and send a verification link to the user's email address and redirect user to the LogIn Screen. Otherwice, it's shows an alert with an error message.
+    /// 
     /// - Parameters:
     ///   - userEmail: A String that represents the user's email address. This parameter is optional and defaults to an empty string if it is not provided.
     ///   - userPassword: A String that represents the user's password. This parameter is optional and defaults to an empty string if it is not provided.
@@ -59,6 +60,7 @@ final class AuthManager {
     }
     
     /// This is a static function that allows a user to sign in to the app using their email and password. It takes in three parameters: the user's email address, the user's password, and the view controller that is calling the function. If the user's email and password are correct, and the user's email address is verified, the function segues to the Lock Screen view controller. Otherwise, it shows an alert with an error message.
+    ///
     /// - Parameters:
     ///   - userEmail: A String that represents the user's email address. This parameter is optional and defaults to an empty string if it is not provided.
     ///   - userPassword: A String that represents the user's password. This parameter is optional and defaults to an empty string if it is not provided.
@@ -112,6 +114,7 @@ final class AuthManager {
     
     
     /// This is a static function that resets the password for a user's email address. It takes in two parameters: the user's email address and the view controller that is calling the function. If the email address is valid, the function sends a password reset email to the user's email address.
+    ///
     /// - Parameters:
     ///   - userEmail: A String value that represents the user's email address.
     ///   - viewController: A UIViewController that represents the view controller that is calling the function
