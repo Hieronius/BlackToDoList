@@ -42,12 +42,12 @@ final class SpinningCircleView: UIView {
         self.layer.addSublayer(spinningCircle)
     }
     
-    /// The view rotates to a 180-degree angle (in radians) for 1 sec. and then rotates back to its original position continuously. 
+    /// The view rotates to a 180-degree angle (in radians) for 0.5 sec. and then rotates back to its original position continuously.
     private func animate() {
-        UIView.animate(withDuration: 1, delay: 0, options: .curveLinear, animations: {
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear, animations: {
             self.transform = CGAffineTransform(rotationAngle: .pi)
         }) { (completed) in
-            UIView.animate(withDuration: 1, delay: 0, options: .curveLinear, animations: {
+            UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear, animations: {
                 self.transform = CGAffineTransform(rotationAngle: 0)
             }) { (completed) in
                 self.animate()
