@@ -29,11 +29,9 @@ final class ResetPasswordViewController: UIViewController {
     
     // MARK: - IBActions
     
-    
-    // MARK: SEND LINK TO PASSWORD RESET TO THE EMAIL AND REDIRECT TO THE LOGIN SCREEN
     @IBAction private func resetPasswordButtonAction(_ sender: UIButton) {
         Task {
-            AuthManager.resetPassword(resetPasswordEmailTextField.text, self)
+            AuthManager.resetPasswordAndGoToLogInScreen(resetPasswordEmailTextField.text, self)
         }
     }
     

@@ -116,7 +116,7 @@ final class AuthManager {
        - userEmail: A String value that represents the user's email address.
        - viewController: A UIViewController that represents the view controller that is calling the function
      */
-    static func resetPassword(_ userEmail: String?, _ viewController: UIViewController) {
+    static func resetPasswordAndGoToLogInScreen(_ userEmail: String?, _ viewController: UIViewController) {
             let email = userEmail ?? ""
             
             if email.isEmpty {
