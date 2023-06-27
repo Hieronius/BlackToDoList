@@ -19,7 +19,7 @@ final class AuthManager {
        - repeatPassword: A String that represents the user's repeated password. This parameter is optional and defaults to an empty string if it is not provided.
        - currentViewController: A UIViewController that represents the current view controller. This parameter is required and must be provided when calling the function.
      */
-    static func signUp(_ userEmail: String?,
+    static func signUpAndMoveToTheLogInScreen(_ userEmail: String?,
                        _ userPassword: String?,
                        _ repeatPassword: String?,
                        _ currentViewController: UIViewController) {

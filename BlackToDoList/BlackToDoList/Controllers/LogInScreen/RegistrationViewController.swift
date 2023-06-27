@@ -34,7 +34,7 @@ final class RegistrationViewController: UIViewController {
     
     @IBAction private func registrationSignUpButtonAction(_ sender: UIButton) {
         Task {
-            AuthManager.signUp(registrationEmailTextField.text,
+            AuthManager.signUpAndMoveToTheLogInScreen(registrationEmailTextField.text,
                                registrationPasswordTextField.text,
                                registrationRepeatPasswordTextField.text,
                                self)
