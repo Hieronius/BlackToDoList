@@ -21,6 +21,8 @@ final class NetworkMonitorManager {
     /// Custom spinner which presents when user lost internet connection.
     private let spinningCircle = SpinningCircleView()
     
+    private var spinnerBackgroundView = UIView()
+    
     
     // MARK: Create documentation for this property
     /// Getter of this variable is internal but Setter is private
@@ -44,6 +46,7 @@ final class NetworkMonitorManager {
                         // There we don't need to present any controllers, because user has internet connection.
                         // MARK: STILL RUNS THIS CHUNK OF CODE TWICE
                         // probably need a check is there a presented spinner or not.
+                        self.spinnerBackgroundView.removeFromSuperview()
                         self.spinningCircle.removeFromSuperview()
                         // 3.B) Present an alert controller:
                         // currentViewController?.showAlert(title: "Internet connection status", message: "Check your internet connection")
@@ -58,7 +61,9 @@ final class NetworkMonitorManager {
                     } else {
                         print("5.B")
                         // There we should present our spinner.
+                        self.configureSpinnerBackgroundAndDisplay(currentViewController ?? UIViewController())
                         self.configureSpinnerAndDisplay(currentViewController ?? UIViewController())
+                        
                         // 5.B) Present an alert controller:
                         currentViewController?.showAlert(title: "Internet connection status", message: "Check your internet connection")
                     }
@@ -102,20 +107,22 @@ final class NetworkMonitorManager {
     
 extension NetworkMonitorManager {
     
-    private func configureSpinnerAndDisplay(_ currentViewController: UIViewController) {
-        // Attempt to implement a background view with a different color.
+    private func configureSpinnerBackgroundAndDisplay(_ currentViewController: UIViewController) {
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = currentViewController.view.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        currentViewController.view.addSubview(blurEffectView)
+        spinnerBackgroundView = UIVisualEffectView(effect: blurEffect)
+        spinnerBackgroundView.frame = currentViewController.view.bounds
+        spinnerBackgroundView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        spinnerBackgroundView.alpha = 0.8
+        currentViewController.view.addSubview(spinnerBackgroundView)
+    }
+    
+    private func configureSpinnerAndDisplay(_ currentViewController: UIViewController) {
         
         spinningCircle.translatesAutoresizingMaskIntoConstraints = false
         spinningCircle.frame = CGRect(x: currentViewController.view.center.x - 50,
                                       y: currentViewController.view.center.y - 50,
                                       width: 100,
                                       height: 100)
-        spinningCircle.becomeFirstResponder()
         currentViewController.view.addSubview(spinningCircle)
     }
 }
