@@ -328,8 +328,7 @@ final class LockScreenViewController: UIViewController {
                 print(sender.titleLabel?.text)
             }
         }
-    }
-    
+    }   
     
     /**
      This method handles the action when the "delete passcode" button is pressed. It performs different actions based on the user's session status and the passcode arrays.

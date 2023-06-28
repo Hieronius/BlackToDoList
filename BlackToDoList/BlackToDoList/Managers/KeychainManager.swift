@@ -20,7 +20,7 @@ final class KeychainManager {
     static var currentUser = "User"
     
     /**
-     This static function is used to save data to the Keychain, which securely stores sensitive information like passwords. It takes three input parameters: `service` (a string representing the service or application for which the data is being saved), `account` (a string representing the account or user associated with the data), and `password` (an array of integers representing the password to be saved).
+     This static function is used to save data to the Keychain, which securely stores sensitive information like passwords.
 
      - Parameters:
         - service: a string representing the service or application for which the data is being saved.
@@ -103,7 +103,7 @@ final class KeychainManager {
     }
     
     /**
-    The `deleteData` function is a static function that deletes data from the keychain.
+    It's a a static function that deletes data from the keychain.
      
      - Parameters:
        - service: A string representing the service associated with the data to be deleted.
@@ -133,9 +133,9 @@ final class KeychainManager {
     /**
      Get's all stored data as dictionary with the type of given `secClass`.
      
-     - Warning: possible to find data only with kSecClassGenericPassword
-     all other data such as "kSecAttrService as String" - User service or
-     "kSecAttrAccount as String" - User account will return nil
+     - Warning: possible to find data only with `kSecClassGenericPassword`
+     all other data such as `kSecAttrService as String` - User service or
+     `kSecAttrAccount as String` - User account will return nil
      
      - Parameters:
        - secClass: Class of data to find
