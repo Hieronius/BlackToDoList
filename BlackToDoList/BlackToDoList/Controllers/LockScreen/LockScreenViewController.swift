@@ -87,7 +87,7 @@ final class LockScreenViewController: UIViewController {
     
     /**
      This private method is used to present an alert to the user asking for permission to use Face ID or Touch ID after successfully creating a passcode.
-
+     
      **Functionality**
      
      - The method creates an instance of `UIAlertController` with a title and message to ask for biometrics permission.
@@ -102,8 +102,8 @@ final class LockScreenViewController: UIViewController {
                                                 preferredStyle: .alert)
         
         let okAction = UIAlertAction(title: "Ok", style: .default) { action in
-                BiometricManager.askForBiometricsAndRedirectToMainScreen(self)
-                BiometricManager.isUserGavePermissionToUseBiometrics = true
+            BiometricManager.askForBiometricsAndRedirectToMainScreen(self)
+            BiometricManager.isUserGavePermissionToUseBiometrics = true
             
             self.saveUserPasccodeWithDelayAndChangeUserSessionStatus()
         }
@@ -183,12 +183,12 @@ final class LockScreenViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction private func useBiometricsButtonAction(_ sender: Any) {
-            BiometricManager.askForBiometricsAndRedirectToMainScreen(self)
+        BiometricManager.askForBiometricsAndRedirectToMainScreen(self)
     }
     
     /**
      This function is an IBAction function that is triggered when the user taps the "Log Out" button in the app. It shows an alert to confirm if the user wants to log out, and if the user confirms, it logs the user out of the app, sets the "isUserLoggedIn" flag to false, and segues to the login screen.
-    */
+     */
     @IBAction func logOutButtonAction(_ sender: Any) {
         showAlert(title: "LogOut",
                   message: "Are you sure to logout from the app?",
@@ -204,67 +204,40 @@ final class LockScreenViewController: UIViewController {
      This function is called when a number button is pressed in the passcode screen. It handles the logic for filling the passcode fields based on the user session status.
      
      - Parameters:
-        - sender: paccode button that was pressed.
+     - sender: paccode button that was pressed.
      
-    **Functionality**
+     **Functionality**
      
      1. The function takes the button label as an input and converts it to an integer.
      2. It checks the user session status to determine whether to fill the passcode field or create a new passcode.
      3. If the user is not logged in, it checks if the first passcode array has enough space for numbers. If so, it adds the number to the array and changes the color of the corresponding passcode field. If the first passcode is already filled and the second passcode still has space, it adds the number to the second passcode array. If there is no space for numbers, it prints "Too many numbers".
      4. If the user is logged in, it checks if the current passcode array has space for numbers. If so, it adds the number to the array and changes the color of the corresponding passcode field.
-    */
+     */
     @IBAction func passcodeNumberPressed(_ sender: UIButton) {
         let number = Int(sender.titleLabel?.text ?? "0") ?? 0
-        // MARK: SHOULD BE TESTED AND REFACTORED UNCORRECT COUNTER OF CURRENT NUMBERS/VIEW IN PASSCODE 28.06.23
-        if !(UserSessionManager.isUserLoggedIn) {
+        
+        if !UserSessionManager.isUserLoggedIn {
             if firstPasscode.count < 4 && secondPasscode.isEmpty {
+                FillCurrentPasscodeView(firstPasscodeViewFieldsStack, firstPasscode, .white)
                 firstPasscode.append(number)
                 
-                 testFillOfTheCurrentPasscodeView(firstPasscodeViewFieldsStack, firstPasscode, .white)
-//                let currentPasscodeView = firstPasscodeViewFieldsStack.subviews[firstPasscode.count - 1]
-//                currentPasscodeView.backgroundColor = UIColor.white
-                
-                // animatePasscodeView(view: currentPasscodeView)
-                // animatePasscodeView(view: testFillOfTheCurrentPasscodeView(firstPasscodeViewFieldsStack, firstPasscode, .white))
-                
             } else if firstPasscode.count == 4 && secondPasscode.count < 4 {
+                FillCurrentPasscodeView(secondPasscodeViewStack, secondPasscode, .white)
                 secondPasscode.append(number)
-                
-                 testFillOfTheCurrentPasscodeView(secondPasscodeViewStack, secondPasscode, .white)
-//                let currentPasscodeView = secondPasscodeViewStack.subviews[secondPasscode.count - 1]
-//                currentPasscodeView.backgroundColor = UIColor.white
-                
-                // animatePasscodeView(view: currentPasscodeView)
-                // animatePasscodeView(view: testFillOfTheCurrentPasscodeView(secondPasscodeViewStack, secondPasscode, .white))
             }
             
         } else {
             if currentPasscode.count < 4 {
+                FillCurrentPasscodeView(enterPasscodeViewStack, currentPasscode, .white)
                 currentPasscode.append(number)
-                
-                 testFillOfTheCurrentPasscodeView(enterPasscodeViewStack, currentPasscode, .white)
-                
-//                let currentPasscodeView = enterPasscodeViewStack.subviews[currentPasscode.count - 1]
-//                currentPasscodeView.backgroundColor = UIColor.white
-                
-                // animatePasscodeView(view: currentPasscodeView)
-                // animatePasscodeView(view: testFillOfTheCurrentPasscodeView(enterPasscodeViewStack, currentPasscode, .white))
             }
         }
     }
     
-    private func testFillOfTheCurrentPasscodeView(_ view: UIStackView, _ passcode: [Int], _ color: UIColor) {
-        let currentPasscodeView = view.subviews[passcode.count - 1]
-        currentPasscodeView.backgroundColor = UIColor.white
+    private func FillCurrentPasscodeView(_ view: UIStackView, _ passcode: [Int], _ color: UIColor) {
+        let currentPasscodeView = view.subviews[passcode.count]
+        currentPasscodeView.backgroundColor = color
         animatePasscodeView(view: currentPasscodeView)
-    }
-    
-    private func currentPasscodeViewIndex(_ indexes: [Int]) -> Int {
-        return indexes.count - 1
-    }
-    
-    private func fillSinglePasscodeView(_ view: UIView, _ color: UIColor) {
-        view.backgroundColor = color
     }
     
     /**
@@ -273,43 +246,27 @@ final class LockScreenViewController: UIViewController {
      - Parameter sender: The object that triggered the action.
      
      **Functionality**
-
+     
      - If the user is not logged in, it checks the passcode arrays and removes the last element from the appropriate array. The function also updates the UI by changing the background color of the passcode view and triggers an asynchronous animation.
-
+     
      - If the user is logged in, it checks the current passcode array and removes the last element if there are elements present. Similar to the previous case, it updates the UI and triggers the animation.
-
-     - The method also prints debug information to the console for logging purposes
+     
      */
     @IBAction func deletePasscodeButtonAction(_ sender: UIButton) {
-        if !(UserSessionManager.isUserLoggedIn) {
-            // MARK: SHOULD BE TESTED AND REFACTORED. UNCORRECT COUNTER OF CURRENT NUMBERS/VIEW IN PASSCODE 28.06.23
+        if !UserSessionManager.isUserLoggedIn {
             if firstPasscode.count > 0 && firstPasscode.count < 4 && secondPasscode.isEmpty {
                 firstPasscode.removeLast()
-                let currentPasscodeView = firstPasscodeViewFieldsStack.subviews[firstPasscode.count - 1]
-                currentPasscodeView.backgroundColor = UIColor.black
+                FillCurrentPasscodeView(firstPasscodeViewFieldsStack, firstPasscode, .black)
                 
-                animatePasscodeView(view: currentPasscodeView)
-                // firstPasscode.removeLast()
-                
-            
             } else if firstPasscode.count == 4 && secondPasscode.count < 4 && secondPasscode.count > 0 {
                 secondPasscode.removeLast()
-                let currentPasscodeView = secondPasscodeViewStack.subviews[secondPasscode.count - 1]
-                currentPasscodeView.backgroundColor = UIColor.black
-                
-                animatePasscodeView(view: currentPasscodeView)
-                // secondPasscode.removeLast()
+                FillCurrentPasscodeView(secondPasscodeViewStack, secondPasscode, .black)
             }
             
         } else {
             if currentPasscode.count > 0 && currentPasscode.count <= 4  && firstPasscode.isEmpty {
                 currentPasscode.removeLast()
-                print(currentPasscode)
-                let currentPasscodeView = enterPasscodeViewStack.subviews[currentPasscode.count - 1]
-                currentPasscodeView.backgroundColor = UIColor.black
-                
-                animatePasscodeView(view: currentPasscodeView)
-                // currentPasscode.removeLast()
+                FillCurrentPasscodeView(enterPasscodeViewStack, currentPasscode, .black)
             }
         }
     }
@@ -359,7 +316,7 @@ final class LockScreenViewController: UIViewController {
     
     /**
      This private method is used to change the visibility of UI elements based on the user session status.
-
+     
      **Functionality**
      
      - The method checks the user session status using the `isUserLoggedIn` property of the `UserSessionManager` class.
@@ -368,23 +325,23 @@ final class LockScreenViewController: UIViewController {
      */
     private func changeUIRegardsToUserSessionStatus() {
         if UserSessionManager.isUserLoggedIn == false {
-           createPasscodeLabel.isHidden = false
-           firstPasscodeViewFieldsStack.isHidden = false
-           repeatPasscodeLabel.isHidden = true
-           secondPasscodeViewStack.isHidden = true
-
-           enterPasscodeLabel.isHidden = true
-           enterPasscodeViewStack.isHidden = true
-        
+            createPasscodeLabel.isHidden = false
+            firstPasscodeViewFieldsStack.isHidden = false
+            repeatPasscodeLabel.isHidden = true
+            secondPasscodeViewStack.isHidden = true
+            
+            enterPasscodeLabel.isHidden = true
+            enterPasscodeViewStack.isHidden = true
+            
         } else if UserSessionManager.isUserLoggedIn == true {
-           createPasscodeLabel.isHidden = true
-           repeatPasscodeLabel.isHidden = true
-           secondPasscodeViewStack.isHidden = true
-           firstPasscodeViewFieldsStack.isHidden = true
-
-           enterPasscodeLabel.isHidden = false
-           enterPasscodeViewStack.isHidden = false
-       }
+            createPasscodeLabel.isHidden = true
+            repeatPasscodeLabel.isHidden = true
+            secondPasscodeViewStack.isHidden = true
+            firstPasscodeViewFieldsStack.isHidden = true
+            
+            enterPasscodeLabel.isHidden = false
+            enterPasscodeViewStack.isHidden = false
+        }
     }
     
     // MARK: USER PASSCODE LOGIC BLOCK
