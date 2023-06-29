@@ -44,7 +44,7 @@ final class LockScreenViewController: UIViewController {
         }
     }
     
-    // MARK: LAST PLACE FOR REFACTOR
+    // MARK: LAST PLACE FOR REFACTORING
     /// Current passcode combination when user wan't to LogIn to the app from new app session.
     private var currentPasscode = [Int]() {
         didSet {
