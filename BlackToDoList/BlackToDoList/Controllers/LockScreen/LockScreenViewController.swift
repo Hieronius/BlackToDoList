@@ -39,96 +39,11 @@ final class LockScreenViewController: UIViewController {
     
     /// Array of second user passcode combination during registration.
     private var secondPasscode = [Int]() {
-        // When both passcodes are done we should check it on equality.
-        // If the checkout has been failed let's clean both passcodes array and clean all animation.
         didSet {
             checkPasscodesForEqualityAndLogIn()
         }
     }
     
-    private func checkPasscodesForEqualityAndLogIn() {
-        DispatchQueue.main.async {
-            if self.secondPasscode.count == 4 && self.firstPasscode.count == 4 {
-                
-                if self.firstPasscode != self.secondPasscode {
-                    self.changePasscodesUI()
-                    self.deleteWrongPasscodeWithDelay()
-                    self.fillPasscodeField(self.secondPasscodeViewStack, .black)
-                    self.openAndHideWrongPasscodeLabelWithDelay()
-                    
-                } else if self.firstPasscode == self.secondPasscode {
-                    self.presentAlertToAskBiometricsPermission()
-                }
-            }
-        }
-    }
-    
-    private func fillPasscodeField(_ field: UIStackView, _ color: UIColor) {
-        let currentPasscodeView = field.subviews
-        
-        for view in currentPasscodeView {
-            view.backgroundColor = color
-        }
-    }
-    
-    private func deleteWrongPasscodeWithDelay() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.firstPasscode.removeAll()
-            self.secondPasscode.removeAll()
-        }
-    }
-    
-    private func openAndHideWrongPasscodeLabelWithDelay() {
-        self.wrongPasscodeLabel.isHidden.toggle()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            self.wrongPasscodeLabel.isHidden.toggle()
-        }
-    }
-    
-    /**
-     This private method is used to present an alert to the user asking for permission to use Face ID or Touch ID after successfully creating a passcode.
-     
-     **Functionality**
-     
-     - The method creates an instance of `UIAlertController` with a title and message to ask for biometrics permission.
-     - It defines two actions for the alert controller: "Ok" and "Cancel".
-     - The "Ok" action triggers the `askForBiometricsAndRedirectToMainScreen` method of `BiometricManager` to ask for biometrics permission and redirect to the main screen. It also sets `isUserGavePermissionToUseBiometrics` to `true`.
-     - The "Cancel" action triggers the `segueToMainScreenAndMakeItAsRoot` method and also calls `saveUserPasccodeWithDelayAndChangeUserSessionStatus`.
-     - Finally, the alert controller is presented to the user with animation.
-     */
-    private func presentAlertToAskBiometricsPermission() {
-        let alertController = UIAlertController(title: "Passcode successfully created",
-                                                message: "Give permission to use FaceID/TouchID ",
-                                                preferredStyle: .alert)
-        
-        let okAction = UIAlertAction(title: "Ok", style: .default) { action in
-            BiometricManager.askForBiometricsAndRedirectToMainScreen(self)
-            BiometricManager.isUserGavePermissionToUseBiometrics = true
-            
-            self.saveUserPasccodeWithDelayAndChangeUserSessionStatus()
-        }
-        alertController.addAction(okAction)
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
-            self.segueToMainScreenAndMakeItAsRoot()
-            self.saveUserPasccodeWithDelayAndChangeUserSessionStatus()
-        }
-        alertController.addAction(cancelAction)
-        self.present(alertController, animated: true)
-    }
-    
-    private func saveUserPasccodeWithDelayAndChangeUserSessionStatus() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            do {
-                try KeychainManager.saveData(service: KeychainManager.serviceId,
-                                             account: KeychainManager.currentUser,
-                                             password: self?.firstPasscode ?? [10, 10, 10, 10])
-            } catch {
-                print(error)
-            }
-            UserSessionManager.isUserLoggedIn = true
-        }
-    }
     // MARK: LAST PLACE FOR REFACTOR
     /// Current passcode combination when user wan't to LogIn to the app from new app session.
     private var currentPasscode = [Int]() {
@@ -178,8 +93,6 @@ final class LockScreenViewController: UIViewController {
         changeUIRegardsToUserSessionStatus()
     }
     
-    
-    
     // MARK: - IBActions
     
     @IBAction private func useBiometricsButtonAction(_ sender: Any) {
@@ -189,7 +102,7 @@ final class LockScreenViewController: UIViewController {
     /**
      This function is an IBAction function that is triggered when the user taps the "Log Out" button in the app. It shows an alert to confirm if the user wants to log out, and if the user confirms, it logs the user out of the app, sets the "isUserLoggedIn" flag to false, and segues to the login screen.
      */
-    @IBAction func logOutButtonAction(_ sender: Any) {
+    @IBAction private func logOutButtonAction(_ sender: Any) {
         showAlert(title: "LogOut",
                   message: "Are you sure to logout from the app?",
                   isCancelButton: true,
@@ -218,26 +131,20 @@ final class LockScreenViewController: UIViewController {
         
         if !UserSessionManager.isUserLoggedIn {
             if firstPasscode.count < 4 && secondPasscode.isEmpty {
-                FillCurrentPasscodeView(firstPasscodeViewFieldsStack, firstPasscode, .white)
+                fillCurrentPasscodeView(firstPasscodeViewFieldsStack, firstPasscode, .white)
                 firstPasscode.append(number)
                 
             } else if firstPasscode.count == 4 && secondPasscode.count < 4 {
-                FillCurrentPasscodeView(secondPasscodeViewStack, secondPasscode, .white)
+                fillCurrentPasscodeView(secondPasscodeViewStack, secondPasscode, .white)
                 secondPasscode.append(number)
             }
             
         } else {
             if currentPasscode.count < 4 {
-                FillCurrentPasscodeView(enterPasscodeViewStack, currentPasscode, .white)
+                fillCurrentPasscodeView(enterPasscodeViewStack, currentPasscode, .white)
                 currentPasscode.append(number)
             }
         }
-    }
-    
-    private func FillCurrentPasscodeView(_ view: UIStackView, _ passcode: [Int], _ color: UIColor) {
-        let currentPasscodeView = view.subviews[passcode.count]
-        currentPasscodeView.backgroundColor = color
-        animatePasscodeView(view: currentPasscodeView)
     }
     
     /**
@@ -256,17 +163,17 @@ final class LockScreenViewController: UIViewController {
         if !UserSessionManager.isUserLoggedIn {
             if firstPasscode.count > 0 && firstPasscode.count < 4 && secondPasscode.isEmpty {
                 firstPasscode.removeLast()
-                FillCurrentPasscodeView(firstPasscodeViewFieldsStack, firstPasscode, .black)
+                fillCurrentPasscodeView(firstPasscodeViewFieldsStack, firstPasscode, .black)
                 
             } else if firstPasscode.count == 4 && secondPasscode.count < 4 && secondPasscode.count > 0 {
                 secondPasscode.removeLast()
-                FillCurrentPasscodeView(secondPasscodeViewStack, secondPasscode, .black)
+                fillCurrentPasscodeView(secondPasscodeViewStack, secondPasscode, .black)
             }
             
         } else {
             if currentPasscode.count > 0 && currentPasscode.count <= 4  && firstPasscode.isEmpty {
                 currentPasscode.removeLast()
-                FillCurrentPasscodeView(enterPasscodeViewStack, currentPasscode, .black)
+                fillCurrentPasscodeView(enterPasscodeViewStack, currentPasscode, .black)
             }
         }
     }
@@ -292,6 +199,40 @@ final class LockScreenViewController: UIViewController {
         
     }
     
+    // MARK: - Private Methods
+    
+    /**
+     This private method is used to present an alert to the user asking for permission to use Face ID or Touch ID after successfully creating a passcode.
+     
+     **Functionality**
+     
+     - The method creates an instance of `UIAlertController` with a title and message to ask for biometrics permission.
+     - It defines two actions for the alert controller: "Ok" and "Cancel".
+     - The "Ok" action triggers the `askForBiometricsAndRedirectToMainScreen` method of `BiometricManager` to ask for biometrics permission and redirect to the main screen. It also sets `isUserGavePermissionToUseBiometrics` to `true`.
+     - The "Cancel" action triggers the `segueToMainScreenAndMakeItAsRoot` method and also calls `saveUserPasccodeWithDelayAndChangeUserSessionStatus`.
+     - Finally, the alert controller is presented to the user with animation.
+     */
+    private func presentAlertToAskBiometricsPermission() {
+        let alertController = UIAlertController(title: "Passcode successfully created",
+                                                message: "Give permission to use FaceID/TouchID ",
+                                                preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "Ok", style: .default) { action in
+            BiometricManager.askForBiometricsAndRedirectToMainScreen(self)
+            BiometricManager.isUserGavePermissionToUseBiometrics = true
+            
+            self.saveUserPasccodeWithDelayAndChangeUserSessionStatus()
+        }
+        alertController.addAction(okAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
+            self.segueToMainScreenAndMakeItAsRoot()
+            self.saveUserPasccodeWithDelayAndChangeUserSessionStatus()
+        }
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true)
+    }
+    
     private func hideBiometricsButtonIfUserWontGivePermission() {
         DispatchQueue.main.async {
             if BiometricManager.isUserGavePermissionToUseBiometrics {
@@ -300,18 +241,6 @@ final class LockScreenViewController: UIViewController {
                 self.useBiometricsButtonView.isHidden = true
             }
         }
-    }
-    
-    private func segueToMainScreenAndMakeItAsRoot() {
-        let storyboard = UIStoryboard(name: "MainScreenViewController", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "MainScreenViewController") as! MainScreenViewController
-        self.navigationController?.setViewControllers([viewController], animated: true)
-    }
-    
-    private func segueToLogInScreenAndMakeItAsRoot() {
-        let storyboard = UIStoryboard(name: "LogInViewController", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "LogInViewController") as! LogInViewController
-        self.navigationController?.setViewControllers([viewController], animated: true)
     }
     
     /**
@@ -344,7 +273,48 @@ final class LockScreenViewController: UIViewController {
         }
     }
     
-    // MARK: USER PASSCODE LOGIC BLOCK
+}
+
+// MARK: - Extension. Passcode section
+
+extension LockScreenViewController {
+    
+    private func saveUserPasccodeWithDelayAndChangeUserSessionStatus() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            do {
+                try KeychainManager.saveData(service: KeychainManager.serviceId,
+                                             account: KeychainManager.currentUser,
+                                             password: self?.firstPasscode ?? [10, 10, 10, 10])
+            } catch {
+                print(error)
+            }
+            UserSessionManager.isUserLoggedIn = true
+        }
+    }
+    
+    private func checkPasscodesForEqualityAndLogIn() {
+        DispatchQueue.main.async {
+            if self.secondPasscode.count == 4 && self.firstPasscode.count == 4 {
+                
+                if self.firstPasscode != self.secondPasscode {
+                    self.changePasscodesUI()
+                    self.deleteWrongPasscodeWithDelay()
+                    self.fillPasscodeField(self.secondPasscodeViewStack, .black)
+                    self.openAndHideWrongPasscodeLabelWithDelay()
+                    
+                } else if self.firstPasscode == self.secondPasscode {
+                    self.presentAlertToAskBiometricsPermission()
+                }
+            }
+        }
+    }
+    
+    private func deleteWrongPasscodeWithDelay() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.firstPasscode.removeAll()
+            self.secondPasscode.removeAll()
+        }
+    }
     
     /// private function to change current user passcode phorm to fill during first registration.
     private func switchPasscodes() {
@@ -356,15 +326,65 @@ final class LockScreenViewController: UIViewController {
         }
     }
     
+    /**
+     This private method is written in Swift and is used to fill a specific passcode view with a specified color.
+
+     - Parameters:
+     - `view` (type: `UIStackView`): The stack view that contains the passcode views.
+
+     - `passcode` (type: `[Int]`): An array representing the passcode.
+
+     - `color` (type: `UIColor`): The color to fill the passcode view with.
+
+     */
+    private func fillCurrentPasscodeView(_ view: UIStackView, _ passcode: [Int], _ color: UIColor) {
+        let currentPasscodeView = view.subviews[passcode.count]
+        currentPasscodeView.backgroundColor = color
+        animatePasscodeView(view: currentPasscodeView)
+    }
+    
+    private func openAndHideWrongPasscodeLabelWithDelay() {
+        self.wrongPasscodeLabel.isHidden.toggle()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.wrongPasscodeLabel.isHidden.toggle()
+        }
+    }
+    
+    private func fillPasscodeField(_ field: UIStackView, _ color: UIColor) {
+        let currentPasscodeView = field.subviews
+        
+        for view in currentPasscodeView {
+            view.backgroundColor = color
+        }
+    }
+    
     private func changePasscodesUI() {
         createPasscodeLabel.isHidden.toggle()
         firstPasscodeViewFieldsStack.isHidden.toggle()
         repeatPasscodeLabel.isHidden.toggle()
         secondPasscodeViewStack.isHidden.toggle()
     }
+}
+
+// MARK: Extension. Navigation
+
+extension LockScreenViewController {
+    private func segueToMainScreenAndMakeItAsRoot() {
+        let storyboard = UIStoryboard(name: "MainScreenViewController", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "MainScreenViewController") as! MainScreenViewController
+        self.navigationController?.setViewControllers([viewController], animated: true)
+    }
     
-    // MARK: - UI Configuration
-    
+    private func segueToLogInScreenAndMakeItAsRoot() {
+        let storyboard = UIStoryboard(name: "LogInViewController", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "LogInViewController") as! LogInViewController
+        self.navigationController?.setViewControllers([viewController], animated: true)
+    }
+}
+
+// MARK: - Extension. UI Configuration
+
+extension LockScreenViewController {
     private func animatePasscodeView(view: UIView) {
         DispatchQueue.main.async {
             view.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
@@ -374,5 +394,4 @@ final class LockScreenViewController: UIViewController {
             view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
         }
     }
-    
 }
