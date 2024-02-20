@@ -24,3 +24,7 @@ Simple and fast app to manage your tasks.
 11. User LogIn -> Enter the Passcode (No Biometrics) -> Forget the passcode -> Redirect to the LogIn Screen -> Delete passcode from Keychain -> LogIn -> Create passcode -> Repeat passcode -> SavePasscode in Keychain -> No permission to use Biometrics -> Redirect to the Main Screen. ✅
 12. User Remove App from Background -> Open the App -> Enter the passcode / use Biometrics -> Redirect to the Main Screen. ❌
 13. User Delete App from the phone -> Force LogOut from the App -> Install an App -> LogIn -> Enter passcode / use Biometrics -> Redirect to the Main Screen. ❌
+
+# List of possible features to add:
+- Add ToDo functionality
+- Add CoreData to save tasks
