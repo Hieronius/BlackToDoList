@@ -9,6 +9,11 @@ Simple and fast app to manage your tasks.
 - LocalAuthorisation
 - Network
 
+# App work presentation:
+
+https://github.com/Hieronius/BlackToDoList/assets/41345907/d3fa452f-0d84-4e47-9d0f-d4de3844a5b4
+
+
 # 👱‍♂️Use cases:
 
 1. User Registration -> Redirect to the Login Screen -> Email Verification -> LogIn. ✅
