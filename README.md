@@ -4,6 +4,7 @@ Simple and fast app to manage your tasks.
 
 
 # 🛠Technologies
+- MVC
 - UIKit
 - Keychain
 - FirebaseAuth
