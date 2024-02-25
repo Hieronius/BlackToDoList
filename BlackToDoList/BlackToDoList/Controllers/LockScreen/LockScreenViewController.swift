@@ -1,10 +1,3 @@
-//
-//  LockScreenViewController.swift
-//  BlackToDoList
-//
-//  Created by Арсентий Халимовский on 30.05.2023.
-//
-
 import UIKit
 
 final class LockScreenViewController: UIViewController {
@@ -44,7 +37,6 @@ final class LockScreenViewController: UIViewController {
         }
     }
     
-    // MARK: LAST PLACE FOR REFACTORING
     /// Current passcode combination when user wan't to LogIn to the app from new app session.
     private var currentPasscode = [Int]() {
         didSet {

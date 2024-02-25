@@ -1,10 +1,3 @@
-//
-//  SceneDelegate.swift
-//  BlackToDoList
-//
-//  Created by Арсентий Халимовский on 30.05.2023.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -18,10 +11,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         /// Define NavigationViewController  steck with LoginViewController as it's root view controller
         let storyboard = UIStoryboard(name: "LogInViewController", bundle: nil)
-//        let storyboard = UIStoryboard(name: "LockScreenViewController", bundle: nil)
         let navigationViewController = storyboard.instantiateInitialViewController() as! UINavigationController
         let rootViewController = storyboard.instantiateViewController(withIdentifier: "LogInViewController") as! LogInViewController
-//        let rootViewController = storyboard.instantiateViewController(withIdentifier: "LockScreenViewController") as! LockScreenViewController
+
         navigationViewController.viewControllers = [rootViewController]
         
         /// Define this navigation view controller as root controller for UIWindow

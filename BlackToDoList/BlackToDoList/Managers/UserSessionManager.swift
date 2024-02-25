@@ -1,10 +1,3 @@
-//
-//  UserSessionManager.swift
-//  BlackToDoList
-//
-//  Created by Арсентий Халимовский on 19.06.2023.
-//
-
 import Foundation
 
 final class UserSessionManager {

@@ -1,19 +1,15 @@
-//
-//  MainScreenViewController.swift
-//  BlackToDoList
-//
-//  Created by Арсентий Халимовский on 30.05.2023.
-//
-
 import UIKit
 
 class MainScreenViewController: UIViewController {
     
+    // MARK: - Life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // some code here
     }
+    
+    // MARK: - Actions
     
     
     @IBAction func deleteAccount(_ sender: UIButton) {

@@ -1,10 +1,3 @@
-//
-//  KeyChainManager.swift
-//  BlackToDoList
-//
-//  Created by Арсентий Халимовский on 12.06.2023.
-//
-
 import UIKit
 
 final class KeychainManager {
@@ -15,7 +8,6 @@ final class KeychainManager {
         case invalidData
     }
     
-    // Should think where to place it in correct way.
     static var serviceId = "BlackToDoList"
     static var currentUser = "User"
     

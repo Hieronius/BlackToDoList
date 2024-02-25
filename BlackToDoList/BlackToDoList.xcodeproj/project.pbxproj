@@ -10,7 +10,6 @@
 		DD01E3272A31B03D00C99DCC /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DD01E3262A31B03D00C99DCC /* IQKeyboardManagerSwift */; };
 		DD01E32B2A31C12F00C99DCC /* CleaningButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD01E32A2A31C12F00C99DCC /* CleaningButton.swift */; };
 		DD882B492A402CE1006DA78A /* UserSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD882B482A402CE1006DA78A /* UserSessionManager.swift */; };
-		DD89DAED2A4415A600C0BAE6 /* MarkDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD89DAEC2A4415A600C0BAE6 /* MarkDown.swift */; };
 		DD89DAEF2A443FD300C0BAE6 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD89DAEE2A443FD300C0BAE6 /* AuthManager.swift */; };
 		DD8B97542A481B2D006112D5 /* NetworkMonitorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8B97532A481B2D006112D5 /* NetworkMonitorManager.swift */; };
 		DD8B97562A481E7C006112D5 /* NWInterface+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8B97552A481E7C006112D5 /* NWInterface+Extension.swift */; };
@@ -48,7 +47,6 @@
 /* Begin PBXFileReference section */
 		DD01E32A2A31C12F00C99DCC /* CleaningButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleaningButton.swift; sourceTree = "<group>"; };
 		DD882B482A402CE1006DA78A /* UserSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionManager.swift; sourceTree = "<group>"; };
-		DD89DAEC2A4415A600C0BAE6 /* MarkDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkDown.swift; sourceTree = "<group>"; };
 		DD89DAEE2A443FD300C0BAE6 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		DD8B97532A481B2D006112D5 /* NetworkMonitorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitorManager.swift; sourceTree = "<group>"; };
 		DD8B97552A481E7C006112D5 /* NWInterface+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NWInterface+Extension.swift"; sourceTree = "<group>"; };
@@ -191,7 +189,6 @@
 				DDDB65E22A25D2EE00FE519B /* SceneDelegate.swift */,
 				DDDB65EB2A25D2F100FE519B /* LaunchScreen.storyboard */,
 				DDDB65EE2A25D2F100FE519B /* Info.plist */,
-				DD89DAEC2A4415A600C0BAE6 /* MarkDown.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -371,7 +368,6 @@
 				DDDB660C2A25DDA900FE519B /* RegistrationViewController.swift in Sources */,
 				DDDB66182A25DE3400FE519B /* MainScreenViewController.swift in Sources */,
 				DDDB65E12A25D2EE00FE519B /* AppDelegate.swift in Sources */,
-				DD89DAED2A4415A600C0BAE6 /* MarkDown.swift in Sources */,
 				DD882B492A402CE1006DA78A /* UserSessionManager.swift in Sources */,
 				DD8C21222A36EC9900DC4CFC /* KeychainManager.swift in Sources */,
 				DD8B97542A481B2D006112D5 /* NetworkMonitorManager.swift in Sources */,

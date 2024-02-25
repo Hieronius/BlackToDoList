@@ -1,10 +1,3 @@
-//
-//  NoInternetSpinner.swift
-//  BlackToDoList
-//
-//  Created by Арсентий Халимовский on 26.06.2023.
-//
-
 import UIKit
 
 final class SpinningCircleView: UIView {

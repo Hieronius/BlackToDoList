@@ -1,10 +1,3 @@
-//
-//  RegistrationManager.swift
-//  BlackToDoList
-//
-//  Created by Арсентий Халимовский on 22.06.2023.
-//
-
 import FirebaseAuth
 import UIKit
 

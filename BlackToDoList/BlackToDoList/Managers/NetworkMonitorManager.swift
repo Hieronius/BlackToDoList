@@ -1,9 +1,3 @@
-//
-//  NetworkManager.swift
-//  BlackToDoList
-//
-//  Created by Арсентий Халимовский on 25.06.2023.
-//
 import UIKit
 import Network
 
