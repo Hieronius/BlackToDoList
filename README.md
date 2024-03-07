@@ -4,6 +4,7 @@ Also app able to detect when there is no internet and prevent user for any actio
 
 ## 🛠Technologies
 - MVC
+- GCD
 - UIKit
 - Keychain
 - FirebaseAuth
