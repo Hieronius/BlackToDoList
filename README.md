@@ -23,7 +23,7 @@ Also app able to detect when there is no internet and prevent user for any actio
 
 ## 📺Demo
 
-### Passcode
+### Custom LockScreen
 https://github.com/Hieronius/BlackToDoList/assets/41345907/d3fa452f-0d84-4e47-9d0f-d4de3844a5b4
 
 ### NetworkMonitor
